@@ -9,26 +9,26 @@ const steps = [
   {
     icon: Moon,
     number: '01',
-    title: 'Drift Into Sleep',
+    title: 'Silence the Noise',
     sanskrit: 'प्रथम ध्यान',
-    description: 'As you prepare for rest, Nirvana Ring begins its silent vigil. Advanced sensors monitor your heart rate variability, body temperature, and subtle movements—mapping your unique sleep architecture.',
-    details: ['HRV monitoring begins', 'Temperature baseline established', 'Movement patterns tracked'],
+    description: 'The day\'s tension fades. Nirvana Ring begins quietly listening — mapping your HRV, temperature, and micro-movements to establish your true biological baseline.',
+    details: ['HRV monitoring begins', 'Stress signature detected', 'Baseline coherence mapped'],
   },
   {
     icon: Brain,
     number: '02',
-    title: 'REM Detection',
+    title: 'Read Your Body\'s Signal',
     sanskrit: 'स्वप्न अवस्था',
-    description: 'Our AI identifies your REM cycles with superior accuracy. When dream sleep begins, the ring communicates with your app, preparing to deliver the perfect cue for lucidity.',
-    details: ['REM stage identified', 'Sleep depth analyzed', 'Optimal timing calculated'],
+    description: 'Your body speaks in data long before your mind catches up. The ring identifies your REM stage and calculates the exact moment your consciousness is most open to change.',
+    details: ['REM stage identified', 'Coherence window found', 'Optimal timing calculated'],
   },
   {
     icon: Sun,
     number: '03',
-    title: 'Awaken Within',
+    title: 'Choose Your Reality',
     sanskrit: 'बोधि प्राप्ति',
-    description: 'Gentle lights, sacred sounds, or subtle vibrations ripple through your dream. You recognize the signal and become lucid—free to explore, heal, and create within your own mind.',
-    details: ['Customizable dream cues', 'Consciousness triggered', 'Dream control achieved'],
+    description: 'A subtle cue — light, vibration, or sound — drops into your dream. You recognise it, become lucid, and step into the role of conscious author of your own experience.',
+    details: ['Customisable dream cues', 'Lucid awareness triggered', 'Intention takes the wheel'],
   },
 ]
 
@@ -42,7 +42,7 @@ export default function HowItWorks() {
         {/* Section Header */}
         <FadeIn className="text-center mb-20">
           <span className="text-nirvana-jade-light text-sm tracking-widest uppercase mb-4 block">
-            The Path to Lucidity
+            The Path from Attention to Intention
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             <span className="text-white">How </span>
@@ -50,8 +50,8 @@ export default function HowItWorks() {
             <span className="text-white"> Works</span>
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-white/60">
-            From the moment you sleep to the awakening within your dreams—
-            experience the seamless journey to lucid consciousness.
+            Each night is a reset — a chance to slip out of the attention economy's grip and return to yourself.
+            This is how Nirvana Ring guides that journey.
           </p>
         </FadeIn>
 
@@ -62,10 +62,10 @@ export default function HowItWorks() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             {steps.map((step, index) => (
-              <FadeIn key={step.number} delay={index * 0.2}>
+              <FadeIn key={step.number} delay={index * 0.2} className="h-full">
                 <motion.div
                   whileHover={{ scale: 1.02 }}
-                  className="relative"
+                  className="relative h-full"
                 >
                   {/* Card */}
                   <div className="relative p-8 rounded-2xl glass-card h-full">

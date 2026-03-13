@@ -9,7 +9,7 @@ const specs = [
     icon: Activity,
     title: 'HRV Sensor',
     value: '512Hz',
-    description: 'High-frequency heart rate variability monitoring for precise stress and recovery tracking.',
+    description: 'High-frequency heart rate variability — your coherence in real time, before your mind registers it.',
   },
   {
     icon: Waves,
@@ -27,19 +27,19 @@ const specs = [
     icon: Bluetooth,
     title: 'Connectivity',
     value: 'BLE 5.2',
-    description: 'Low-energy Bluetooth for seamless app synchronization and firmware updates.',
+    description: 'Low-energy Bluetooth for seamless app synchronisation and firmware updates.',
   },
   {
     icon: Battery,
     title: 'Battery Life',
     value: '7 Days',
-    description: 'Extended battery life with wireless charging. One hour charge, one week of use.',
+    description: 'One hour of charge, seven days of continuous sensing.',
   },
   {
     icon: Cpu,
     title: 'AI Engine',
     value: 'Edge AI',
-    description: 'On-device machine learning for real-time sleep stage classification.',
+    description: 'On-device ML runs privately on the ring — your patterns decoded for your growth, not a cloud.',
   },
 ]
 
@@ -53,15 +53,14 @@ export default function Technology() {
         {/* Section Header */}
         <FadeIn className="text-center mb-20">
           <span className="text-nirvana-cyan text-sm tracking-widest uppercase mb-4 block">
-            Precision Engineering
+            Hardware for the Intention Economy
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="text-white">Sacred </span>
+            <span className="text-white">Intention </span>
             <span className="gradient-text">Hardware</span>
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-white/60">
-            Every component is chosen for precision, longevity, and harmony—
-            creating technology worthy of its spiritual purpose.
+            Each sensor is a tool of self-sovereignty — measuring the biological signals that algorithms exploit, so <em>you</em> can read them first.
           </p>
         </FadeIn>
 
@@ -152,10 +151,10 @@ export default function Technology() {
         {/* Specs Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {specs.map((spec, index) => (
-            <FadeIn key={spec.title} delay={index * 0.1}>
+            <FadeIn key={spec.title} delay={index * 0.1} className="h-full">
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="group p-6 rounded-xl glass-card"
+                className="group p-6 rounded-xl glass-card h-full"
               >
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-lg bg-nirvana-cyan/10 flex items-center justify-center flex-shrink-0">

@@ -55,9 +55,14 @@ const quotes = [
     source: "",
   },
   {
-    text: "Brahman is the reality, the world is illusion; the soul is Brahman—awaken to this truth, in waking and in dream.",
-    author: "Shankaracharya",
-    source: "Advaita Vedanta",
+    text: "Be careful what you wish for — not because you won't get it, but because you'll be turned into the thing that can get it.",
+    author: "Jed McKenna",
+    source: "Spiritual Autolysis",
+  },
+  {
+    text: "The first stage of the transition is technology that makes the connection between consciousness and reality more tangible — moving from the parasitic attention economy to the intention economy.",
+    author: "Dr Julia Mossbridge",
+    source: "IONS — Institute of Noetic Sciences",
   },
 ]
 
@@ -122,10 +127,10 @@ export default function QuoteCarousel() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="text-nirvana-gold/60 text-sm tracking-widest uppercase mb-2">
-              Ancient Wisdom
+              Wisdom on Intention
             </p>
             <h3 className="text-3xl sm:text-4xl font-light text-white/90">
-              Voices Across Time
+              Voices on Self-Mastery
             </h3>
           </div>
           <div className="min-h-[300px]" />
@@ -152,10 +157,10 @@ export default function QuoteCarousel() {
           className="text-center mb-16"
         >
           <p className="text-nirvana-gold/60 text-sm tracking-widest uppercase mb-2">
-            Ancient Wisdom
+            Wisdom on Intention
           </p>
           <h3 className="text-3xl sm:text-4xl font-light text-white/90">
-            Voices Across Time
+            Voices on Self-Mastery
           </h3>
         </motion.div>
 

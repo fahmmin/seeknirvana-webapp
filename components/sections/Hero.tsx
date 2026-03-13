@@ -60,7 +60,7 @@ export default function Hero() {
         >
           <Sparkles className="w-4 h-4 text-nirvana-gold" />
           <span className="text-sm text-nirvana-gold-light tracking-wide">
-            Ancient Wisdom × AI
+            From Attention → Intention
           </span>
         </motion.div>
 
@@ -71,8 +71,8 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-5xl sm:text-6xl lg:text-8xl font-bold tracking-tight mb-6"
         >
-          <span className="block text-white mb-2">Awaken Your</span>
-          <span className="gradient-text">Dreams</span>
+          <span className="block text-white mb-2">Reclaim Your</span>
+          <span className="gradient-text">Intention</span>
         </motion.h1>
 
         {/* Sanskrit Subtitle */}
@@ -82,7 +82,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl sm:text-2xl text-nirvana-gold/80 font-light mb-4 tracking-widest"
         >
-          योगः कर्मसु कौशलम्
+          स्वयं प्रभु
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -90,7 +90,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-sm text-white/50 mb-8"
         >
-          Yoga is skill in action — Bhagavad Gita
+          Be the master of your own mind — Upanishads
         </motion.p>
 
         {/* Description */}
@@ -101,11 +101,11 @@ export default function Hero() {
           className="max-w-2xl mx-auto text-lg sm:text-xl text-white/70 mb-10 leading-relaxed"
         >
           Nirvana Ring guides you into{" "}
-          <span className="text-nirvana-cyan">lucid dreams</span>, tracks your{" "}
-          <span className="text-nirvana-jade-light">vitality</span>, and awakens
-          your <span className="text-nirvana-gold">inner consciousness</span>.
+          <span className="text-nirvana-cyan">lucid awareness</span>, decodes your{" "}
+          <span className="text-nirvana-jade-light">HRV rhythms</span>, and awakens
+          your <span className="text-nirvana-gold">inner intention</span>.
           <br className="hidden sm:block" />
-          Where ancient meditation meets precision AI.
+          Where ancient self-mastery meets precision bioscience.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -131,7 +131,7 @@ export default function Hero() {
             href="#how-it-works"
             className="px-8 py-4 rounded-full font-medium text-white/80 border border-white/20 hover:border-nirvana-cyan/50 hover:text-nirvana-cyan transition-all"
           >
-            Discover the Path
+            See How Intention Works
           </a>
         </motion.div>
 

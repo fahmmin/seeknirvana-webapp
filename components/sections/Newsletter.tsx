@@ -54,7 +54,7 @@ export default function Newsletter() {
               {/* Heading */}
               <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4">
                 <span className="text-white">Join the </span>
-                <span className="gradient-text">Journey</span>
+                <span className="gradient-text">Intention Economy</span>
               </h3>
 
               {/* Sanskrit subtitle */}
@@ -64,8 +64,7 @@ export default function Newsletter() {
 
               {/* Description */}
               <p className="text-white/60 max-w-xl mx-auto mb-8">
-                Receive weekly insights on lucid dreaming, mindfulness practices, and ancient wisdom
-                for modern living. No spam—only conscious communication.
+                Weekly dispatches on reclaiming your mind from the attention economy — HRV science, intention practices, and ancient wisdom for living with purpose in an age of distraction. No spam, only signal.
               </p>
 
               {/* Form */}
@@ -119,7 +118,7 @@ export default function Newsletter() {
                     <CheckCircle className="w-8 h-8 text-nirvana-jade" />
                   </div>
                   <div className="text-center">
-                    <p className="text-white font-medium text-lg">Welcome to the path</p>
+                    <p className="text-white font-medium text-lg">Your intention is set</p>
                     <p className="text-white/50 text-sm">Check your email to confirm subscription</p>
                   </div>
                 </motion.div>

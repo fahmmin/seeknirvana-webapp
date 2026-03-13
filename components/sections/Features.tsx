@@ -16,21 +16,21 @@ const features = [
     icon: Heart,
     title: 'Vitality Tracking',
     sanskrit: 'प्राण मापन',
-    description: 'Continuous HRV, temperature, and accelerometer monitoring for complete insight into your body\'s rhythms and recovery.',
+    description: 'HRV is your body\'s report card on coherence. Real-time tracking reveals whether you\'re living from intention or reacting to the world\'s demands.',
     color: 'from-nirvana-jade to-nirvana-cyan',
   },
   {
     icon: Brain,
     title: 'Mindful AI',
     sanskrit: 'बुद्धिमत्ता',
-    description: 'Personalized meditation guidance based on your biometric patterns, helping you find stillness when you need it most.',
+    description: 'Your HRV patterns reveal when noise has captured your mind. Nirvana AI surfaces those moments — so you can choose stillness over scroll.',
     color: 'from-nirvana-cyan to-nirvana-jade',
   },
   {
     icon: Sparkles,
     title: 'Sleep Alchemy',
     sanskrit: 'निद्रा रसायन',
-    description: 'Transform ordinary sleep into restorative practice. Optimize sleep cycles for longevity, clarity, and emotional resilience.',
+    description: 'Restorative sleep is where intention is forged. Optimise your cycles and wake as the author of your day — not a product of your feed.',
     color: 'from-nirvana-gold to-nirvana-amber',
   },
   {
@@ -67,15 +67,14 @@ export default function Features() {
         {/* Section Header */}
         <FadeIn className="text-center mb-20">
           <span className="text-nirvana-gold text-sm tracking-widest uppercase mb-4 block">
-            The Eightfold Path to Wellness
+            Tools for the Intention Economy
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="text-white">Sacred </span>
+            <span className="text-white">Intention </span>
             <span className="gradient-text">Technology</span>
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-white/60">
-            Ancient practices meet precision engineering. Each feature is designed
-            to guide you toward higher consciousness and longer life.
+            In an era of engineered distraction, every feature is a counterweight — steering you from reactive attention toward deliberate intention.
           </p>
         </FadeIn>
 

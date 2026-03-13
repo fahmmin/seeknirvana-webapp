@@ -120,22 +120,25 @@ export default function DownloadApp() {
                 ))}
               </div>
 
-              {/* Download Buttons */}
+              {/* Download Buttons — Coming Soon */}
+              <div className="mb-4 flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-nirvana-gold/10 border border-nirvana-gold/20 text-nirvana-gold text-xs tracking-widest uppercase">
+                  <span className="w-1.5 h-1.5 rounded-full bg-nirvana-gold animate-pulse inline-block" />
+                  Coming Soon
+                </span>
+              </div>
               <div className="flex flex-wrap gap-3">
                 {platforms.map((platform) => (
-                  <motion.a
+                  <div
                     key={platform.name}
-                    href="#"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-3 px-5 py-3 rounded-xl glass-card hover:bg-white/10 transition-colors"
+                    className="flex items-center gap-3 px-5 py-3 rounded-xl glass-card opacity-50 cursor-not-allowed select-none"
                   >
                     <span className="text-2xl">{platform.icon}</span>
                     <div className="text-left">
                       <div className="text-white/40 text-xs">Download on</div>
                       <div className="text-white text-sm font-medium">{platform.name}</div>
                     </div>
-                  </motion.a>
+                  </div>
                 ))}
               </div>
 

@@ -21,7 +21,7 @@ const benefits = [
     stat: "-40%",
     statLabel: "Cortisol Levels",
     description:
-      "Lucid dreaming therapy helps process trauma, reduce anxiety, and cultivate emotional resilience.",
+      "HRV coherence training decouples you from the cortisol spikes social media deliberately triggers. Less reactivity. More response.",
   },
   {
     icon: Brain,
@@ -48,7 +48,7 @@ const benefits = [
     stat: "24/7",
     statLabel: "Awareness",
     description:
-      "Carry the peace of meditation into your waking life. Track and optimize your mindfulness practice.",
+      "Intention doesn't end at sunrise. Biofeedback through the day helps you notice when you're running on autopilot — and choose otherwise.",
   },
   {
     icon: Infinity,
@@ -57,7 +57,7 @@ const benefits = [
     stat: "100%",
     statLabel: "Harmony",
     description:
-      "Align body, mind, and spirit. Achieve the equilibrium that ancient wisdom has taught for millennia.",
+      "Nirvana Ring helps you re-integrate — bringing biological coherence between heart, mind, and lived intention.",
   },
 ];
 
@@ -72,25 +72,24 @@ export default function Benefits() {
         {/* Section Header */}
         <FadeIn className="text-center mb-20">
           <span className="text-nirvana-gold text-sm tracking-widest uppercase mb-4 block">
-            The Fruits of Practice
+            Life Beyond the Attention Economy
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             <span className="text-white">Benefits of </span>
-            <span className="gradient-text-gold">Awakening</span>
+            <span className="gradient-text-gold">Intention</span>
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-white/60">
-            Science confirms what sages have known for centuries—conscious sleep
-            and mindful rest are pathways to a longer, richer life.
+            When you reclaim your attention and live from intention, the downstream effects are measurable — in body, mind, and the quality of your choices.
           </p>
         </FadeIn>
 
         {/* Benefits Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {benefits.map((benefit, index) => (
-            <FadeIn key={benefit.title} delay={index * 0.1}>
+            <FadeIn key={benefit.title} delay={index * 0.1} className="h-full">
               <motion.div
                 whileHover={{ y: -4 }}
-                className="group relative p-8 rounded-2xl glass-card overflow-hidden"
+                className="group relative p-8 rounded-2xl glass-card overflow-hidden h-full"
               >
                 {/* Hover Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-nirvana-gold/5 to-nirvana-jade/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
