@@ -1,4 +1,8 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
+
+import Web3ContextProvider from "@/components/providers/Web3ContextProvider";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -12,11 +16,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const cookieHeader = (await headers()).get("cookie");
+
   return (
     <html lang="en" className="dark">
       <head>
@@ -25,7 +31,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/favicon.svg" />
       </head>
       <body className="antialiased bg-nirvana-dark text-white overflow-x-hidden">
-        {children}
+        <Web3ContextProvider cookies={cookieHeader}>{children}</Web3ContextProvider>
       </body>
     </html>
   );

@@ -114,13 +114,13 @@ export default function Navigation() {
               )}
             </nav>
 
-            {/* CTA Button */}
+            {/* CTA */}
             <div className="hidden md:block">
               <a
                 href="/programs"
-                className="px-5 py-2.5 rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark text-white text-sm font-medium hover:shadow-lg hover:shadow-nirvana-jade/20 transition-shadow"
+                className="rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-5 py-2.5 text-sm font-medium text-white transition-shadow hover:shadow-lg hover:shadow-nirvana-jade/20"
               >
-                {isProgramPage ? "Join Program" : "Join Program"}
+                Join Program
               </a>
             </div>
 
@@ -185,7 +185,7 @@ export default function Navigation() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.25 }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="mt-4 px-6 py-3 rounded-xl bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark text-white font-medium text-center"
+                  className="mt-4 rounded-xl bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-6 py-3 text-center font-medium text-white"
                 >
                   Join Program
                 </motion.a>

@@ -1,8 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, Eraser, Send, Sparkles } from "lucide-react";
+import { CheckCircle2, Eraser, Loader2, Send, Sparkles } from "lucide-react";
+
+import { projectId } from "@/config/reown-wagmi";
+import {
+  hasSentSignupWelcome,
+  markSignupWelcomeSent,
+  sendSignupWelcomeEmail,
+} from "@/lib/auth/signup-welcome-client";
 
 type ApplicationFormState = {
   fullName: string;
@@ -69,8 +77,43 @@ const textareaClassName =
   "min-h-[120px] w-full rounded-2xl border border-white/10 bg-nirvana-dark/60 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/28 focus:border-nirvana-cyan/40";
 
 export default function CohortApplicationForm() {
+  const { open } = useAppKit();
+  const { isConnected, status, embeddedWalletInfo } = useAppKitAccount();
+  const signupWelcomeInFlight = useRef(false);
+  const embeddedEmail = embeddedWalletInfo?.user?.email?.trim() ?? "";
+
   const [form, setForm] = useState<ApplicationFormState>(INITIAL_FORM);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!embeddedEmail) {
+      return;
+    }
+    setForm((current) => ({
+      ...current,
+      email: current.email ? current.email : embeddedEmail,
+    }));
+  }, [embeddedEmail]);
+
+  useEffect(() => {
+    if (!isConnected || status !== "connected" || !embeddedEmail) {
+      return;
+    }
+    if (hasSentSignupWelcome(embeddedEmail) || signupWelcomeInFlight.current) {
+      return;
+    }
+    signupWelcomeInFlight.current = true;
+    void (async () => {
+      const ok = await sendSignupWelcomeEmail(embeddedEmail);
+      if (ok) {
+        markSignupWelcomeSent(embeddedEmail);
+      }
+      signupWelcomeInFlight.current = false;
+    })();
+  }, [embeddedEmail, isConnected, status]);
 
   const summary = useMemo(
     () => [
@@ -81,6 +124,9 @@ export default function CohortApplicationForm() {
     ].filter(Boolean),
     [form],
   );
+
+  /** After Reown session is active, show cohort intake; until then, only the sign-in surface. */
+  const showIntakeForm = isConnected;
 
   const handleChange =
     (field: keyof ApplicationFormState) =>
@@ -108,18 +154,43 @@ export default function CohortApplicationForm() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(
-        "seeknirvana-cohort-application",
-        JSON.stringify({
-          ...form,
-          submittedAt: new Date().toISOString(),
-        }),
-      );
+    if (honeypot.trim()) {
+      return;
     }
-    setIsSubmitted(true);
+    setSubmitError(null);
+    setIsSaving(true);
+    try {
+      const payload = {
+        ...form,
+        website: honeypot,
+      };
+      const res = await fetch("/api/programs/cohort-application", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const data = (await res.json().catch(() => null)) as { error?: string } | null;
+        setSubmitError(data?.error === "validation_error" ? "Please check the highlighted fields." : "Something went wrong. Try again.");
+        return;
+      }
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(
+          "seeknirvana-cohort-application",
+          JSON.stringify({
+            ...form,
+            submittedAt: new Date().toISOString(),
+          }),
+        );
+      }
+      setIsSubmitted(true);
+    } catch {
+      setSubmitError("Network error. Try again.");
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -171,12 +242,10 @@ export default function CohortApplicationForm() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-white">
-                  Form submitted
+                  Application received
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/70">
-                  Your cohort application details have been saved on this device
-                  for this preview. When a backend is connected, this can flow
-                  directly into enrollment.
+                  Thank you — your intake is submitted. We will follow up using the details you shared.
                 </p>
                 {summary.length > 0 && (
                   <p className="mt-3 text-xs uppercase tracking-[0.24em] text-white/40">
@@ -189,8 +258,71 @@ export default function CohortApplicationForm() {
         )}
       </div>
 
-      <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-        <form onSubmit={handleSubmit} className="space-y-8">
+      <div className="space-y-6">
+        {!showIntakeForm ? (
+          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
+            <p className="text-sm uppercase tracking-[0.28em] text-nirvana-cyan">Account</p>
+            <h3 className="mt-4 text-2xl font-semibold text-white sm:text-3xl">Sign in to apply</h3>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/60">
+              Use email, a social account, or your wallet. Once you are signed in, the cohort intake form appears here
+              and we can pre-fill your email when available.
+            </p>
+            {!projectId ? (
+              <p className="mt-6 text-xs text-nirvana-gold-light/90">
+                Set <span className="font-mono text-nirvana-cyan">NEXT_PUBLIC_REOWN_PROJECT_ID</span> in your environment
+                to enable sign-in.
+              </p>
+            ) : (
+              <button
+                type="button"
+                onClick={() => void open()}
+                className="mt-8 inline-flex w-full max-w-md items-center justify-center rounded-full border border-white/12 bg-white/[0.08] px-8 py-4 text-base font-medium text-white shadow-sm transition-colors hover:border-nirvana-jade/40 hover:bg-nirvana-jade/15 hover:text-white"
+              >
+                Sign in or connect
+              </button>
+            )}
+          </div>
+        ) : (
+          <>
+            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl sm:p-8">
+              <p className="text-sm uppercase tracking-[0.28em] text-nirvana-cyan">Account</p>
+              <h3 className="mt-3 text-lg font-semibold text-white">You are signed in</h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/60">
+                {embeddedEmail
+                  ? "Your email is pre-filled below where possible. Open account settings to switch wallet or sign-in method."
+                  : "Complete the intake below. Use account settings if you need to add email or change wallet."}
+              </p>
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <p className="text-sm text-white/75">
+                  {embeddedEmail ? embeddedEmail : "Connected"}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => void open()}
+                  className="inline-flex w-full shrink-0 items-center justify-center rounded-full border border-white/12 bg-white/[0.06] px-6 py-3 text-sm font-medium text-white/90 shadow-sm transition-colors hover:border-nirvana-jade/35 hover:bg-nirvana-jade/15 hover:text-white sm:w-auto"
+                >
+                  Wallet & account
+                </button>
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
+        <form onSubmit={handleSubmit} className="relative space-y-8">
+          <input
+            type="text"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden
+            className="absolute left-[-9999px] h-0 w-0 opacity-0"
+          />
+          {submitError && (
+            <p className="rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+              {submitError}
+            </p>
+          )}
           <div>
             <p className="text-sm uppercase tracking-[0.28em] text-nirvana-cyan">
               Personal details
@@ -430,11 +562,11 @@ export default function CohortApplicationForm() {
           <div className="flex flex-col gap-3 border-t border-white/10 pt-6 sm:flex-row">
             <button
               type="submit"
-              disabled={!form.acceptProgramTerms}
+              disabled={!form.acceptProgramTerms || isSaving}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-7 py-3.5 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
             >
-              <Send className="h-4 w-4" />
-              Submit application
+              {isSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+              {isSaving ? "Submitting…" : "Submit application"}
             </button>
             <button
               type="button"
@@ -446,6 +578,9 @@ export default function CohortApplicationForm() {
             </button>
           </div>
         </form>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
