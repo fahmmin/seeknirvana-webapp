@@ -4,6 +4,8 @@ import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, Eraser, Loader2, Send, Sparkles } from "lucide-react";
+import { useAccount } from "wagmi";
+import { z } from "zod";
 
 import { projectId } from "@/config/reown-wagmi";
 import {
@@ -76,9 +78,33 @@ const inputClassName =
 const textareaClassName =
   "min-h-[120px] w-full rounded-2xl border border-white/10 bg-nirvana-dark/60 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/28 focus:border-nirvana-cyan/40";
 
+const requiredText = z.string().trim().min(1, "Oops you forgot to put this.");
+
+const cohortFormClientSchema = z.object({
+  fullName: requiredText.max(200),
+  email: z.string().trim().email("Please enter a valid email address.").max(320),
+  phone: z.string().trim().max(80),
+  ageRange: requiredText.max(40),
+  location: requiredText.max(200),
+  timezone: requiredText.max(120),
+  personalityType: requiredText.max(80),
+  occupation: requiredText.max(200),
+  dreamExperience: requiredText.max(200),
+  wearableExperience: requiredText.max(200),
+  preferredSessionWindow: requiredText.max(120),
+  sleepGoal: requiredText.max(4000),
+  currentChallenge: requiredText.max(4000),
+  intentions: requiredText.max(4000),
+  notes: z.string().trim().max(4000),
+  acceptProgramTerms: z.boolean().refine((value) => value === true, {
+    message: "Oops you forgot to put this.",
+  }),
+});
+
 export default function CohortApplicationForm() {
   const { open } = useAppKit();
-  const { isConnected, status, embeddedWalletInfo } = useAppKitAccount();
+  const { isConnected: appKitConnected, status: appKitStatus, embeddedWalletInfo } = useAppKitAccount();
+  const { address, isConnected: walletConnected, status: walletStatus } = useAccount();
   const signupWelcomeInFlight = useRef(false);
   const embeddedEmail = embeddedWalletInfo?.user?.email?.trim() ?? "";
 
@@ -86,6 +112,9 @@ export default function CohortApplicationForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof ApplicationFormState, string>>>({});
+  const [isCheckingProfile, setIsCheckingProfile] = useState(false);
+  const [hasDashboardProfile, setHasDashboardProfile] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -99,7 +128,7 @@ export default function CohortApplicationForm() {
   }, [embeddedEmail]);
 
   useEffect(() => {
-    if (!isConnected || status !== "connected" || !embeddedEmail) {
+    if (!appKitConnected || appKitStatus !== "connected" || !embeddedEmail) {
       return;
     }
     if (hasSentSignupWelcome(embeddedEmail) || signupWelcomeInFlight.current) {
@@ -113,7 +142,7 @@ export default function CohortApplicationForm() {
       }
       signupWelcomeInFlight.current = false;
     })();
-  }, [embeddedEmail, isConnected, status]);
+  }, [appKitConnected, appKitStatus, embeddedEmail]);
 
   const summary = useMemo(
     () => [
@@ -124,9 +153,60 @@ export default function CohortApplicationForm() {
     ].filter(Boolean),
     [form],
   );
+  const occupationShoutout = useMemo(() => {
+    const text = form.occupation.toLowerCase();
+    if (text.includes("founder")) {
+      return "Wow you are a founder, I respect you.";
+    }
+    if (text.includes("innovator")) {
+      return "You are an innovator? We need you.";
+    }
+    return "";
+  }, [form.occupation]);
 
-  /** After Reown session is active, show cohort intake; until then, only the sign-in surface. */
-  const showIntakeForm = isConnected;
+  /** Prefer wagmi connection state to persist wallet session across refreshes. */
+  const showIntakeForm = walletConnected && walletStatus === "connected";
+
+  useEffect(() => {
+    if (!showIntakeForm || !address) {
+      setIsCheckingProfile(false);
+      setHasDashboardProfile(false);
+      return;
+    }
+    let cancelled = false;
+    setIsCheckingProfile(true);
+    setSubmitError(null);
+    void (async () => {
+      try {
+        const res = await fetch(
+          `/api/dashboard/profile?address=${encodeURIComponent(address)}`,
+          { method: "GET" },
+        );
+        const json = (await res.json().catch(() => null)) as
+          | { onboarded?: boolean; profile?: { email?: string; full_name?: string | null } | null; error?: string }
+          | null;
+        if (cancelled) {
+          return;
+        }
+        if (!res.ok) {
+          setHasDashboardProfile(false);
+          if (json?.error === "database_not_configured") {
+            setSubmitError("Member hub is temporarily unavailable.");
+          }
+          return;
+        }
+        const onboarded = Boolean(json?.onboarded && json?.profile);
+        setHasDashboardProfile(onboarded);
+      } finally {
+        if (!cancelled) {
+          setIsCheckingProfile(false);
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [address, showIntakeForm]);
 
   const handleChange =
     (field: keyof ApplicationFormState) =>
@@ -141,6 +221,14 @@ export default function CohortApplicationForm() {
         ...current,
         [field]: nextValue,
       }));
+      setFieldErrors((current) => {
+        if (!current[field]) {
+          return current;
+        }
+        const next = { ...current };
+        delete next[field];
+        return next;
+      });
       if (isSubmitted) {
         setIsSubmitted(false);
       }
@@ -152,6 +240,7 @@ export default function CohortApplicationForm() {
     if (typeof window !== "undefined") {
       window.localStorage.removeItem("seeknirvana-cohort-application");
     }
+    setFieldErrors({});
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -159,11 +248,30 @@ export default function CohortApplicationForm() {
     if (honeypot.trim()) {
       return;
     }
+    if (!address) {
+      setSubmitError("Wallet address missing. Reconnect and try again.");
+      return;
+    }
+    const validated = cohortFormClientSchema.safeParse(form);
+    if (!validated.success) {
+      const nextErrors: Partial<Record<keyof ApplicationFormState, string>> = {};
+      for (const issue of validated.error.issues) {
+        const key = issue.path[0];
+        if (typeof key === "string" && key in form && !nextErrors[key as keyof ApplicationFormState]) {
+          nextErrors[key as keyof ApplicationFormState] = issue.message;
+        }
+      }
+      setFieldErrors(nextErrors);
+      setSubmitError(Object.values(nextErrors)[0] ?? "Please check your form and try again.");
+      return;
+    }
     setSubmitError(null);
+    setFieldErrors({});
     setIsSaving(true);
     try {
       const payload = {
         ...form,
+        walletAddress: address,
         website: honeypot,
       };
       const res = await fetch("/api/programs/cohort-application", {
@@ -176,6 +284,7 @@ export default function CohortApplicationForm() {
         setSubmitError(data?.error === "validation_error" ? "Please check the highlighted fields." : "Something went wrong. Try again.");
         return;
       }
+
       if (typeof window !== "undefined") {
         window.localStorage.setItem(
           "seeknirvana-cohort-application",
@@ -186,6 +295,10 @@ export default function CohortApplicationForm() {
         );
       }
       setIsSubmitted(true);
+      setHasDashboardProfile(true);
+      if (typeof window !== "undefined") {
+        window.location.assign("/dashboard");
+      }
     } catch {
       setSubmitError("Network error. Try again.");
     } finally {
@@ -282,6 +395,40 @@ export default function CohortApplicationForm() {
               </button>
             )}
           </div>
+        ) : isCheckingProfile ? (
+          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
+            <p className="text-sm uppercase tracking-[0.28em] text-nirvana-cyan">Account</p>
+            <h3 className="mt-4 flex items-center gap-2 text-2xl font-semibold text-white sm:text-3xl">
+              <Loader2 className="h-5 w-5 animate-spin text-nirvana-cyan" />
+              Loading your profile
+            </h3>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/60">
+              Checking whether your cohort application is already linked to this wallet.
+            </p>
+          </div>
+        ) : hasDashboardProfile ? (
+          <div className="rounded-[2rem] border border-nirvana-jade/25 bg-nirvana-jade/10 p-8 backdrop-blur-xl sm:p-10">
+            <p className="text-sm uppercase tracking-[0.28em] text-nirvana-jade-light">You are already onboarded</p>
+            <h3 className="mt-4 text-2xl font-semibold text-white sm:text-3xl">Your member hub is ready</h3>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/75">
+              We already have your personal details on file for this connected wallet, so the intake form is hidden.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a
+                href="/dashboard"
+                className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-8 py-4 text-base font-medium text-white shadow-sm transition-opacity hover:opacity-95 sm:w-auto"
+              >
+                Take me to the dashboard
+              </a>
+              <button
+                type="button"
+                onClick={() => void open()}
+                className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/[0.06] px-8 py-4 text-base font-medium text-white/90 transition-colors hover:border-nirvana-jade/35 hover:bg-nirvana-jade/15 hover:text-white sm:w-auto"
+              >
+                Wallet & account
+              </button>
+            </div>
+          </div>
         ) : (
           <>
             <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl sm:p-8">
@@ -323,6 +470,17 @@ export default function CohortApplicationForm() {
               {submitError}
             </p>
           )}
+          {Object.keys(fieldErrors).length > 0 && (
+            <div className="rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+              <p className="font-medium">Please fix these fields:</p>
+              <p className="mt-1 text-red-100/90">
+                {Object.keys(fieldErrors)
+                  .slice(0, 4)
+                  .join(", ")}
+                {Object.keys(fieldErrors).length > 4 ? ", ..." : ""}
+              </p>
+            </div>
+          )}
           <div>
             <p className="text-sm uppercase tracking-[0.28em] text-nirvana-cyan">
               Personal details
@@ -334,9 +492,10 @@ export default function CohortApplicationForm() {
                   required
                   value={form.fullName}
                   onChange={handleChange("fullName")}
-                  className={inputClassName}
+                  className={`${inputClassName} ${fieldErrors.fullName ? "border-red-400/60 focus:border-red-300" : ""}`}
                   placeholder="Your full name"
                 />
+                {fieldErrors.fullName && <p className="mt-2 text-xs text-red-300">{fieldErrors.fullName}</p>}
               </label>
               <label className="block">
                 <span className="mb-2 block text-sm text-white/70">Email address</span>
@@ -345,9 +504,10 @@ export default function CohortApplicationForm() {
                   type="email"
                   value={form.email}
                   onChange={handleChange("email")}
-                  className={inputClassName}
+                  className={`${inputClassName} ${fieldErrors.email ? "border-red-400/60 focus:border-red-300" : ""}`}
                   placeholder="you@example.com"
                 />
+                {fieldErrors.email && <p className="mt-2 text-xs text-red-300">{fieldErrors.email}</p>}
               </label>
               <label className="block">
                 <span className="mb-2 block text-sm text-white/70">Phone or WhatsApp</span>
@@ -400,9 +560,11 @@ export default function CohortApplicationForm() {
                 <input
                   value={form.occupation}
                   onChange={handleChange("occupation")}
-                  className={inputClassName}
+                  className={`${inputClassName} ${fieldErrors.occupation ? "border-red-400/60 focus:border-red-300" : ""}`}
                   placeholder="Founder, designer, student, therapist..."
                 />
+                {fieldErrors.occupation && <p className="mt-2 text-xs text-red-300">{fieldErrors.occupation}</p>}
+                {occupationShoutout && <p className="mt-2 text-xs text-nirvana-jade-light">{occupationShoutout}</p>}
               </label>
             </div>
           </div>
@@ -557,6 +719,9 @@ export default function CohortApplicationForm() {
                 .
               </span>
             </label>
+            {fieldErrors.acceptProgramTerms && (
+              <p className="mt-2 text-xs text-red-300">{fieldErrors.acceptProgramTerms}</p>
+            )}
           </div>
 
           <div className="flex flex-col gap-3 border-t border-white/10 pt-6 sm:flex-row">

@@ -8,6 +8,7 @@ export const signupWelcomeSchema = z.object({
 const cohortField = z.string().trim().max(8000);
 
 export const cohortApplicationSchema = z.object({
+  walletAddress: z.string().trim().max(100).optional(),
   fullName: cohortField.min(1).max(200),
   email: z.string().trim().email().max(320),
   phone: z.string().trim().max(80),

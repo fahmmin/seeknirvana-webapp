@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useAccount } from "wagmi";
 
 const homeNavLinks = [
   { label: "Why It Matters", href: "#problem" },
@@ -11,6 +12,7 @@ const homeNavLinks = [
   { label: "Benefits", href: "/benefits" },
   { label: "Technology", href: "/technology" },
   { label: "Programs", href: "/programs" },
+  { label: "Member hub", href: "/dashboard" },
 ];
 
 const preorderNavLinks = [
@@ -18,6 +20,7 @@ const preorderNavLinks = [
   { label: "Benefits", href: "/benefits" },
   { label: "Technology", href: "/technology" },
   { label: "Programs", href: "/programs" },
+  { label: "Member hub", href: "/dashboard" },
 ];
 
 const detailNavLinks = [
@@ -25,14 +28,19 @@ const detailNavLinks = [
   { label: "Benefits", href: "/benefits" },
   { label: "Technology", href: "/technology" },
   { label: "Programs", href: "/programs" },
+  { label: "Member hub", href: "/dashboard" },
 ];
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { isConnected, status } = useAccount();
   const isProductPage = pathname?.includes("/product");
   const isProgramPage = pathname?.startsWith("/programs");
+  const isSignedIn = isConnected && status === "connected";
+  const ctaHref = isSignedIn ? "/dashboard" : "/programs";
+  const ctaLabel = isSignedIn ? "Dashboard" : "Join Program";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,6 +56,7 @@ export default function Navigation() {
   const isDetailPage =
     pathname === "/benefits" ||
     pathname === "/technology" ||
+    pathname === "/dashboard" ||
     pathname?.startsWith("/programs");
   const navLinks = isPreorderPage
     ? preorderNavLinks
@@ -117,10 +126,10 @@ export default function Navigation() {
             {/* CTA */}
             <div className="hidden md:block">
               <a
-                href="/programs"
+                href={ctaHref}
                 className="rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-5 py-2.5 text-sm font-medium text-white transition-shadow hover:shadow-lg hover:shadow-nirvana-jade/20"
               >
-                Join Program
+                {ctaLabel}
               </a>
             </div>
 
@@ -180,14 +189,14 @@ export default function Navigation() {
                   </motion.a>
                 )}
                 <motion.a
-                  href="/programs"
+                  href={ctaHref}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.25 }}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="mt-4 rounded-xl bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-6 py-3 text-center font-medium text-white"
                 >
-                  Join Program
+                  {ctaLabel}
                 </motion.a>
               </nav>
             </div>
