@@ -91,13 +91,21 @@ export default function Program() {
             <p className="mx-auto max-w-3xl text-lg leading-relaxed text-white/70">
               Browse all programs first, then enter the cohort that fits.
             </p>
-            <a
-              href="/programs"
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-nirvana-jade/20 bg-nirvana-jade/10 px-6 py-3 text-sm font-medium text-nirvana-jade-light transition-colors hover:bg-nirvana-jade/20"
-            >
-              View all programs
-              <ArrowRight className="h-4 w-4" />
-            </a>
+            <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <a
+                href="/login"
+                className="inline-flex items-center gap-2 rounded-full border border-nirvana-cyan/30 bg-nirvana-cyan/10 px-6 py-3 text-sm font-medium text-nirvana-cyan transition-colors hover:bg-nirvana-cyan/20"
+              >
+                Sign in to continue
+              </a>
+              <a
+                href="/programs"
+                className="inline-flex items-center gap-2 rounded-full border border-nirvana-jade/20 bg-nirvana-jade/10 px-6 py-3 text-sm font-medium text-nirvana-jade-light transition-colors hover:bg-nirvana-jade/20"
+              >
+                View all programs
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
         </FadeIn>
       </div>

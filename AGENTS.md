@@ -8,9 +8,9 @@
 
 **Product:** Seek Nirvana — Affordable smart ring ($99) for lucid dreaming, mindfulness, and longevity tracking.
 
-**Tech Stack:** Next.js 15 + React 19 + TypeScript + Tailwind CSS + Framer Motion
+**Tech Stack:** Next.js 16 + React 19 + TypeScript + Tailwind CSS + Framer Motion + Reown AppKit (Wagmi) + Resend
 
-**Deployment:** Static export to GitHub Pages via GitHub Actions
+**Deployment:** Server Next.js on **Vercel** (Route Handlers for email APIs). GitHub Actions runs **CI** (`pnpm build`, lint, tests) — no GitHub Pages static export.
 
 ---
 
@@ -18,8 +18,9 @@
 
 ```
 app/                    # Next.js App Router pages
+├── api/               # Route Handlers (e.g. Resend signup welcome, cohort application intake)
 ├── page.tsx           # Homepage (imports section components)
-├── layout.tsx         # Root layout with favicon, metadata
+├── layout.tsx         # Root layout with favicon, metadata, Web3 provider
 ├── globals.css        # Tailwind imports + custom animations
 ├── privacy/           # Privacy policy page
 └── terms/             # Terms of service page

@@ -132,8 +132,33 @@ pnpm run build
 Create `.env.local` for local development:
 
 ```env
-# Optional: Analytics, API keys, etc.
-NEXT_PUBLIC_GA_ID=your_google_analytics_id
+# Wallet + site
+NEXT_PUBLIC_REOWN_PROJECT_ID=
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+
+# Member dashboard (Supabase service role for API routes only)
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+
+# Email
+RESEND_API_KEY=
+RESEND_FROM_EMAIL=
+
+# Google Fit integration
+NEXT_PUBLIC_ENABLE_GOOGLE_FIT=false
+GOOGLE_OAUTH_CLIENT_ID=
+GOOGLE_OAUTH_CLIENT_SECRET=
+GOOGLE_OAUTH_REDIRECT_URI=http://localhost:3000/api/integrations/google-fit/callback
+GOOGLE_FIT_SCOPES=https://www.googleapis.com/auth/fitness.activity.read
+GOOGLE_FIT_ENCRYPTION_KEY=
+GOOGLE_FIT_SYNC_CRON_SECRET=
+```
+
+Generate secure secrets:
+
+```bash
+openssl rand -base64 32   # GOOGLE_FIT_ENCRYPTION_KEY
+openssl rand -hex 32      # GOOGLE_FIT_SYNC_CRON_SECRET
 ```
 
 ## 🧪 Available Scripts

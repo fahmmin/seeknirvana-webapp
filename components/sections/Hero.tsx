@@ -140,10 +140,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 flex-wrap"
         >
           <a
-            href="/programs/5-day-sleep-cohort"
+            href="/login"
             className="group relative px-8 py-4 bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark rounded-full font-medium text-white overflow-hidden transition-transform hover:scale-105"
           >
             <span className="relative z-10">Join Program</span>
@@ -153,6 +153,12 @@ export default function Hero() {
               whileHover={{ x: 0 }}
               transition={{ duration: 0.3 }}
             />
+          </a>
+          <a
+            href="/preorder"
+            className="px-8 py-4 rounded-full font-medium text-white/90 border border-nirvana-gold/35 bg-nirvana-gold/10 hover:border-nirvana-gold/55 hover:bg-nirvana-gold/15 transition-all"
+          >
+            Pre-order $99
           </a>
           <a
             href="#problem"

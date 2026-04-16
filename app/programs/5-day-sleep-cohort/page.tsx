@@ -249,6 +249,13 @@ export default function FiveDaySleepCohortPage() {
                 help you improve sleep and build lucid dreaming foundations.
               </p>
 
+              <div className="mt-6 rounded-2xl border border-nirvana-cyan/25 bg-nirvana-cyan/10 px-4 py-3 text-sm text-white/80 sm:px-5">
+                <a href="/login" className="font-semibold text-nirvana-cyan hover:underline">
+                  Sign in
+                </a>{" "}
+                first for member hub access and a smoother application flow.
+              </div>
+
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <a
                   href="/programs/5-day-sleep-cohort/apply"

@@ -220,12 +220,20 @@ export default function TechnologyPage() {
                 the guidance is personal, the processing is local, and the
                 context never leaves your hands.
               </p>
-              <a
-                href="/preorder"
-                className="mt-8 inline-flex rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-6 py-3 text-sm font-medium text-white"
-              >
-                Join the early access list
-              </a>
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <a
+                  href="/preorder"
+                  className="inline-flex rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-6 py-3 text-sm font-medium text-white"
+                >
+                  Join the early access list
+                </a>
+                <a
+                  href="/login"
+                  className="inline-flex rounded-full border border-nirvana-cyan/30 bg-nirvana-cyan/10 px-6 py-3 text-sm font-medium text-nirvana-cyan transition-colors hover:bg-nirvana-cyan/20"
+                >
+                  Join Program
+                </a>
+              </div>
             </div>
           </FadeIn>
         </div>

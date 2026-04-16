@@ -13,6 +13,7 @@ const getLinks = (isHomePage: boolean) => ({
   ],
   support: [
     { label: "Pre-Order", href: "/preorder" },
+    { label: "Member sign-in", href: "/login" },
     { label: "Privacy", href: "/privacy" },
     { label: "Terms", href: "/terms" },
     { label: "Contact", href: "mailto:support@seeknirvana.com" },

@@ -112,7 +112,7 @@ export default function Features() {
         </div>
 
         {/* CTA */}
-        <FadeIn delay={0.6} className="mt-16 text-center">
+        <FadeIn delay={0.6} className="mt-16 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <motion.a
             href="/preorder"
             whileHover={{ scale: 1.05 }}
@@ -123,6 +123,14 @@ export default function Features() {
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
+          </motion.a>
+          <motion.a
+            href="/login"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/15 bg-white/5 text-white/90 font-medium hover:border-nirvana-cyan/35 hover:bg-white/10 transition-colors"
+          >
+            Join Program — member hub
           </motion.a>
         </FadeIn>
       </div>

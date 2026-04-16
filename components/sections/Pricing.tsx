@@ -80,12 +80,19 @@ export default function Pricing() {
                     better sleep and health.
                   </p>
 
-                  <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                  <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                     <a
                       href="/preorder"
                       className="block rounded-xl bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-6 py-4 text-center text-lg font-semibold text-white transition-shadow hover:shadow-lg hover:shadow-nirvana-jade/20"
                     >
                       Pre-Order
+                    </a>
+
+                    <a
+                      href="/login"
+                      className="block rounded-xl border border-nirvana-cyan/30 bg-nirvana-cyan/10 px-6 py-4 text-center font-medium text-nirvana-cyan transition-colors hover:border-nirvana-cyan/50 hover:bg-nirvana-cyan/15"
+                    >
+                      Join Program
                     </a>
 
                     <a

@@ -231,12 +231,20 @@ export default function BenefitsPage() {
                 intentional awareness across nights and into waking life.
               </p>
 
-              <a
-                href="/preorder"
-                className="mt-8 inline-flex rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-6 py-3 text-sm font-medium text-white"
-              >
-                Start the guided system
-              </a>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a
+                  href="/preorder"
+                  className="inline-flex justify-center rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-6 py-3 text-sm font-medium text-white"
+                >
+                  Start the guided system
+                </a>
+                <a
+                  href="/login"
+                  className="inline-flex justify-center rounded-full border border-nirvana-cyan/30 bg-nirvana-cyan/10 px-6 py-3 text-sm font-medium text-nirvana-cyan transition-colors hover:bg-nirvana-cyan/20"
+                >
+                  Join Program
+                </a>
+              </div>
             </div>
           </FadeIn>
         </div>
