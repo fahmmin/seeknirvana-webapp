@@ -29,6 +29,9 @@ jobs:
       - name: Lint (TypeScript)
         run: npm run lint
 
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: Tests
         run: npm test
 
