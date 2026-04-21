@@ -131,10 +131,11 @@ jobs:
               --network traefik \
               --env-file /opt/seek-nirvana-webapp/.env \
               -l "traefik.enable=true" \
-              -l 'traefik.http.routers.seeknirvana.rule=Host(`seeknirvana.com`)' \
+              -l "traefik.http.routers.seeknirvana-http.rule=Host(`seeknirvana.com`)" \
+              -l "traefik.http.routers.seeknirvana-http.entrypoints=web" \
+              -l "traefik.http.routers.seeknirvana.rule=Host(`seeknirvana.com`)" \
               -l "traefik.http.routers.seeknirvana.entrypoints=websecure" \
               -l "traefik.http.routers.seeknirvana.tls.certresolver=le" \
-              -l "traefik.http.services.seeknirvana.loadbalancer.server.port=3000" \
               "$IMAGE"
 
             # cleanup
