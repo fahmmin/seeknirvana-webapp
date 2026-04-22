@@ -12,9 +12,11 @@ export const Footer = () => {
         <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_0.7fr_0.7fr]">
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <div className="devanagari-text flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.08] text-xl leading-none text-white">
-                ॐ
-              </div>
+              <img
+                src="/logo-transparent.png"
+                alt="Seek Nirvana"
+                className="h-12 w-12 object-contain"
+              />
               <span className="text-xl font-medium text-white sm:text-2xl">Seek Nirvana</span>
             </div>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-white/45">
@@ -70,7 +72,7 @@ export const Footer = () => {
               © 2026 Seek Nirvana. All rights reserved.
             </p>
             <p className="flex items-center gap-2 text-sm text-white/25">
-              <span className="devanagari-text text-jade">ॐ</span>
+              <img src="/logo-transparent.png" alt="" className="w-5 h-5 object-contain" />
               <span>Made with mindfulness</span>
             </p>
           </div>

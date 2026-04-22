@@ -43,12 +43,14 @@ export const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 md:py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1 sm:px-6 md:py-1.5">
         {/* Brand */}
         <Link href="/" className="group flex items-center gap-2.5">
-          <div className="devanagari-text flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.15] bg-white/[0.08] text-lg leading-none text-jade transition-colors group-hover:bg-jade/20">
-            ॐ
-          </div>
+          <img
+            src="/logo-transparent.png"
+            alt="Seek Nirvana"
+            className="h-[60px] w-[60px] object-contain transition-transform group-hover:scale-105"
+          />
           <span className="text-base font-medium text-white sm:text-lg">
             Seek Nirvana
           </span>

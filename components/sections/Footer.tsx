@@ -44,9 +44,9 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 rounded-full overflow-hidden bg-navy-950">
                 <img
-                  src="/images/SeekNirvana_Logo.png"
+                  src="/logo-transparent.png"
                   alt="Seek Nirvana"
-                  className="w-full h-full object-cover scale-125"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <span className="text-2xl font-bold text-white">Seek Nirvana</span>
@@ -114,7 +114,7 @@ export default function Footer() {
               © 2026 Seek Nirvana. All rights reserved.
             </p>
             <p className="text-white/30 text-sm flex items-center gap-2">
-              <span className="text-gold">ॐ</span>
+              <img src="/logo-transparent.png" alt="" className="w-5 h-5 object-contain" />
               <span>Made with mindfulness</span>
             </p>
           </div>

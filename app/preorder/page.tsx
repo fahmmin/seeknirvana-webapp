@@ -30,7 +30,7 @@ const includedItems = [
 const productImages = [
   {
     id: "ring",
-    src: "/images/products/unvieling-nirvana-ring.png",
+    src: "/images/products/unveiling-nirvana-ring.png",
     alt: "Nirvana Ring",
   },
   {

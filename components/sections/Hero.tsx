@@ -183,9 +183,9 @@ export default function Hero() {
                   transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                 >
                   <img
-                    src="/images/SeekNirvana_Logo.png"
+                    src="/logo-transparent.png"
                     alt="Seek Nirvana"
-                    className="w-full h-full object-cover scale-125"
+                    className="w-full h-full object-contain"
                   />
                 </motion.div>
 
