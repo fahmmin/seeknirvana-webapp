@@ -6,9 +6,9 @@ import {
   Sparkles,
   Waves,
 } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/sections/Footer";
-import FadeIn from "@/components/animations/FadeIn";
+import { Navbar as Navigation } from "@/src/components/Navbar";
+import { Footer } from "@/src/sections/Footer";
+import { FadeIn } from "@/src/components/FadeIn";
 import AppScreenshotCarousel from "@/components/technology/AppScreenshotCarousel";
 import LocalModelSection from "@/components/technology/LocalModelSection";
 
@@ -65,13 +65,13 @@ export default function TechnologyPage() {
     <main className="relative min-h-screen">
       <Navigation />
 
-      <section className="relative overflow-hidden pt-32 pb-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-nirvana-darker to-nirvana-dark" />
+      <section className="relative overflow-hidden pt-40 pb-20">
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 to-navy-950" />
         <div className="absolute inset-0 mandala-pattern opacity-20" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="mx-auto max-w-4xl text-center">
-            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-nirvana-cyan">
+            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-cyan">
               The Intelligence Within
             </span>
             <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
@@ -89,8 +89,8 @@ export default function TechnologyPage() {
             {stackCards.map((item) => (
               <FadeIn key={item.title} className="h-full">
                 <div className="glass-card h-full rounded-3xl p-6">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-nirvana-cyan/10">
-                    <item.icon className="h-5 w-5 text-nirvana-cyan" />
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.08]">
+                    <item.icon className="h-5 w-5 text-cyan" />
                   </div>
                   <h2 className="text-xl font-semibold text-white">{item.title}</h2>
                   <p className="mt-3 text-sm leading-relaxed text-white/58 sm:text-base">
@@ -106,17 +106,17 @@ export default function TechnologyPage() {
       <section className="relative overflow-hidden pb-10">
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn>
-            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+            <div className="overflow-hidden rounded-3xl border border-white/[0.1] bg-white/[0.06] p-6 backdrop-blur-xl">
               <div className="flex items-center gap-4">
                 {Array.from({ length: 5 }).map((_, index) => (
                   <div
                     key={index}
-                    className="relative flex-1 overflow-hidden rounded-full border border-white/10 bg-white/5 px-3 py-2"
+                    className="relative flex-1 overflow-hidden rounded-full border border-white/[0.1] bg-white/[0.06] px-3 py-2"
                   >
                     <div className="h-1 rounded-full bg-gradient-to-r from-white/10 via-white/20 to-white/10" />
                     {index === 2 ? (
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-nirvana-cyan/10 p-1">
-                        <Activity className="h-3.5 w-3.5 text-nirvana-cyan/70" />
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/[0.08] p-1">
+                        <Activity className="h-3.5 w-3.5 text-cyan/70" />
                       </div>
                     ) : null}
                   </div>
@@ -131,13 +131,13 @@ export default function TechnologyPage() {
       </section>
 
       <section className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-nirvana-cyan/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan/5 to-transparent" />
         <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_0.95fr] lg:px-8">
           <LocalModelSection />
 
           <FadeIn delay={0.15}>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-              <span className="inline-flex items-center gap-2 rounded-full border border-nirvana-jade/20 bg-nirvana-jade/10 px-4 py-2 text-sm text-nirvana-jade-light">
+            <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+              <span className="devanagari-text inline-flex items-center gap-2 rounded-full border border-white/[0.15] bg-white/[0.08] px-4 py-2 text-base text-jade-light">
                 <Sparkles className="h-4 w-4" />
                 सहचर अनुप्रयोग
               </span>
@@ -148,8 +148,8 @@ export default function TechnologyPage() {
 
               <div className="mt-6">
                 <div className="mb-3 flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-nirvana-gold/20 bg-nirvana-gold/10 px-3 py-1 text-xs uppercase tracking-widest text-nirvana-gold">
-                    <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-nirvana-gold" />
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/20 bg-white/[0.08] px-3 py-1 text-xs uppercase tracking-widest text-gold">
+                    <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-gold" />
                     Coming Soon
                   </span>
                 </div>
@@ -157,7 +157,7 @@ export default function TechnologyPage() {
                   {platformBadges.map((platform) => (
                     <div
                       key={platform.name}
-                      className="select-none rounded-xl border border-white/10 bg-white/5 px-3 py-2 opacity-50"
+                      className="select-none rounded-xl border border-white/[0.1] bg-white/[0.06] px-3 py-2 opacity-50"
                     >
                       <div className="flex items-center gap-2">
                         <span className="text-lg text-white/70">{platform.icon}</span>
@@ -177,16 +177,16 @@ export default function TechnologyPage() {
                 {appFeatures.map((feature) => (
                   <div
                     key={feature}
-                    className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/72 sm:text-base"
+                    className="rounded-2xl border border-white/[0.1] bg-white/[0.06] px-4 py-3 text-sm text-white/72 sm:text-base"
                   >
                     {feature}
                   </div>
                 ))}
               </div>
 
-              <div className="mt-8 rounded-2xl border border-white/10 bg-nirvana-dark/50 p-5">
+              <div className="mt-8 rounded-2xl border border-white/[0.1] bg-white/[0.04] p-5">
                 <div className="flex items-center gap-3">
-                  <BrainCircuit className="h-5 w-5 text-nirvana-gold" />
+                  <BrainCircuit className="h-5 w-5 text-gold" />
                   <h3 className="text-lg font-semibold text-white">
                     Why the app matters
                   </h3>
@@ -206,9 +206,9 @@ export default function TechnologyPage() {
       <section className="relative overflow-hidden pb-24">
         <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <FadeIn>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-xl sm:p-10">
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-nirvana-gold/10">
-                <Waves className="h-6 w-6 text-nirvana-gold" />
+            <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 text-center backdrop-blur-xl sm:p-10">
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[0.08]">
+                <Waves className="h-6 w-6 text-gold" />
               </div>
               <h2 className="text-3xl font-bold text-white sm:text-4xl">
                 Private intelligence that knows the difference between a tired body and an anxious mind.
@@ -223,13 +223,13 @@ export default function TechnologyPage() {
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <a
                   href="/preorder"
-                  className="inline-flex rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-6 py-3 text-sm font-medium text-white"
+                  className="inline-flex rounded-full border border-white/15 bg-white/[0.08] transition-colors hover:bg-white/[0.12] px-6 py-3 text-sm font-medium text-white"
                 >
                   Join the early access list
                 </a>
                 <a
                   href="/login"
-                  className="inline-flex rounded-full border border-nirvana-cyan/30 bg-nirvana-cyan/10 px-6 py-3 text-sm font-medium text-nirvana-cyan transition-colors hover:bg-nirvana-cyan/20"
+                  className="inline-flex rounded-full border border-white/[0.15] bg-white/[0.08] px-6 py-3 text-sm font-medium text-cyan transition-colors hover:bg-cyan/20"
                 >
                   Join Program
                 </a>

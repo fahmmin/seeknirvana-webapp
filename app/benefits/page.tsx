@@ -10,9 +10,9 @@ import {
   Sparkles,
   Waves,
 } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/sections/Footer";
-import FadeIn from "@/components/animations/FadeIn";
+import { Navbar as Navigation } from "@/src/components/Navbar";
+import { Footer } from "@/src/sections/Footer";
+import { FadeIn } from "@/src/components/FadeIn";
 
 const benefitPillars = [
   {
@@ -138,16 +138,16 @@ export default function BenefitsPage() {
     <main className="relative min-h-screen">
       <Navigation />
 
-      <section className="relative overflow-hidden pt-32 pb-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-nirvana-darker to-nirvana-dark" />
+      <section className="relative overflow-hidden pt-40 pb-20">
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 to-navy-950" />
         <div className="absolute inset-0 mandala-pattern opacity-20" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="mx-auto max-w-3xl text-center">
-            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-nirvana-gold">
+            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-gold">
               Benefits In Detail
             </span>
-            <p className="mb-4 text-sm tracking-normal text-nirvana-gold/70">
+            <p className="devanagari-text mb-4 text-base tracking-[0.03em] text-gold/85">
               फलम् अभ्यासस्य
             </p>
             <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
@@ -164,8 +164,8 @@ export default function BenefitsPage() {
             {benefitPillars.map((item) => (
               <FadeIn key={item.title} className="h-full">
                 <div className="glass-card h-full rounded-3xl p-6">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-nirvana-gold/10">
-                    <item.icon className="h-5 w-5 text-nirvana-gold" />
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.08]">
+                    <item.icon className="h-5 w-5 text-gold" />
                   </div>
                   <h2 className="text-xl font-semibold text-white">{item.title}</h2>
                   <p className="mt-3 text-sm leading-relaxed text-white/58 sm:text-base">
@@ -179,11 +179,11 @@ export default function BenefitsPage() {
       </section>
 
       <section className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-nirvana-jade/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-jade/5 to-transparent" />
         <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_0.95fr] lg:px-8">
           <FadeIn>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-              <span className="inline-flex items-center gap-2 rounded-full border border-nirvana-jade/20 bg-nirvana-jade/10 px-4 py-2 text-sm text-nirvana-jade-light">
+            <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+              <span className="devanagari-text inline-flex items-center gap-2 rounded-full border border-white/[0.15] bg-white/[0.08] px-4 py-2 text-base text-jade-light">
                 <Sparkles className="h-4 w-4" />
                 अन्तर्दृष्टि मण्डल
               </span>
@@ -192,7 +192,7 @@ export default function BenefitsPage() {
               </p>
               <div className="mt-8 space-y-6">
                 {deeperBenefits.map((item) => (
-                  <div key={item.title} className="rounded-2xl border border-white/10 bg-nirvana-dark/50 p-5">
+                  <div key={item.title} className="rounded-2xl border border-white/[0.1] bg-white/[0.04] p-5">
                     <h3 className="text-xl font-semibold text-white">{item.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-white/58 sm:text-base">
                       {item.copy}
@@ -204,10 +204,10 @@ export default function BenefitsPage() {
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
+            <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
               <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-nirvana-cyan/10">
-                  <Waves className="h-5 w-5 text-nirvana-cyan" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.08]">
+                  <Waves className="h-5 w-5 text-cyan" />
                 </div>
                 <div>
                   <p className="text-sm uppercase tracking-[0.28em] text-white/35">
@@ -219,7 +219,7 @@ export default function BenefitsPage() {
 
               <div className="mt-8 space-y-4">
                 {timeline.map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm text-white/72 sm:text-base">
+                  <div key={item} className="rounded-2xl border border-white/[0.1] bg-white/[0.06] px-5 py-4 text-sm text-white/72 sm:text-base">
                     {item}
                   </div>
                 ))}
@@ -234,13 +234,13 @@ export default function BenefitsPage() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href="/preorder"
-                  className="inline-flex justify-center rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-6 py-3 text-sm font-medium text-white"
+                  className="inline-flex justify-center rounded-full border border-white/15 bg-white/[0.08] transition-colors hover:bg-white/[0.12] px-6 py-3 text-sm font-medium text-white"
                 >
                   Start the guided system
                 </a>
                 <a
                   href="/login"
-                  className="inline-flex justify-center rounded-full border border-nirvana-cyan/30 bg-nirvana-cyan/10 px-6 py-3 text-sm font-medium text-nirvana-cyan transition-colors hover:bg-nirvana-cyan/20"
+                  className="inline-flex justify-center rounded-full border border-white/[0.15] bg-white/[0.08] px-6 py-3 text-sm font-medium text-cyan transition-colors hover:bg-cyan/20"
                 >
                   Join Program
                 </a>
@@ -254,10 +254,10 @@ export default function BenefitsPage() {
         <div className="absolute inset-0 mandala-pattern opacity-20" />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="mx-auto max-w-3xl text-center">
-            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-nirvana-gold">
+            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-gold">
               Benefits Of Intention
             </span>
-            <p className="mb-4 text-sm tracking-normal text-nirvana-gold/70">
+            <p className="devanagari-text mb-4 text-base tracking-[0.03em] text-gold/85">
               जागरणस्य फलानि
             </p>
             <h2 className="text-4xl font-bold text-white sm:text-5xl">
@@ -273,12 +273,12 @@ export default function BenefitsPage() {
           <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {classicBenefits.map((benefit) => (
               <FadeIn key={benefit.title} className="h-full">
-                <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl">
-                  <div className="absolute inset-0 bg-gradient-to-br from-nirvana-gold/5 to-nirvana-jade/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="group relative h-full overflow-hidden rounded-2xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl">
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-jade/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="relative">
                     <div className="mb-6 flex items-start justify-between">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-nirvana-gold/10">
-                        <benefit.icon className="h-6 w-6 text-nirvana-gold" />
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.08]">
+                        <benefit.icon className="h-6 w-6 text-gold" />
                       </div>
                       <div className="text-right">
                         <div className="gradient-text-gold text-3xl font-bold">
@@ -291,7 +291,7 @@ export default function BenefitsPage() {
                     </div>
 
                     <h3 className="text-xl font-semibold text-white">{benefit.title}</h3>
-                    <p className="mb-3 mt-1 text-sm font-light tracking-wider text-nirvana-gold/60">
+                    <p className="devanagari-text mb-3 mt-1 text-base text-gold/80">
                       {benefit.sanskrit}
                     </p>
                     <p className="text-sm leading-relaxed text-white/60">

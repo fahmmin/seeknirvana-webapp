@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import FadeIn from "@/components/animations/FadeIn";
+import { FadeIn } from "@/src/components/FadeIn";
 
 type LayerState = "soul" | "body";
 
@@ -29,8 +29,8 @@ const modelCards = [
   {
     key: "epoch",
     mono: "EPOCH AWARENESS",
-    monoClass: "text-nirvana-gold/60",
-    borderClass: "border-l-2 border-nirvana-gold/30",
+    monoClass: "text-gold/60",
+    borderClass: "border-l-2 border-gold/30",
     title: "Epoch-aware recommendations",
     description:
       "Rather than reacting to every sensor tick, SeekNirvana works in epochs — windows of aggregated physiological data. When an epoch closes and signals shift, the orchestration layer decides whether to surface a breathwork cue, a grounding prompt, or nothing at all.",
@@ -38,8 +38,8 @@ const modelCards = [
   {
     key: "orchestration",
     mono: "ORCHESTRATION",
-    monoClass: "text-nirvana-gold/60",
-    borderClass: "border-l-2 border-nirvana-gold/30",
+    monoClass: "text-gold/60",
+    borderClass: "border-l-2 border-gold/30",
     title: "One model at a time, by design",
     description:
       "Both models live on your device but only one loads into memory at a time. Soul layer: ~2.5 GB. Body layer: ~3 GB. The swap takes seconds and happens at natural session transitions, not mid-sentence. Battery stays protected. Your data stays local.",
@@ -80,7 +80,7 @@ export default function LocalModelSection() {
 
   return (
     <FadeIn>
-      <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
+      <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm uppercase tracking-[0.28em] text-white/35">
@@ -91,7 +91,7 @@ export default function LocalModelSection() {
             </h2>
           </div>
 
-          <div className="rounded-full border border-white/10 bg-nirvana-dark/60 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.32em] text-white/45">
+          <div className="rounded-full border border-white/[0.1] bg-navy-950/60 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.32em] text-white/45">
             <span className={activeLayer === "soul" ? "text-purple-300" : ""}>
               Soul
             </span>{" "}
@@ -114,7 +114,7 @@ export default function LocalModelSection() {
               <div
                 key={card.title}
                 ref={ref}
-                className={`rounded-2xl border border-white/10 bg-nirvana-dark/50 p-5 ${card.borderClass}`}
+                className={`rounded-2xl border border-white/[0.1] bg-white/[0.04] p-5 ${card.borderClass}`}
               >
                 <p className={`font-mono text-[10px] uppercase tracking-[0.32em] ${card.monoClass}`}>
                   {card.mono}
@@ -122,7 +122,7 @@ export default function LocalModelSection() {
                 <div className="mt-3 flex flex-wrap items-center gap-3">
                   <h3 className="text-xl font-semibold text-white">{card.title}</h3>
                   {card.badge ? (
-                    <span className="inline-flex items-center rounded-full border border-nirvana-gold/15 bg-nirvana-gold/5 px-3 py-1 text-xs text-nirvana-gold-light">
+                    <span className="inline-flex items-center rounded-full border border-gold/15 bg-gold/5 px-3 py-1 text-xs text-gold-light">
                       {card.badge}
                     </span>
                   ) : null}
@@ -142,7 +142,7 @@ export default function LocalModelSection() {
           context or journal entries into a remote inference pipeline.
         </p>
 
-        <div className="mt-8 rounded-2xl border border-nirvana-gold/15 bg-nirvana-gold/5 p-5">
+        <div className="mt-8 rounded-2xl border border-gold/15 bg-gold/5 p-5">
           <h3 className="text-lg font-semibold text-white">
             Exclusive dataset, local-only guidance
           </h3>

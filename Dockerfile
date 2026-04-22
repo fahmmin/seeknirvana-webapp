@@ -1,37 +1,73 @@
-# ── Stage 1: Install dependencies ────────────────────────────────────────────
-FROM node:22-alpine AS deps
+# syntax=docker/dockerfile:1
+# Next.js production image using `output: "standalone"` — see:
+# https://nextjs.org/docs/app/api-reference/config/next-config-js/output
+
+# Debian slim: glibc (fewer native-addon issues than musl/Alpine) and reliable apt in CI
+FROM node:22-bookworm-slim AS base
 WORKDIR /app
 
-COPY package.json package-lock.json* ./
-RUN npm install
+FROM base AS deps
+COPY package.json package-lock.json ./
+RUN npm ci
 
-
-# ── Stage 2: Build the Next.js app ───────────────────────────────────────────
-FROM node:22-alpine AS builder
-WORKDIR /app
-
+FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# NEXT_PUBLIC_* is inlined at build time; pass via --build-arg in CI
+ARG NEXT_PUBLIC_REOWN_PROJECT_ID
+ARG NEXT_PUBLIC_PROJECT_ID
+ARG NEXT_PUBLIC_SITE_URL
+ARG NEXT_PUBLIC_ENABLE_GOOGLE_FIT
+ARG RESEND_API_KEY
+ARG RESEND_FROM_EMAIL
+ARG SUPABASE_URL
+ARG SUPABASE_SERVICE_ROLE_KEY
+ARG GOOGLE_OAUTH_CLIENT_ID
+ARG GOOGLE_OAUTH_CLIENT_SECRET
+ARG GOOGLE_OAUTH_REDIRECT_URI
+ARG GOOGLE_FIT_SCOPES
+ARG GOOGLE_FIT_ENCRYPTION_KEY
+ARG GOOGLE_FIT_SYNC_CRON_SECRET
+ARG ENV
+ENV NEXT_PUBLIC_REOWN_PROJECT_ID=$NEXT_PUBLIC_REOWN_PROJECT_ID
+ENV NEXT_PUBLIC_PROJECT_ID=$NEXT_PUBLIC_PROJECT_ID
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
+ENV NEXT_PUBLIC_ENABLE_GOOGLE_FIT=$NEXT_PUBLIC_ENABLE_GOOGLE_FIT
+ENV RESEND_API_KEY=$RESEND_API_KEY
+ENV RESEND_FROM_EMAIL=$RESEND_FROM_EMAIL
+ENV SUPABASE_URL=$SUPABASE_URL
+ENV SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY
+ENV GOOGLE_OAUTH_CLIENT_ID=$GOOGLE_OAUTH_CLIENT_ID
+ENV GOOGLE_OAUTH_CLIENT_SECRET=$GOOGLE_OAUTH_CLIENT_SECRET
+ENV GOOGLE_OAUTH_REDIRECT_URI=$GOOGLE_OAUTH_REDIRECT_URI
+ENV GOOGLE_FIT_SCOPES=$GOOGLE_FIT_SCOPES
+ENV GOOGLE_FIT_ENCRYPTION_KEY=$GOOGLE_FIT_ENCRYPTION_KEY
+ENV GOOGLE_FIT_SYNC_CRON_SECRET=$GOOGLE_FIT_SYNC_CRON_SECRET
+ENV ENV=$ENV
+ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
+
 RUN npm run build
 
+# Required so standalone server.js serves public assets and hashed static files
+RUN cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/
 
-# ── Stage 3: Production runtime ──────────────────────────────────────────────
-FROM node:22-alpine AS runner
+FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
-COPY package.json ./
-RUN npm install --omit=dev && npm cache clean --force
+RUN groupadd --system --gid 1001 nodejs \
+  && useradd --system --uid 1001 --gid nodejs nextjs
 
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/next.config.js ./next.config.js
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+
+USER nextjs
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["node", "server.js"]

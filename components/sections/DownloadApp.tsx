@@ -32,7 +32,7 @@ export default function DownloadApp() {
   return (
     <section id="app" className="relative py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-nirvana-dark via-nirvana-cyan/5 to-nirvana-dark" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-cyan/5 to-navy-950" />
       <div className="absolute inset-0 mandala-pattern opacity-20" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,11 +41,11 @@ export default function DownloadApp() {
           <FadeIn>
             <div className="relative flex justify-center">
               {/* Phone Frame with App Screenshot */}
-              <div className="relative w-72 sm:w-80 rounded-[2.5rem] bg-nirvana-dark border-4 border-white/10 p-3 shadow-2xl shadow-nirvana-cyan/10">
+              <div className="relative w-72 sm:w-80 rounded-[2.5rem] bg-navy-950 border-4 border-white/[0.1] p-3 shadow-2xl shadow-cyan/10">
                 {/* Front Camera */}
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-6 bg-nirvana-dark rounded-full flex items-center justify-center z-10">
-                  <div className="w-2 h-2 rounded-full bg-nirvana-dark ring-2 ring-white/20">
-                    <div className="w-full h-full rounded-full bg-nirvana-cyan/30" />
+                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-6 bg-navy-950 rounded-full flex items-center justify-center z-10">
+                  <div className="w-2 h-2 rounded-full bg-navy-950 ring-2 ring-white/20">
+                    <div className="w-full h-full rounded-full bg-cyan/30" />
                   </div>
                 </div>
                 <div className="w-full rounded-[2rem] overflow-hidden">
@@ -64,7 +64,7 @@ export default function DownloadApp() {
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-nirvana-jade" />
+                  <div className="w-2 h-2 rounded-full bg-jade" />
                   <span className="text-white text-sm">REM Detected</span>
                 </div>
               </motion.div>
@@ -75,7 +75,7 @@ export default function DownloadApp() {
                 transition={{ duration: 4, repeat: Infinity }}
               >
                 <div className="flex items-center gap-2">
-                  <Heart className="w-4 h-4 text-nirvana-cyan" />
+                  <Heart className="w-4 h-4 text-cyan" />
                   <span className="text-white text-sm">HRV Optimized</span>
                 </div>
               </motion.div>
@@ -85,7 +85,7 @@ export default function DownloadApp() {
           {/* Right - Content */}
           <FadeIn delay={0.2}>
             <div>
-              <span className="text-nirvana-cyan text-sm tracking-widest uppercase mb-4 block">
+              <span className="text-cyan text-sm tracking-widest uppercase mb-4 block">
                 Your Wellness Companion
               </span>
               <h2 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -109,8 +109,8 @@ export default function DownloadApp() {
                     viewport={{ once: true }}
                     className="flex items-start gap-4"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-nirvana-cyan/10 flex items-center justify-center flex-shrink-0">
-                      <feature.icon className="w-5 h-5 text-nirvana-cyan" />
+                    <div className="w-10 h-10 rounded-xl bg-white/[0.08] flex items-center justify-center flex-shrink-0">
+                      <feature.icon className="w-5 h-5 text-cyan" />
                     </div>
                     <div>
                       <h3 className="text-white font-medium mb-1">{feature.title}</h3>
@@ -122,8 +122,8 @@ export default function DownloadApp() {
 
               {/* Download Buttons — Coming Soon */}
               <div className="mb-4 flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-nirvana-gold/10 border border-nirvana-gold/20 text-nirvana-gold text-xs tracking-widest uppercase">
-                  <span className="w-1.5 h-1.5 rounded-full bg-nirvana-gold animate-pulse inline-block" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.08] border border-gold/20 text-gold text-xs tracking-widest uppercase">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse inline-block" />
                   Coming Soon
                 </span>
               </div>

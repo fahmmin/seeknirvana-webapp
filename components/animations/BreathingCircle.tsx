@@ -33,7 +33,7 @@ export default function BreathingCircle({
         />
       ))}
       <motion.div
-        className="absolute inset-0 rounded-full bg-gradient-to-br from-nirvana-cyan/10 to-nirvana-jade/10"
+        className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan/10 to-jade/10"
         animate={{
           scale: [1, 1.1, 1],
         }}

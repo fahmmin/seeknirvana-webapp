@@ -62,10 +62,10 @@ export default function AdminDashboardPage() {
   if (!isConnected || status !== "connected") {
     return (
       <div className="mx-auto max-w-lg px-4 py-24 text-center">
-        <Shield className="mx-auto h-12 w-12 text-nirvana-gold/80" />
+        <Shield className="mx-auto h-12 w-12 text-gold/80" />
         <h1 className="mt-6 text-xl font-semibold">Admin dashboard</h1>
         <p className="mt-2 text-sm text-white/55">Connect your wallet to continue.</p>
-        <Link href="/login" className="mt-6 inline-block text-nirvana-cyan hover:underline">
+        <Link href="/login" className="mt-6 inline-block text-cyan hover:underline">
           Go to sign in
         </Link>
       </div>
@@ -76,13 +76,13 @@ export default function AdminDashboardPage() {
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-nirvana-gold">Admin</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-gold">Admin</p>
           <h1 className="mt-2 text-2xl font-bold text-white sm:text-3xl">Members</h1>
           <p className="mt-1 text-sm text-white/55">Profiles and cohort application status.</p>
         </div>
         <Link
           href="/dashboard"
-          className="rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-center text-sm text-white/90 hover:border-nirvana-cyan/35"
+          className="rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-center text-sm text-white/90 hover:border-cyan/35"
         >
           Back to member hub
         </Link>
@@ -96,14 +96,14 @@ export default function AdminDashboardPage() {
 
       {loading ? (
         <div className="mt-12 flex items-center gap-2 text-white/60">
-          <Loader2 className="h-5 w-5 animate-spin text-nirvana-cyan" />
+          <Loader2 className="h-5 w-5 animate-spin text-cyan" />
           Loading…
         </div>
       ) : !error ? (
         <>
-          <div className="mt-8 hidden overflow-x-auto rounded-2xl border border-white/10 lg:block">
+          <div className="mt-8 hidden overflow-x-auto rounded-2xl border border-white/[0.1] lg:block">
             <table className="w-full min-w-[720px] text-left text-sm">
-              <thead className="border-b border-white/10 bg-white/[0.04] text-xs uppercase tracking-wide text-white/45">
+              <thead className="border-b border-white/[0.1] bg-white/[0.04] text-xs uppercase tracking-wide text-white/45">
                 <tr>
                   <th className="px-4 py-3">Wallet</th>
                   <th className="px-4 py-3">Name</th>
@@ -140,8 +140,8 @@ export default function AdminDashboardPage() {
 
           <ul className="mt-8 space-y-4 lg:hidden">
             {members.map((m) => (
-              <li key={m.wallet_address} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                <p className="font-mono text-[11px] text-nirvana-cyan/90 break-all">{m.wallet_address}</p>
+              <li key={m.wallet_address} className="rounded-2xl border border-white/[0.1] bg-white/[0.04] p-4">
+                <p className="font-mono text-[11px] text-cyan/90 break-all">{m.wallet_address}</p>
                 <p className="mt-2 text-sm font-medium text-white">{m.full_name ?? "—"}</p>
                 <p className="text-xs text-white/60">{m.email}</p>
                 <p className="mt-2 text-xs text-white/45">

@@ -37,7 +37,7 @@ export default function Gallery() {
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <FadeIn className="text-center mb-16">
-          <span className="text-nirvana-gold text-sm tracking-widest uppercase mb-4 block">
+          <span className="text-gold text-sm tracking-widest uppercase mb-4 block">
             The Experience
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -67,11 +67,11 @@ export default function Gallery() {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   {/* Subtle Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-nirvana-dark/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/60 via-transparent to-transparent" />
                   
                   {/* Icon Badge */}
-                  <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-nirvana-dark/80 backdrop-blur-sm flex items-center justify-center">
-                    <item.icon className="w-5 h-5 text-nirvana-cyan" />
+                  <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-navy-950/80 backdrop-blur-sm flex items-center justify-center">
+                    <item.icon className="w-5 h-5 text-cyan" />
                   </div>
                 </div>
 

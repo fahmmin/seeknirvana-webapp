@@ -4,13 +4,22 @@ import { useAppKit } from "@reown/appkit/react";
 import { Loader2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import FadeIn from "@/components/animations/FadeIn";
+import { FadeIn } from "@/src/components/FadeIn";
 import { useDashboard } from "@/components/dashboard/DashboardContext";
 import ProfileAvatar from "@/components/dashboard/ProfileAvatar";
+import {
+  dashboardActionClass,
+  dashboardCardClass,
+  dashboardEyebrowClass,
+  dashboardHeadingWrapClass,
+  dashboardPageClass,
+  dashboardSubtitleClass,
+  dashboardTitleClass,
+} from "@/components/dashboard/ui";
 import { resizeImageToJpeg } from "@/lib/client/resize-image";
 
 const inputClassName =
-  "w-full rounded-2xl border border-white/10 bg-nirvana-dark/60 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/28 focus:border-nirvana-cyan/40";
+  "w-full rounded-2xl border border-white/[0.1] bg-navy-950/60 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/28 focus:border-cyan/40";
 
 export default function ProfileSettingsPanel() {
   const { open } = useAppKit();
@@ -134,16 +143,18 @@ export default function ProfileSettingsPanel() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className={dashboardPageClass}>
       <FadeIn>
-        <p className="text-xs uppercase tracking-[0.35em] text-nirvana-gold">Account</p>
-        <h1 className="mt-2 text-2xl font-bold text-white sm:text-3xl">
-          <span className="gradient-text">Profile &amp; settings</span>
-        </h1>
-        <p className="mt-2 text-sm text-white/60">Update your profile details and account information.</p>
+        <div className={dashboardHeadingWrapClass}>
+          <p className={dashboardEyebrowClass}>Account</p>
+          <h1 className={dashboardTitleClass}>
+            <span className="text-gradient-jade">Profile &amp; settings</span>
+          </h1>
+          <p className={dashboardSubtitleClass}>Update your profile details and account preferences.</p>
+        </div>
       </FadeIn>
 
-      <div className="flex flex-col gap-6 rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl sm:flex-row sm:items-start">
+      <div className={`${dashboardCardClass} flex flex-col gap-6 sm:flex-row sm:items-start`}>
         <div className="flex shrink-0 flex-col items-center gap-3 sm:items-start">
           <ProfileAvatar avatarUrl={profile?.avatar_url} name={profile?.full_name} address={address} size={96} />
           <input
@@ -158,7 +169,7 @@ export default function ProfileSettingsPanel() {
               type="button"
               disabled={avatarBusy}
               onClick={() => fileRef.current?.click()}
-              className="rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-xs font-medium text-white/90 hover:border-nirvana-cyan/35 disabled:opacity-50"
+              className={`${dashboardActionClass()} disabled:opacity-50`}
             >
               {avatarBusy ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -173,7 +184,7 @@ export default function ProfileSettingsPanel() {
                 type="button"
                 disabled={avatarBusy}
                 onClick={() => void removeAvatar()}
-                className="rounded-full border border-red-400/25 px-4 py-2 text-xs font-medium text-red-200/90 hover:bg-red-500/10 disabled:opacity-50"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-red-400/25 px-4 py-2 text-xs font-medium text-red-200/90 transition-colors hover:bg-red-500/10 disabled:opacity-50"
               >
                 Remove
               </button>
@@ -188,7 +199,7 @@ export default function ProfileSettingsPanel() {
           <button
             type="button"
             onClick={() => void open()}
-            className="mt-4 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-xs font-medium text-white/90 hover:border-nirvana-cyan/35"
+            className={`mt-4 ${dashboardActionClass()}`}
           >
             Wallet &amp; AppKit settings
           </button>
@@ -196,7 +207,7 @@ export default function ProfileSettingsPanel() {
       </div>
 
       <form
-        className="space-y-6 rounded-[2rem] border border-white/10 bg-white/5 p-6 sm:p-8 backdrop-blur-xl"
+        className={`${dashboardCardClass} space-y-6 sm:p-8`}
         onSubmit={(e) => {
           e.preventDefault();
           void saveProfile();
@@ -264,11 +275,11 @@ export default function ProfileSettingsPanel() {
             {error}
           </p>
         ) : null}
-        {message ? <p className="text-sm text-nirvana-jade-light">{message}</p> : null}
+        {message ? <p className="text-sm text-jade-light">{message}</p> : null}
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-8 py-3 text-sm font-medium text-white shadow-lg shadow-nirvana-jade/15 disabled:opacity-50"
+          className={`${dashboardActionClass("primary")} min-w-[10rem] px-8 py-3 text-sm disabled:opacity-50`}
         >
           {saving ? (
             <>

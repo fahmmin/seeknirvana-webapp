@@ -4,6 +4,7 @@ dist
 out
 .git
 .github
+.claude
 .env
 .env.*
 npm-debug.log*

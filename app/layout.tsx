@@ -29,8 +29,9 @@ export default async function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" href="/favicon.svg" />
+        <link rel="preload" as="image" href="/frames/frame-0001.jpg" />
       </head>
-      <body className="antialiased bg-nirvana-dark text-white overflow-x-hidden">
+      <body className="antialiased bg-navy-950 text-white overflow-x-hidden">
         <Web3ContextProvider cookies={cookieHeader}>{children}</Web3ContextProvider>
       </body>
     </html>

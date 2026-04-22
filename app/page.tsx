@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import Navigation from "@/components/Navigation";
-import Hero from "@/components/sections/Hero";
-import Problem from "@/components/sections/Problem";
-import HowItWorks from "@/components/sections/HowItWorks";
-import Benefits from "@/components/sections/Benefits";
-import Technology from "@/components/sections/Technology";
-import Program from "@/components/sections/Program";
-import Pricing from "@/components/sections/Pricing";
-import Footer from "@/components/sections/Footer";
+import { Navbar } from "@/src/components/Navbar";
+import { Hero } from "@/src/sections/Hero";
+import { Problem } from "@/src/sections/Problem";
+import { HowItWorks } from "@/src/sections/HowItWorks";
+import { Benefits } from "@/src/sections/Benefits";
+import { Technology } from "@/src/sections/Technology";
+import { Program } from "@/src/sections/Program";
+import { Pricing } from "@/src/sections/Pricing";
+import { Footer } from "@/src/sections/Footer";
 
 export const metadata: Metadata = {
   title: "SeekNirvana Ring | Smart Ring for Lucid Dreaming and REM-Aware Sleep Guidance",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="relative">
-      <Navigation />
+      <Navbar />
       <Hero />
       <Problem />
       <HowItWorks />

@@ -20,7 +20,10 @@ export const dashboardOnboardingPostSchema = z.object({
     (val) => (val === "" || val === undefined ? undefined : val),
     z.string().trim().max(2000).optional(),
   ),
-  website: z.string().max(0).optional(),
+  website: z.preprocess(
+    (val) => (val === "" || val === undefined ? undefined : val),
+    z.string().trim().url().max(500).optional(),
+  ),
 });
 
 /** Partial profile / settings / connector toggles (existing profile row required). */

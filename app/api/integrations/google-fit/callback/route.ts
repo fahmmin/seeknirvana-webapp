@@ -12,12 +12,21 @@ import { normalizeWalletAddress } from "@/lib/web3/address";
 
 const STATE_COOKIE = "seeknirvana_google_fit_state";
 
-function redirectToFitTab(request: NextRequest, status: "connected" | "error", reason?: string) {
-  const base = process.env.NEXT_PUBLIC_SITE_URL?.trim() || request.nextUrl.origin;
-  const url = new URL("/dashboard/fit", base);
+function redirectToFitTab(
+  request: NextRequest,
+  status: "connected" | "error",
+  reason?: string,
+  walletAddress?: string,
+) {
+  // Prefer the request origin so local/dev callbacks do not switch hostnames
+  // (e.g. localhost vs 0.0.0.0), which can drop wallet session state.
+  const url = new URL("/dashboard/fit", request.nextUrl.origin);
   url.searchParams.set("google_fit", status);
   if (reason) {
     url.searchParams.set("reason", reason);
+  }
+  if (walletAddress) {
+    url.searchParams.set("wallet", walletAddress);
   }
   return url;
 }
@@ -130,10 +139,13 @@ export async function GET(request: NextRequest) {
     console.error("[google-fit/callback] profile update", profileUpdateError);
   }
 
-  const response = NextResponse.redirect(redirectToFitTab(request, "connected"));
+  const isSecure =
+    request.nextUrl.protocol === "https:" ||
+    request.headers.get("x-forwarded-proto") === "https";
+  const response = NextResponse.redirect(redirectToFitTab(request, "connected", undefined, wallet_address));
   response.cookies.set(STATE_COOKIE, "", {
     httpOnly: true,
-    secure: true,
+    secure: isSecure,
     sameSite: "lax",
     path: "/",
     maxAge: 0,

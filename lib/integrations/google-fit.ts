@@ -82,7 +82,7 @@ export function decryptSecret(cipherText: string): string {
 }
 
 export function isGoogleFitEnabled(): boolean {
-  return process.env.NEXT_PUBLIC_ENABLE_GOOGLE_FIT === "true";
+  return (process.env.NEXT_PUBLIC_ENABLE_GOOGLE_FIT ?? "").trim() === "true";
 }
 
 export function getGoogleFitConfig(): GoogleFitConfig {
@@ -116,10 +116,12 @@ export function verifySignedOAuthState(state: string, maxAgeMs = 10 * 60_000): {
     return null;
   }
   const expected = signState(payload);
-  if (signature.length !== expected.length) {
+  let valid = false;
+  try {
+    valid = crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+  } catch {
     return null;
   }
-  const valid = crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
   if (!valid) {
     return null;
   }

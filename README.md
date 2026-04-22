@@ -1,208 +1,73 @@
-# Seek Nirvana
+# React + TypeScript + Vite
 
-> Smart ring for lucid dreaming, REM-aware sleep guidance, and guided dream practice.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org/) [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev/) [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/) [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/) [![License](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](LICENSE)
+Currently, two official plugins are available:
 
-## 🌟 Overview
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-**SeekNirvana** is an affordable smart ring ($99) designed to help users train lucid dreaming through REM-aware cueing, sleep data, dream journaling, and a guided onboarding flow. This repository contains the Next.js frontend for the marketing site and preorder funnel.
+## React Compiler
 
-### Key Features
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-- REM-aware lucid dreaming guidance
-- Sleep and readiness insight layer
-- Dream journaling and pattern tracking
-- Guided 5-day onboarding program
-- Private data ownership with no subscription
+## Expanding the ESLint configuration
 
-## 🛠️ Tech Stack
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-| Category | Technology |
-|----------|------------|
-| Framework | [Next.js 16](https://nextjs.org/) (App Router) |
-| Language | [TypeScript](https://www.typescriptlang.org/) |
-| Styling | [Tailwind CSS](https://tailwindcss.com/) |
-| Animation | [Framer Motion](https://www.framer.com/motion/) |
-| Icons | [Lucide React](https://lucide.dev/) |
-| Build Output | Static Export |
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-## 📁 Project Structure
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-```
-├── app/                    # Next.js App Router
-│   ├── globals.css        # Global styles & Tailwind
-│   ├── layout.tsx         # Root layout with metadata
-│   ├── page.tsx           # Homepage
-│   ├── privacy/           # Privacy Policy page
-│   └── terms/             # Terms of Service page
-├── components/
-│   ├── Navigation.tsx     # Fixed navbar
-│   ├── animations/        # Reusable animation components
-│   │   ├── FadeIn.tsx
-│   │   ├── FloatingElement.tsx
-│   │   └── ...
-│   └── sections/          # Page sections
-│       ├── Hero.tsx
-│       ├── Problem.tsx
-│       ├── LucidDreaming.tsx
-│       ├── WhyPeopleFail.tsx
-│       ├── SeekNirvanaSystem.tsx
-│       ├── HowItWorks.tsx
-│       ├── Benefits.tsx
-│       ├── Technology.tsx
-│       ├── Program.tsx
-│       ├── TrustLayer.tsx
-│       ├── Newsletter.tsx
-│       ├── Pricing.tsx
-│       └── Footer.tsx
-├── lib/
-│   └── utils.ts           # Utility functions
-├── public/
-│   ├── favicon.svg        # Ring favicon
-│   └── images/            # Static images
-├── .github/workflows/
-│   └── deploy.yml         # GitHub Pages deployment
-├── tailwind.config.js     # Tailwind + custom theme
-└── next.config.js         # Next.js config (static export)
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-## 🎨 Design System
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-### Color Palette
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Dark | `#0a0a0f` | Background |
-| Jade | `#00a86b` | Primary accent (vitality) |
-| Gold | `#c9a227` | Secondary accent (wisdom) |
-| Cyan | `#00d4ff` | Tertiary accent (technology) |
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) 18+ 
-- [pnpm](https://pnpm.io/) (recommended)
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/seeknirvana-webapp.git
-cd seeknirvana-webapp
-
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm run dev
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Build for Production
-
-```bash
-# Create static export
-pnpm run build
-
-# Output will be in `dist/` folder
-```
-
-## 📤 Deployment
-
-### GitHub Pages (Automated)
-
-1. Push to `main` branch
-2. GitHub Action automatically builds and deploys
-3. Enable GitHub Pages in repo settings (Source: GitHub Actions)
-
-### Manual Deployment
-
-```bash
-# Build static site
-pnpm run build
-
-# Deploy `dist/` folder to your hosting provider
-```
-
-## 📝 Environment Variables
-
-Create `.env.local` for local development:
-
-```env
-# Wallet + site
-NEXT_PUBLIC_REOWN_PROJECT_ID=
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-
-# Member dashboard (Supabase service role for API routes only)
-SUPABASE_URL=
-SUPABASE_SERVICE_ROLE_KEY=
-
-# Email
-RESEND_API_KEY=
-RESEND_FROM_EMAIL=
-
-# Google Fit integration
-NEXT_PUBLIC_ENABLE_GOOGLE_FIT=false
-GOOGLE_OAUTH_CLIENT_ID=
-GOOGLE_OAUTH_CLIENT_SECRET=
-GOOGLE_OAUTH_REDIRECT_URI=http://localhost:3000/api/integrations/google-fit/callback
-GOOGLE_FIT_SCOPES=https://www.googleapis.com/auth/fitness.activity.read
-GOOGLE_FIT_ENCRYPTION_KEY=
-GOOGLE_FIT_SYNC_CRON_SECRET=
-```
-
-Generate secure secrets:
-
-```bash
-openssl rand -base64 32   # GOOGLE_FIT_ENCRYPTION_KEY
-openssl rand -hex 32      # GOOGLE_FIT_SYNC_CRON_SECRET
-```
-
-## 🧪 Available Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run lint` | Run TypeScript-based validation |
-| `npm run build` | Create production build |
-| `npm run start` | Start production server |
-
-## 📄 Pages
-
-- **/** - Homepage with all sections
-- **/privacy** - Privacy Policy
-- **/terms** - Terms of Service
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing`)
-5. Open a Pull Request
-
-## 📜 License
-
-This project is licensed under the GNU Affero General Public License v3.0 (AGPL v3.0) - see [LICENSE](LICENSE) file.
-
-## 🙏 Acknowledgments
-
-- Design inspired by Eastern spirituality and modern AI aesthetics
-- Quotes from ancient wisdom traditions (Lao Tzu, Rumi, Buddha, etc.)
-- Icons by [Lucide](https://lucide.dev/)
-
-## 📞 Contact
-
-- **Website:** [seeknirvana.com](https://seeknirvana.com)
-- **Email:** support@seeknirvana.com
-- **Twitter:** [@SeekNirvana](https://twitter.com/SeekNirvana)
-
----
-
-<p align="center">
-  <em> योगः कर्मसु कौशलम् </em><br>
-  <em> Yoga is skill in action </em> — Bhagavad Gita
-</p>

@@ -35,7 +35,7 @@ export default function AppScreenshotCarousel() {
   const activeScreen = screens[activeIndex];
 
   return (
-    <div className="rounded-[1.75rem] border border-white/10 bg-nirvana-dark/80 p-3">
+    <div className="rounded-[1.75rem] border border-white/[0.1] bg-navy-950/80 p-3">
       <div className="mb-3 flex items-center justify-between px-2 pt-1">
         <span className="text-[11px] uppercase tracking-[0.28em] text-white/35">
           {activeScreen.label}
@@ -43,7 +43,7 @@ export default function AppScreenshotCarousel() {
         <span className="h-1.5 w-10 rounded-full bg-white/10" />
       </div>
 
-      <div className="mx-auto w-full max-w-[170px] overflow-hidden rounded-[1.4rem] border border-white/10">
+      <div className="mx-auto w-full max-w-[170px] overflow-hidden rounded-[1.4rem] border border-white/[0.1]">
         <AnimatePresence mode="wait">
           <motion.img
             key={activeScreen.src}
@@ -65,7 +65,7 @@ export default function AppScreenshotCarousel() {
             type="button"
             onClick={() => setActiveIndex(index)}
             className={`h-2 rounded-full transition-all ${
-              index === activeIndex ? "w-6 bg-nirvana-cyan" : "w-2 bg-white/25"
+              index === activeIndex ? "w-6 bg-cyan" : "w-2 bg-white/25"
             }`}
             aria-label={`Show ${screen.label} screenshot`}
           />

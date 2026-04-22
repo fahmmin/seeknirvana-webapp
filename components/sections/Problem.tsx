@@ -29,11 +29,11 @@ export default function Problem() {
   return (
     <section id="problem" className="relative overflow-hidden py-24">
       <div className="absolute inset-0 mandala-pattern opacity-20" />
-      <div className="absolute inset-y-0 left-1/2 w-[42rem] -translate-x-1/2 rounded-full bg-nirvana-gold/5 blur-3xl" />
+      <div className="absolute inset-y-0 left-1/2 w-[42rem] -translate-x-1/2 rounded-full bg-gold/5 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-nirvana-gold">
+          <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-gold">
             Why It Matters
           </span>
           <h2 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
@@ -50,10 +50,10 @@ export default function Problem() {
             <FadeIn key={card.title} delay={index * 0.08} className="h-full">
               <motion.div
                 whileHover={{ y: -4 }}
-                className="glass-card h-full rounded-2xl border border-white/10 p-6"
+                className="glass-card h-full rounded-2xl border border-white/[0.1] p-6"
               >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5">
-                  <card.icon className="h-5 w-5 text-nirvana-gold" />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.06]">
+                  <card.icon className="h-5 w-5 text-gold" />
                 </div>
                 <h3 className="text-xl font-semibold text-white">{card.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-white/58 sm:text-base">

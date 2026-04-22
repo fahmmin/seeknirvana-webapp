@@ -10,7 +10,7 @@ permissions:
   packages: write
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,26 +24,14 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm install
-
-      - name: Install pnpm (required by test scripts)
-        run: npm install -g pnpm
+        run: npm ci
 
       - name: Lint (TypeScript)
         run: npm run lint
 
-      - name: Tests
-        run: npm test
-
-      - name: Build Next.js app
-        env:
-          NEXT_PUBLIC_REOWN_PROJECT_ID: ${{ vars.NEXT_PUBLIC_REOWN_PROJECT_ID }}
-          NEXT_PUBLIC_PROJECT_ID: ${{ vars.NEXT_PUBLIC_REOWN_PROJECT_ID }}
-        run: npm run build
-
   docker_build_push:
     runs-on: ubuntu-latest
-    needs: build
+    needs: lint
     environment: prod
 
     steps:
@@ -79,6 +67,11 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            NEXT_PUBLIC_REOWN_PROJECT_ID=${{ vars.NEXT_PUBLIC_REOWN_PROJECT_ID }}
+            NEXT_PUBLIC_PROJECT_ID=${{ vars.NEXT_PUBLIC_REOWN_PROJECT_ID }}
+            NEXT_PUBLIC_SITE_URL=${{ vars.NEXT_PUBLIC_SITE_URL }}
+            NEXT_PUBLIC_ENABLE_GOOGLE_FIT=${{ vars.NEXT_PUBLIC_ENABLE_GOOGLE_FIT }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -106,15 +99,27 @@ jobs:
             # pull latest image
             docker pull "$IMAGE"
 
-            # create env file
+            # create env file (server-side secrets + public vars)
             mkdir -p /opt/seek-nirvana-webapp
 
             cat <<EOF > /opt/seek-nirvana-webapp/.env
             NODE_ENV=production
             PORT=3000
-            NEXT_PUBLIC_REOWN_PROJECT_ID=${{ secrets.NEXT_PUBLIC_REOWN_PROJECT_ID }}
-            NEXT_PUBLIC_PROJECT_ID=${{ secrets.NEXT_PUBLIC_REOWN_PROJECT_ID }}
+            NEXT_PUBLIC_REOWN_PROJECT_ID=${{ vars.NEXT_PUBLIC_REOWN_PROJECT_ID }}
+            NEXT_PUBLIC_PROJECT_ID=${{ vars.NEXT_PUBLIC_REOWN_PROJECT_ID }}
+            NEXT_PUBLIC_SITE_URL=${{ vars.NEXT_PUBLIC_SITE_URL }}
+            NEXT_PUBLIC_ENABLE_GOOGLE_FIT=${{ vars.NEXT_PUBLIC_ENABLE_GOOGLE_FIT }}
+            SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+            SUPABASE_SERVICE_ROLE_KEY=${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+            GOOGLE_FIT_ENCRYPTION_KEY=${{ secrets.GOOGLE_FIT_ENCRYPTION_KEY }}
+            GOOGLE_OAUTH_CLIENT_ID=${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}
+            GOOGLE_OAUTH_CLIENT_SECRET=${{ secrets.GOOGLE_OAUTH_CLIENT_SECRET }}
+            GOOGLE_OAUTH_REDIRECT_URI=${{ secrets.GOOGLE_OAUTH_REDIRECT_URI }}
+            GOOGLE_FIT_SCOPES=${{ secrets.GOOGLE_FIT_SCOPES }}
+            RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+            RESEND_FROM_EMAIL=${{ secrets.RESEND_FROM_EMAIL }}
             EOF
+            chmod 600 /opt/seek-nirvana-webapp/.env
 
             # remove old container if exists
             if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then

@@ -32,10 +32,10 @@ export default function TrustLayer() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <FadeIn>
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
+          <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
             <div className="mx-auto max-w-3xl text-center">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/72">
-                <BadgeCheck className="h-4 w-4 text-nirvana-gold" />
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.06] px-4 py-2 text-sm text-white/72">
+                <BadgeCheck className="h-4 w-4 text-gold" />
                 Trust layer
               </div>
               <h2 className="text-3xl font-bold text-white sm:text-4xl">
@@ -52,10 +52,10 @@ export default function TrustLayer() {
                 <FadeIn key={point.title} delay={index * 0.08} className="h-full">
                   <motion.div
                     whileHover={{ y: -3 }}
-                    className="h-full rounded-2xl border border-white/10 bg-nirvana-dark/50 p-5"
+                    className="h-full rounded-2xl border border-white/[0.1] bg-white/[0.04] p-5"
                   >
-                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/5">
-                      <point.icon className="h-5 w-5 text-nirvana-gold" />
+                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/[0.06]">
+                      <point.icon className="h-5 w-5 text-gold" />
                     </div>
                     <h3 className="text-lg font-semibold text-white">{point.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-white/58">

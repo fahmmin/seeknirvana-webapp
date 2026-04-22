@@ -9,7 +9,7 @@ import { useDashboard } from "@/components/dashboard/DashboardContext";
 import { useAppKitAccount } from "@reown/appkit/react";
 
 const inputClassName =
-  "w-full rounded-2xl border border-white/10 bg-nirvana-dark/60 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/28 focus:border-nirvana-cyan/40";
+  "w-full rounded-2xl border border-white/[0.1] bg-navy-950/60 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/28 focus:border-cyan/40";
 
 const DRAFT_KEY = "seeknirvana-onboarding-draft-v1";
 
@@ -229,18 +229,18 @@ export default function OnboardingWizard() {
         {steps.map((_, i) => (
           <div
             key={i}
-            className={`h-1.5 flex-1 max-w-[4rem] rounded-full transition-colors ${i <= step ? "bg-nirvana-cyan" : "bg-white/15"}`}
+            className={`h-1.5 flex-1 max-w-[4rem] rounded-full transition-colors ${i <= step ? "bg-cyan" : "bg-white/15"}`}
           />
         ))}
       </div>
 
-      <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 sm:p-8 backdrop-blur-xl">
+      <div className="rounded-[2rem] border border-white/[0.1] bg-white/[0.06] p-6 sm:p-8 backdrop-blur-xl">
         <div className="flex items-start gap-3">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-nirvana-cyan/30 bg-nirvana-cyan/10">
-            <Sparkles className="h-5 w-5 text-nirvana-cyan" aria-hidden />
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/[0.15] bg-white/[0.08]">
+            <Sparkles className="h-5 w-5 text-cyan" aria-hidden />
           </div>
           <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-nirvana-gold/90">Onboarding</p>
+            <p className="text-xs uppercase tracking-[0.28em] text-gold/90">Onboarding</p>
             <AnimatePresence mode="wait">
               <motion.div
                 key={step}
@@ -285,7 +285,7 @@ export default function OnboardingWizard() {
             type="button"
             onClick={() => setStep((s) => Math.max(0, s - 1))}
             disabled={step === 0}
-            className="inline-flex items-center gap-1 rounded-full border border-white/15 px-4 py-2 text-sm text-white/80 transition hover:bg-white/5 disabled:opacity-30"
+            className="inline-flex items-center gap-1 rounded-full border border-white/15 px-4 py-2 text-sm text-white/80 transition hover:bg-white/[0.06] disabled:opacity-30"
           >
             <ChevronLeft className="h-4 w-4" />
             Back
@@ -296,7 +296,7 @@ export default function OnboardingWizard() {
               type="button"
               onClick={() => setStep((s) => s + 1)}
               disabled={!canNext()}
-              className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-6 py-2.5 text-sm font-medium text-white shadow-lg shadow-nirvana-jade/15 transition hover:opacity-95 disabled:opacity-40"
+              className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/[0.08] transition-colors hover:bg-white/[0.12] px-6 py-2.5 text-sm font-medium text-white shadow-lg shadow-jade/15 transition hover:opacity-95 disabled:opacity-40"
             >
               Continue
               <ChevronRight className="h-4 w-4" />
@@ -307,7 +307,7 @@ export default function OnboardingWizard() {
                 type="button"
                 onClick={() => void handleSubmit()}
                 disabled={saving || !canNext()}
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-6 py-2.5 text-sm font-medium text-white shadow-lg shadow-nirvana-jade/15 transition hover:opacity-95 disabled:opacity-40"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] transition-colors hover:bg-white/[0.12] px-6 py-2.5 text-sm font-medium text-white shadow-lg shadow-jade/15 transition hover:opacity-95 disabled:opacity-40"
               >
                 {saving ? (
                   <>
@@ -326,7 +326,7 @@ export default function OnboardingWizard() {
           <button
             type="button"
             onClick={() => void handleSubmit()}
-            className="mt-4 w-full text-center text-sm text-nirvana-cyan/90 underline-offset-4 hover:underline"
+            className="mt-4 w-full text-center text-sm text-cyan/90 underline-offset-4 hover:underline"
           >
             Skip optional fields and finish
           </button>

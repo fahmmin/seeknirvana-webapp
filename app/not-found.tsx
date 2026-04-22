@@ -2,17 +2,17 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/sections/Footer";
+import { Navbar as Navigation } from "@/src/components/Navbar";
+import { Footer } from "@/src/sections/Footer";
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen bg-nirvana-dark">
+    <main className="min-h-screen bg-navy-950">
       <Navigation />
 
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background effects */}
-        <div className="absolute inset-0 bg-gradient-to-b from-nirvana-dark via-nirvana-darker to-nirvana-dark" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-950 to-navy-950" />
 
         {/* Cosmic particles */}
         <div className="absolute inset-0 overflow-hidden">
@@ -51,14 +51,14 @@ export default function NotFound() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="bg-gradient-to-r from-nirvana-cyan via-nirvana-gold to-nirvana-jade bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-cyan via-gold to-jade bg-clip-text text-transparent">
                 404
               </span>
             </motion.div>
 
             {/* Symbol */}
             <motion.div
-              className="text-6xl sm:text-7xl mb-6"
+              className="devanagari-text mb-6 text-7xl leading-none sm:text-8xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
@@ -78,7 +78,7 @@ export default function NotFound() {
 
             {/* Sanskrit Quote */}
             <motion.p
-              className="text-lg text-nirvana-gold/80 mb-2 italic"
+              className="text-lg text-gold/80 mb-2 italic"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
@@ -108,7 +108,7 @@ export default function NotFound() {
             >
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark text-white font-medium hover:shadow-lg hover:shadow-nirvana-jade/20 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-white/15 bg-white/[0.08] transition-colors hover:bg-white/[0.12] text-white font-medium hover:shadow-lg hover:shadow-jade/20 transition-all duration-300"
               >
                 <svg
                   className="w-5 h-5"
@@ -130,7 +130,7 @@ export default function NotFound() {
         </div>
 
         {/* Bottom gradient fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-nirvana-dark to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-navy-950 to-transparent" />
       </section>
 
       <Footer />

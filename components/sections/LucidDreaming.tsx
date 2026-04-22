@@ -28,10 +28,10 @@ const pillars = [
 export default function LucidDreaming() {
   return (
     <section id="lucid-dreaming" className="relative overflow-hidden py-28">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-nirvana-cyan/5 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan/5 to-transparent" />
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-nirvana-cyan">
+          <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-cyan">
             What Is Lucid Dreaming
           </span>
           <h2 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
@@ -45,15 +45,15 @@ export default function LucidDreaming() {
 
         <div className="mt-16 grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <FadeIn className="h-full">
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-              <div className="absolute inset-0 bg-gradient-to-br from-nirvana-cyan/10 via-transparent to-nirvana-purple/10" />
+            <div className="relative overflow-hidden rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan/10 via-transparent to-nirvana-purple/10" />
               <div className="relative">
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-nirvana-cyan/20 bg-nirvana-cyan/10 px-4 py-2 text-sm text-nirvana-cyan">
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan/20 bg-white/[0.08] px-4 py-2 text-sm text-cyan">
                   <Sparkles className="h-4 w-4" />
                   Simple mental model
                 </div>
                 <div className="space-y-4">
-                  <div className="rounded-2xl border border-white/10 bg-nirvana-dark/60 p-5">
+                  <div className="rounded-2xl border border-white/[0.1] bg-navy-950/60 p-5">
                     <p className="text-sm uppercase tracking-[0.28em] text-white/35">
                       Regular dream
                     </p>
@@ -66,10 +66,10 @@ export default function LucidDreaming() {
                     transition={{ duration: 2.8, repeat: Infinity }}
                     className="flex justify-center"
                   >
-                    <div className="h-10 w-px bg-gradient-to-b from-transparent via-nirvana-cyan to-transparent" />
+                    <div className="h-10 w-px bg-gradient-to-b from-transparent via-cyan to-transparent" />
                   </motion.div>
-                  <div className="rounded-2xl border border-nirvana-cyan/20 bg-nirvana-cyan/10 p-5">
-                    <p className="text-sm uppercase tracking-[0.28em] text-nirvana-cyan">
+                  <div className="rounded-2xl border border-cyan/20 bg-white/[0.08] p-5">
+                    <p className="text-sm uppercase tracking-[0.28em] text-cyan">
                       Lucid dream
                     </p>
                     <p className="mt-2 text-lg text-white/86">
@@ -90,10 +90,10 @@ export default function LucidDreaming() {
               <FadeIn key={pillar.title} delay={index * 0.1} className="h-full">
                 <motion.div
                   whileHover={{ y: -4 }}
-                  className="glass-card h-full rounded-2xl border border-white/10 p-6"
+                  className="glass-card h-full rounded-2xl border border-white/[0.1] p-6"
                 >
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5">
-                    <pillar.icon className="h-5 w-5 text-nirvana-cyan" />
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.06]">
+                    <pillar.icon className="h-5 w-5 text-cyan" />
                   </div>
                   <h3 className="text-xl font-semibold text-white">{pillar.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/58 sm:text-base">

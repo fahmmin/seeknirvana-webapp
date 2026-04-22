@@ -1,7 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
 import { readJsonBody } from "@/lib/api/json";
-import { getClientIp } from "@/lib/api/client-ip";
 import {
   decryptSecret,
   encryptSecret,
@@ -9,7 +8,6 @@ import {
   isGoogleFitEnabled,
   refreshGoogleFitAccessToken,
 } from "@/lib/integrations/google-fit";
-import { rateLimitSync } from "@/lib/rate-limit";
 import { googleFitSyncSchema } from "@/lib/schemas/google-fit";
 import { createServiceClient } from "@/lib/supabase/server";
 import { normalizeWalletAddress } from "@/lib/web3/address";
@@ -33,15 +31,6 @@ function isMissingRelationError(err: { message?: string; code?: string } | null)
 export async function POST(request: NextRequest) {
   if (!isGoogleFitEnabled()) {
     return NextResponse.json({ error: "integration_disabled" }, { status: 404 });
-  }
-
-  const ip = getClientIp(request);
-  const limited = rateLimitSync(`google-fit-sync:${ip}`, 60, 10 * 60_000);
-  if (!limited.ok) {
-    return NextResponse.json(
-      { error: "rate_limited", retryAfterMs: limited.retryAfterMs },
-      { status: 429 },
-    );
   }
 
   let body: unknown;

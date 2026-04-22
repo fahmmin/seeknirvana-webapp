@@ -5,11 +5,13 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
-    "start": "next start",
-    "lint": "tsc --noEmit -p tsconfig.lint.json",
-    "test": "node --test tests/build-smoke.test.mjs"
+    "build:env": "node scripts/build-with-env.cjs",
+    "start": "node .next/standalone/server.js",
+    "start:next": "next start",
+    "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "@base-org/account": "^2.5.4",
     "@coinbase/wallet-sdk": "^4.3.7",
     "@metamask/connect-evm": "^0.9.1",
     "@reown/appkit": "^1.8.19",

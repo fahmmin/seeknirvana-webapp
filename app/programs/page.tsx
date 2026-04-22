@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { ArrowRight, CalendarDays, Clock3, MoonStar, Sparkles, Users } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/sections/Footer";
-import FadeIn from "@/components/animations/FadeIn";
+import { Navbar as Navigation } from "@/src/components/Navbar";
+import { Footer } from "@/src/sections/Footer";
+import { FadeIn } from "@/src/components/FadeIn";
+import { marketingButtonClass } from "@/lib/ui/marketing-button";
 
 const programs = [
   {
@@ -28,13 +29,13 @@ export default function ProgramsPage() {
     <main className="relative min-h-screen">
       <Navigation />
 
-      <section className="relative overflow-hidden pt-32 pb-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-nirvana-darker to-nirvana-dark" />
+      <section className="relative overflow-hidden pb-24 pt-36 sm:pt-40">
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 to-navy-950" />
         <div className="absolute inset-0 mandala-pattern opacity-20" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="mx-auto max-w-3xl text-center">
-            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-nirvana-jade-light">
+            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-jade-light">
               Programs
             </span>
             <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
@@ -49,15 +50,15 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden pb-24">
+      <section className="relative overflow-hidden pb-32">
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6">
             {programs.map((program) => (
               <FadeIn key={program.title}>
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
+                <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
                   <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
                     <div>
-                      <span className="inline-flex items-center gap-2 rounded-full border border-nirvana-jade/20 bg-nirvana-jade/10 px-4 py-2 text-sm text-nirvana-jade-light">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.15] bg-white/[0.08] px-4 py-2 text-sm text-jade-light">
                         <Sparkles className="h-4 w-4" />
                         {program.status}
                       </span>
@@ -68,37 +69,34 @@ export default function ProgramsPage() {
                         {program.description}
                       </p>
 
-                      <a
-                        href={program.href}
-                        className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-6 py-3 text-sm font-medium text-white"
-                      >
+                      <a href={program.href} className={`mt-8 ${marketingButtonClass({ variant: "primary" })}`}>
                         View program
                         <ArrowRight className="h-4 w-4" />
                       </a>
                     </div>
 
                     <div className="grid gap-3">
-                      <div className="rounded-2xl border border-white/10 bg-nirvana-dark/55 px-5 py-4">
+                      <div className="rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-4">
                         <div className="flex items-center gap-3">
-                          <CalendarDays className="h-4 w-4 text-nirvana-cyan" />
+                          <CalendarDays className="h-4 w-4 text-cyan" />
                           <span className="text-sm text-white/75">{program.format}</span>
                         </div>
                       </div>
-                      <div className="rounded-2xl border border-white/10 bg-nirvana-dark/55 px-5 py-4">
+                      <div className="rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-4">
                         <div className="flex items-center gap-3">
-                          <Clock3 className="h-4 w-4 text-nirvana-cyan" />
+                          <Clock3 className="h-4 w-4 text-cyan" />
                           <span className="text-sm text-white/75">{program.duration}</span>
                         </div>
                       </div>
-                      <div className="rounded-2xl border border-white/10 bg-nirvana-dark/55 px-5 py-4">
+                      <div className="rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-4">
                         <div className="flex items-center gap-3">
-                          <Users className="h-4 w-4 text-nirvana-cyan" />
+                          <Users className="h-4 w-4 text-cyan" />
                           <span className="text-sm text-white/75">{program.audience}</span>
                         </div>
                       </div>
-                      <div className="rounded-2xl border border-white/10 bg-nirvana-dark/55 px-5 py-4">
+                      <div className="rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-4">
                         <div className="flex items-center gap-3">
-                          <MoonStar className="h-4 w-4 text-nirvana-cyan" />
+                          <MoonStar className="h-4 w-4 text-cyan" />
                           <span className="text-sm text-white/75">
                             More guided journeys will unfold here
                           </span>

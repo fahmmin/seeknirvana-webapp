@@ -32,11 +32,11 @@ export default function Benefits() {
   return (
     <section id="journey" className="relative overflow-hidden py-28">
       <div className="absolute inset-0 mandala-pattern opacity-30" />
-      <div className="absolute top-1/2 left-0 h-px w-full bg-gradient-to-r from-transparent via-nirvana-gold/20 to-transparent" />
+      <div className="absolute top-1/2 left-0 h-px w-full bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-nirvana-gold">
+          <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-gold">
             Benefits Preview
           </span>
           <h2 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
@@ -55,11 +55,11 @@ export default function Benefits() {
               <FadeIn key={stage.phase} delay={index * 0.1} className="h-full">
                 <motion.div
                   whileHover={{ y: -4 }}
-                  className="glass-card h-full rounded-2xl border border-white/10 p-6"
+                  className="glass-card h-full rounded-2xl border border-white/[0.1] p-6"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-nirvana-gold/10">
-                      <stage.icon className="h-5 w-5 text-nirvana-gold" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.08]">
+                      <stage.icon className="h-5 w-5 text-gold" />
                     </div>
                     <div>
                       <p className="text-sm uppercase tracking-[0.28em] text-white/35">
@@ -79,10 +79,10 @@ export default function Benefits() {
           </div>
 
           <FadeIn delay={0.2} className="h-full">
-            <div className="relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-              <div className="absolute inset-0 bg-gradient-to-br from-nirvana-gold/10 via-transparent to-nirvana-jade/10" />
+            <div className="relative h-full overflow-hidden rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+              <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-jade/10" />
               <div className="relative">
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-nirvana-gold/20 bg-nirvana-gold/10 px-4 py-2 text-sm text-nirvana-gold-light">
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-white/[0.08] px-4 py-2 text-sm text-gold-light">
                   <Sparkles className="h-4 w-4" />
                   फलम् अभ्यासस्य
                 </div>
@@ -102,7 +102,7 @@ export default function Benefits() {
 
                 <a
                   href="/benefits"
-                  className="mt-8 inline-flex items-center gap-2 rounded-full border border-nirvana-gold/20 bg-nirvana-gold/10 px-6 py-3 text-sm font-medium text-nirvana-gold-light transition-colors hover:bg-nirvana-gold/20"
+                  className="mt-8 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-white/[0.08] px-6 py-3 text-sm font-medium text-gold-light transition-colors hover:bg-gold/20"
                 >
                   Read all benefits
                   <ArrowRight className="h-4 w-4" />

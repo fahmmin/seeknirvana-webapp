@@ -34,10 +34,10 @@ const failurePatterns = [
 export default function WhyPeopleFail() {
   return (
     <section id="why-people-fail" className="relative overflow-hidden py-28">
-      <div className="absolute inset-0 bg-gradient-to-r from-nirvana-purple/5 via-transparent to-nirvana-gold/5" />
+      <div className="absolute inset-0 bg-gradient-to-r from-nirvana-purple/5 via-transparent to-gold/5" />
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-nirvana-gold-light">
+          <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-gold-light">
             Why People Fail
           </span>
           <h2 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
@@ -55,11 +55,11 @@ export default function WhyPeopleFail() {
               <FadeIn key={pattern.title} delay={index * 0.08} className="h-full">
                 <motion.div
                   whileHover={{ x: 4 }}
-                  className="glass-card h-full rounded-2xl border border-white/10 p-6"
+                  className="glass-card h-full rounded-2xl border border-white/[0.1] p-6"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5">
-                      <pattern.icon className="h-5 w-5 text-nirvana-gold-light" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.06]">
+                      <pattern.icon className="h-5 w-5 text-gold-light" />
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-white">
@@ -76,17 +76,17 @@ export default function WhyPeopleFail() {
           </div>
 
           <FadeIn delay={0.2} className="h-full">
-            <div className="relative h-full overflow-hidden rounded-3xl border border-nirvana-gold/15 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-              <div className="absolute inset-0 bg-gradient-to-br from-nirvana-gold/10 via-transparent to-nirvana-purple/10" />
+            <div className="relative h-full overflow-hidden rounded-3xl border border-gold/15 bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+              <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-nirvana-purple/10" />
               <div className="relative">
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70">
-                  <Target className="h-4 w-4 text-nirvana-gold" />
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.06] px-4 py-2 text-sm text-white/70">
+                  <Target className="h-4 w-4 text-gold" />
                   System, not self-judgment
                 </div>
                 <p className="text-2xl font-semibold leading-relaxed text-white sm:text-3xl">
                   SeekNirvana reframes the challenge from{" "}
                   <span className="gradient-text-gold">“try harder”</span> to{" "}
-                  <span className="text-nirvana-cyan">“train with timing, cues,
+                  <span className="text-cyan">“train with timing, cues,
                   and feedback.”</span>
                 </p>
                 <div className="mt-8 space-y-4 text-sm leading-relaxed text-white/58 sm:text-base">

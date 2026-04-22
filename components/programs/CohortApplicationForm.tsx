@@ -73,10 +73,10 @@ const personalityOptions = [
 ];
 
 const inputClassName =
-  "w-full rounded-2xl border border-white/10 bg-nirvana-dark/60 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/28 focus:border-nirvana-cyan/40";
+  "w-full rounded-2xl border border-white/[0.1] bg-navy-950/60 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/28 focus:border-cyan/40";
 
 const textareaClassName =
-  "min-h-[120px] w-full rounded-2xl border border-white/10 bg-nirvana-dark/60 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/28 focus:border-nirvana-cyan/40";
+  "min-h-[120px] w-full rounded-2xl border border-white/[0.1] bg-navy-950/60 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/28 focus:border-cyan/40";
 
 const requiredText = z.string().trim().min(1, "Oops you forgot to put this.");
 
@@ -309,8 +309,8 @@ export default function CohortApplicationForm() {
   return (
     <div className="grid gap-8 lg:grid-cols-[0.74fr_1.26fr]">
       <div className="space-y-6">
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-nirvana-gold/20 bg-nirvana-gold/10 px-4 py-2 text-sm text-nirvana-gold-light">
+        <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-white/[0.08] px-4 py-2 text-sm text-gold-light">
             <Sparkles className="h-4 w-4" />
             Cohort intake
           </span>
@@ -324,7 +324,7 @@ export default function CohortApplicationForm() {
           </p>
         </div>
 
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl">
+        <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl">
           <h3 className="text-lg font-semibold text-white">What we ask for</h3>
           <div className="mt-5 space-y-3">
             {[
@@ -335,7 +335,7 @@ export default function CohortApplicationForm() {
             ].map((item) => (
               <div
                 key={item}
-                className="rounded-2xl border border-white/10 bg-nirvana-dark/55 px-4 py-3 text-sm text-white/72"
+                className="rounded-2xl border border-white/[0.1] bg-white/[0.04] px-4 py-3 text-sm text-white/72"
               >
                 {item}
               </div>
@@ -347,11 +347,11 @@ export default function CohortApplicationForm() {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-3xl border border-nirvana-jade/20 bg-nirvana-jade/10 p-8"
+            className="rounded-3xl border border-white/[0.15] bg-white/[0.08] p-8"
           >
             <div className="flex items-start gap-4">
-              <div className="mt-1 flex h-11 w-11 items-center justify-center rounded-2xl bg-nirvana-jade/20">
-                <CheckCircle2 className="h-5 w-5 text-nirvana-jade-light" />
+              <div className="mt-1 flex h-11 w-11 items-center justify-center rounded-2xl bg-jade/20">
+                <CheckCircle2 className="h-5 w-5 text-jade-light" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-white">
@@ -373,16 +373,16 @@ export default function CohortApplicationForm() {
 
       <div className="space-y-6">
         {!showIntakeForm ? (
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-            <p className="text-sm uppercase tracking-[0.28em] text-nirvana-cyan">Account</p>
+          <div className="rounded-[2rem] border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+            <p className="text-sm uppercase tracking-[0.28em] text-cyan">Account</p>
             <h3 className="mt-4 text-2xl font-semibold text-white sm:text-3xl">Sign in to apply</h3>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/60">
               Use email, a social account, or your wallet. Once you are signed in, the cohort intake form appears here
               and we can pre-fill your email when available.
             </p>
             {!projectId ? (
-              <p className="mt-6 text-xs text-nirvana-gold-light/90">
-                Set <span className="font-mono text-nirvana-cyan">NEXT_PUBLIC_REOWN_PROJECT_ID</span> in your environment
+              <p className="mt-6 text-xs text-gold-light/90">
+                Set <span className="font-mono text-cyan">NEXT_PUBLIC_REOWN_PROJECT_ID</span> in your environment
                 to enable sign-in.
               </p>
             ) : (
@@ -390,13 +390,13 @@ export default function CohortApplicationForm() {
                 <button
                   type="button"
                   onClick={() => void open()}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-white/12 bg-white/[0.08] px-8 py-4 text-base font-medium text-white shadow-sm transition-colors hover:border-nirvana-jade/40 hover:bg-nirvana-jade/15 hover:text-white"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-white/12 bg-white/[0.08] px-8 py-4 text-base font-medium text-white shadow-sm transition-colors hover:border-jade/40 hover:bg-jade/15 hover:text-white"
                 >
                   Sign in or connect
                 </button>
                 <a
                   href="/login"
-                  className="text-center text-sm text-nirvana-cyan/90 underline-offset-2 hover:underline"
+                  className="text-center text-sm text-cyan/90 underline-offset-2 hover:underline"
                 >
                   Open full sign-in page
                 </a>
@@ -404,10 +404,10 @@ export default function CohortApplicationForm() {
             )}
           </div>
         ) : isCheckingProfile ? (
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-            <p className="text-sm uppercase tracking-[0.28em] text-nirvana-cyan">Account</p>
+          <div className="rounded-[2rem] border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+            <p className="text-sm uppercase tracking-[0.28em] text-cyan">Account</p>
             <h3 className="mt-4 flex items-center gap-2 text-2xl font-semibold text-white sm:text-3xl">
-              <Loader2 className="h-5 w-5 animate-spin text-nirvana-cyan" />
+              <Loader2 className="h-5 w-5 animate-spin text-cyan" />
               Loading your profile
             </h3>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/60">
@@ -415,8 +415,8 @@ export default function CohortApplicationForm() {
             </p>
           </div>
         ) : hasDashboardProfile ? (
-          <div className="rounded-[2rem] border border-nirvana-jade/25 bg-nirvana-jade/10 p-8 backdrop-blur-xl sm:p-10">
-            <p className="text-sm uppercase tracking-[0.28em] text-nirvana-jade-light">You are already onboarded</p>
+          <div className="rounded-[2rem] border border-jade/25 bg-white/[0.08] p-8 backdrop-blur-xl sm:p-10">
+            <p className="text-sm uppercase tracking-[0.28em] text-jade-light">You are already onboarded</p>
             <h3 className="mt-4 text-2xl font-semibold text-white sm:text-3xl">Your member hub is ready</h3>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/75">
               We already have your personal details on file for this connected wallet, so the intake form is hidden.
@@ -424,14 +424,14 @@ export default function CohortApplicationForm() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href="/dashboard"
-                className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-8 py-4 text-base font-medium text-white shadow-sm transition-opacity hover:opacity-95 sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/[0.08] transition-colors hover:bg-white/[0.12] px-8 py-4 text-base font-medium text-white shadow-sm transition-opacity hover:opacity-95 sm:w-auto"
               >
                 Take me to the dashboard
               </a>
               <button
                 type="button"
                 onClick={() => void open()}
-                className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/[0.06] px-8 py-4 text-base font-medium text-white/90 transition-colors hover:border-nirvana-jade/35 hover:bg-nirvana-jade/15 hover:text-white sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/[0.06] px-8 py-4 text-base font-medium text-white/90 transition-colors hover:border-jade/35 hover:bg-jade/15 hover:text-white sm:w-auto"
               >
                 Wallet & account
               </button>
@@ -439,8 +439,8 @@ export default function CohortApplicationForm() {
           </div>
         ) : (
           <>
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl sm:p-8">
-              <p className="text-sm uppercase tracking-[0.28em] text-nirvana-cyan">Account</p>
+            <div className="rounded-[2rem] border border-white/[0.1] bg-white/[0.06] p-6 backdrop-blur-xl sm:p-8">
+              <p className="text-sm uppercase tracking-[0.28em] text-cyan">Account</p>
               <h3 className="mt-3 text-lg font-semibold text-white">You are signed in</h3>
               <p className="mt-2 text-sm leading-relaxed text-white/60">
                 {embeddedEmail
@@ -454,14 +454,14 @@ export default function CohortApplicationForm() {
                 <button
                   type="button"
                   onClick={() => void open()}
-                  className="inline-flex w-full shrink-0 items-center justify-center rounded-full border border-white/12 bg-white/[0.06] px-6 py-3 text-sm font-medium text-white/90 shadow-sm transition-colors hover:border-nirvana-jade/35 hover:bg-nirvana-jade/15 hover:text-white sm:w-auto"
+                  className="inline-flex w-full shrink-0 items-center justify-center rounded-full border border-white/12 bg-white/[0.06] px-6 py-3 text-sm font-medium text-white/90 shadow-sm transition-colors hover:border-jade/35 hover:bg-jade/15 hover:text-white sm:w-auto"
                 >
                   Wallet & account
                 </button>
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
+            <div className="rounded-[2rem] border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
         <form onSubmit={handleSubmit} className="relative space-y-8">
           <input
             type="text"
@@ -490,7 +490,7 @@ export default function CohortApplicationForm() {
             </div>
           )}
           <div>
-            <p className="text-sm uppercase tracking-[0.28em] text-nirvana-cyan">
+            <p className="text-sm uppercase tracking-[0.28em] text-cyan">
               Personal details
             </p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -572,13 +572,13 @@ export default function CohortApplicationForm() {
                   placeholder="Founder, designer, student, therapist..."
                 />
                 {fieldErrors.occupation && <p className="mt-2 text-xs text-red-300">{fieldErrors.occupation}</p>}
-                {occupationShoutout && <p className="mt-2 text-xs text-nirvana-jade-light">{occupationShoutout}</p>}
+                {occupationShoutout && <p className="mt-2 text-xs text-jade-light">{occupationShoutout}</p>}
               </label>
             </div>
           </div>
 
           <div>
-            <p className="text-sm uppercase tracking-[0.28em] text-nirvana-gold-light">
+            <p className="text-sm uppercase tracking-[0.28em] text-gold-light">
               Personality and rhythm
             </p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -616,7 +616,7 @@ export default function CohortApplicationForm() {
           </div>
 
           <div>
-            <p className="text-sm uppercase tracking-[0.28em] text-nirvana-jade-light">
+            <p className="text-sm uppercase tracking-[0.28em] text-jade-light">
               Sleep and dream profile
             </p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -700,27 +700,27 @@ export default function CohortApplicationForm() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-nirvana-dark/45 p-5">
+          <div className="rounded-3xl border border-white/[0.1] bg-white/[0.04] p-5">
             <label className="flex items-start gap-3">
               <input
                 required
                 type="checkbox"
                 checked={form.acceptProgramTerms}
                 onChange={handleChange("acceptProgramTerms")}
-                className="mt-1 h-4 w-4 rounded border-white/20 bg-transparent text-nirvana-jade focus:ring-nirvana-jade/40"
+                className="mt-1 h-4 w-4 rounded border-white/20 bg-transparent text-jade focus:ring-jade/40"
               />
               <span className="text-sm leading-relaxed text-white/70">
                 I agree to the{" "}
                 <a
                   href="/privacy#program-privacy"
-                  className="text-nirvana-cyan underline decoration-white/20 underline-offset-4 transition-colors hover:text-white"
+                  className="text-cyan underline decoration-white/20 underline-offset-4 transition-colors hover:text-white"
                 >
                   Privacy Policy
                 </a>{" "}
                 and{" "}
                 <a
                   href="/terms#program-terms"
-                  className="text-nirvana-gold-light underline decoration-white/20 underline-offset-4 transition-colors hover:text-white"
+                  className="text-gold-light underline decoration-white/20 underline-offset-4 transition-colors hover:text-white"
                 >
                   Terms of Service
                 </a>
@@ -732,11 +732,11 @@ export default function CohortApplicationForm() {
             )}
           </div>
 
-          <div className="flex flex-col gap-3 border-t border-white/10 pt-6 sm:flex-row">
+          <div className="flex flex-col gap-3 border-t border-white/[0.1] pt-6 sm:flex-row">
             <button
               type="submit"
               disabled={!form.acceptProgramTerms || isSaving}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-7 py-3.5 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.08] transition-colors hover:bg-white/[0.12] px-7 py-3.5 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
               {isSaving ? "Submitting…" : "Submit application"}

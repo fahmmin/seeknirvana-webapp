@@ -18,9 +18,10 @@ import {
   Users,
   Waves,
 } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/sections/Footer";
-import FadeIn from "@/components/animations/FadeIn";
+import { Navbar as Navigation } from "@/src/components/Navbar";
+import { Footer } from "@/src/sections/Footer";
+import { FadeIn } from "@/src/components/FadeIn";
+import { marketingButtonClass } from "@/lib/ui/marketing-button";
 
 const heroBullets = [
   "Live guided sessions across 5 days",
@@ -228,16 +229,16 @@ export default function FiveDaySleepCohortPage() {
     <main className="relative min-h-screen">
       <Navigation />
 
-      <section className="relative overflow-hidden pt-32 pb-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-nirvana-darker via-nirvana-dark to-nirvana-dark" />
+      <section className="relative overflow-hidden pb-24 pt-36 sm:pt-40">
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-950 to-navy-950" />
         <div className="absolute inset-0 mandala-pattern opacity-20" />
-        <div className="absolute top-16 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-nirvana-cyan/10 blur-3xl" />
+        <div className="absolute top-16 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-white/[0.08] blur-3xl" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
             <FadeIn>
-              <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-nirvana-gold-light">
-                <Sparkles className="h-4 w-4 text-nirvana-gold" />
+              <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.06] px-4 py-2 text-sm text-gold-light">
+                <Sparkles className="h-4 w-4 text-gold" />
                 Guided virtual cohort
               </span>
               <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
@@ -249,8 +250,8 @@ export default function FiveDaySleepCohortPage() {
                 help you improve sleep and build lucid dreaming foundations.
               </p>
 
-              <div className="mt-6 rounded-2xl border border-nirvana-cyan/25 bg-nirvana-cyan/10 px-4 py-3 text-sm text-white/80 sm:px-5">
-                <a href="/login" className="font-semibold text-nirvana-cyan hover:underline">
+              <div className="mt-6 rounded-2xl border border-cyan/25 bg-white/[0.08] px-4 py-3 text-sm text-white/80 sm:px-5">
+                <a href="/login" className="font-semibold text-cyan hover:underline">
                   Sign in
                 </a>{" "}
                 first for member hub access and a smoother application flow.
@@ -259,13 +260,13 @@ export default function FiveDaySleepCohortPage() {
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <a
                   href="/programs/5-day-sleep-cohort/apply"
-                  className="rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-8 py-4 text-center font-medium text-white transition-transform hover:scale-[1.02]"
+                  className={marketingButtonClass({ variant: "primary", size: "lg", fullWidth: true })}
                 >
                   Join the Next Cohort
                 </a>
                 <a
                   href="#curriculum"
-                  className="rounded-full border border-white/15 px-8 py-4 text-center font-medium text-white/78 transition-colors hover:border-nirvana-cyan/40 hover:text-nirvana-cyan"
+                  className={marketingButtonClass({ variant: "secondary", size: "lg", fullWidth: true })}
                 >
                   View Program Details
                 </a>
@@ -275,7 +276,7 @@ export default function FiveDaySleepCohortPage() {
                 {heroBullets.map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm text-white/72 backdrop-blur-xl"
+                    className="rounded-2xl border border-white/[0.1] bg-white/[0.06] px-4 py-4 text-sm text-white/72 backdrop-blur-xl"
                   >
                     {item}
                   </div>
@@ -284,33 +285,33 @@ export default function FiveDaySleepCohortPage() {
             </FadeIn>
 
             <FadeIn delay={0.15}>
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-nirvana-cyan/10 via-transparent to-nirvana-purple/10" />
+              <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.1] bg-white/[0.06] p-6 backdrop-blur-xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan/10 via-transparent to-nirvana-purple/10" />
                 <div className="relative space-y-4">
-                  <div className="rounded-2xl border border-white/10 bg-nirvana-dark/70 p-5">
+                  <div className="rounded-2xl border border-white/[0.1] bg-navy-950/70 p-5">
                     <p className="text-xs uppercase tracking-[0.3em] text-white/35">Night view</p>
                     <div className="mt-3 flex items-center justify-between">
                       <span className="text-white/82">HRV readiness</span>
-                      <span className="text-nirvana-jade-light">Balanced</span>
+                      <span className="text-jade-light">Balanced</span>
                     </div>
                     <div className="mt-3 h-2 rounded-full bg-white/10">
-                      <div className="h-full w-[68%] rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-cyan" />
+                      <div className="h-full w-[68%] rounded-full bg-gradient-to-r from-jade to-cyan" />
                     </div>
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="rounded-2xl border border-white/10 bg-nirvana-dark/70 p-5">
+                    <div className="rounded-2xl border border-white/[0.1] bg-navy-950/70 p-5">
                       <p className="text-xs uppercase tracking-[0.3em] text-white/35">REM window</p>
                       <p className="mt-3 text-2xl font-semibold text-white">2:40 AM</p>
                       <p className="mt-2 text-sm text-white/55">Cue opportunity detected</p>
                     </div>
-                    <div className="rounded-2xl border border-white/10 bg-nirvana-dark/70 p-5">
+                    <div className="rounded-2xl border border-white/[0.1] bg-navy-950/70 p-5">
                       <p className="text-xs uppercase tracking-[0.3em] text-white/35">Dream note</p>
                       <p className="mt-3 text-sm leading-relaxed text-white/72">
                         “Ocean, staircase, returning room. Strong recall after calm wind-down.”
                       </p>
                     </div>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-nirvana-dark/70 p-5">
+                  <div className="rounded-2xl border border-white/[0.1] bg-navy-950/70 p-5">
                     <p className="text-xs uppercase tracking-[0.3em] text-white/35">AI reflection</p>
                     <p className="mt-3 text-sm leading-relaxed text-white/72">
                       Your calmer nights appear when intention is set earlier and
@@ -327,7 +328,7 @@ export default function FiveDaySleepCohortPage() {
       <section className="relative overflow-hidden py-24">
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="mx-auto max-w-3xl text-center">
-            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-nirvana-gold">
+            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-gold">
               Why This Matters
             </span>
             <h2 className="text-4xl font-bold text-white sm:text-5xl">
@@ -344,8 +345,8 @@ export default function FiveDaySleepCohortPage() {
             {problemCards.map((card) => (
               <FadeIn key={card.title} className="h-full">
                 <div className="glass-card h-full rounded-3xl p-6">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-nirvana-gold/10">
-                    <card.icon className="h-5 w-5 text-nirvana-gold" />
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.08]">
+                    <card.icon className="h-5 w-5 text-gold" />
                   </div>
                   <h3 className="text-xl font-semibold text-white">{card.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/58 sm:text-base">
@@ -359,11 +360,11 @@ export default function FiveDaySleepCohortPage() {
       </section>
 
       <section className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-nirvana-jade/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-jade/5 to-transparent" />
         <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <FadeIn>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-              <span className="inline-flex items-center gap-2 rounded-full border border-nirvana-jade/20 bg-nirvana-jade/10 px-4 py-2 text-sm text-nirvana-jade-light">
+            <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.15] bg-white/[0.08] px-4 py-2 text-sm text-jade-light">
                 <CalendarDays className="h-4 w-4" />
                 What this cohort is
               </span>
@@ -372,7 +373,7 @@ export default function FiveDaySleepCohortPage() {
               </p>
               <div className="mt-8 space-y-3">
                 {summaryItems.map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/10 bg-nirvana-dark/60 px-5 py-4 text-sm text-white/72 sm:text-base">
+                  <div key={item} className="rounded-2xl border border-white/[0.1] bg-navy-950/60 px-5 py-4 text-sm text-white/72 sm:text-base">
                     {item}
                   </div>
                 ))}
@@ -381,20 +382,20 @@ export default function FiveDaySleepCohortPage() {
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-              <span className="inline-flex items-center gap-2 rounded-full border border-nirvana-cyan/20 bg-nirvana-cyan/10 px-4 py-2 text-sm text-nirvana-cyan">
+            <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+              <span className="inline-flex items-center gap-2 rounded-full border border-cyan/20 bg-white/[0.08] px-4 py-2 text-sm text-cyan">
                 <Users className="h-4 w-4" />
                 Who it is for
               </span>
               <div className="mt-8 grid gap-3">
                 {audienceCards.map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm text-white/72 sm:text-base">
+                  <div key={item} className="rounded-2xl border border-white/[0.1] bg-white/[0.06] px-4 py-4 text-sm text-white/72 sm:text-base">
                     {item}
                   </div>
                 ))}
               </div>
-              <div className="mt-8 rounded-2xl border border-nirvana-gold/15 bg-nirvana-gold/5 p-5">
-                <p className="text-sm uppercase tracking-[0.28em] text-nirvana-gold-light">
+              <div className="mt-8 rounded-2xl border border-gold/15 bg-gold/5 p-5">
+                <p className="text-sm uppercase tracking-[0.28em] text-gold-light">
                   Not for
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-white/62 sm:text-base">
@@ -410,7 +411,7 @@ export default function FiveDaySleepCohortPage() {
       <section className="relative overflow-hidden py-24">
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="mx-auto max-w-3xl text-center">
-            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-nirvana-cyan">
+            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-cyan">
               The SeekNirvana Difference
             </span>
             <h2 className="text-4xl font-bold text-white sm:text-5xl">
@@ -423,11 +424,11 @@ export default function FiveDaySleepCohortPage() {
           </FadeIn>
 
           <FadeIn delay={0.15} className="mt-14">
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
+            <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
               <div className="grid gap-4 md:grid-cols-7">
                 {differenceLoop.map((item, index) => (
                   <div key={item} className="flex items-center gap-3 md:flex-col md:text-center">
-                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-nirvana-cyan/10 text-nirvana-cyan">
+                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-white/[0.08] text-cyan">
                       {index + 1}
                     </div>
                     <div className="text-sm text-white/75">{item}</div>
@@ -443,7 +444,7 @@ export default function FiveDaySleepCohortPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent" />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="mx-auto max-w-3xl text-center">
-            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-nirvana-gold">
+            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-gold">
               Program Outcomes
             </span>
             <h2 className="text-4xl font-bold text-white sm:text-5xl">
@@ -456,8 +457,8 @@ export default function FiveDaySleepCohortPage() {
               <FadeIn key={item} className="h-full">
                 <div className="glass-card h-full rounded-2xl p-5">
                   <div className="flex items-start gap-3">
-                    <div className="mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-nirvana-jade/20">
-                      <Check className="h-3.5 w-3.5 text-nirvana-jade" />
+                    <div className="mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-jade/20">
+                      <Check className="h-3.5 w-3.5 text-jade" />
                     </div>
                     <p className="text-sm leading-relaxed text-white/72 sm:text-base">{item}</p>
                   </div>
@@ -468,10 +469,10 @@ export default function FiveDaySleepCohortPage() {
         </div>
       </section>
 
-      <section id="curriculum" className="relative overflow-hidden py-24">
+      <section id="curriculum" className="relative scroll-mt-28 overflow-hidden py-24">
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="mx-auto max-w-3xl text-center">
-            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-nirvana-jade-light">
+            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-jade-light">
               5-Day Curriculum
             </span>
             <h2 className="text-4xl font-bold text-white sm:text-5xl">
@@ -482,10 +483,10 @@ export default function FiveDaySleepCohortPage() {
           <div className="mt-14 grid gap-5">
             {curriculum.map((day, index) => (
               <FadeIn key={day.day} delay={index * 0.06}>
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl sm:p-8">
+                <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-6 backdrop-blur-xl sm:p-8">
                   <div className="grid gap-6 lg:grid-cols-[0.28fr_0.72fr]">
                     <div>
-                      <p className="text-sm uppercase tracking-[0.28em] text-nirvana-gold-light">
+                      <p className="text-sm uppercase tracking-[0.28em] text-gold-light">
                         {day.day}
                       </p>
                       <h3 className="mt-3 text-2xl font-semibold text-white">{day.title}</h3>
@@ -494,15 +495,15 @@ export default function FiveDaySleepCohortPage() {
                       </p>
                     </div>
                     <div className="grid gap-4 md:grid-cols-3">
-                      <div className="rounded-2xl border border-white/10 bg-nirvana-dark/55 p-5">
+                      <div className="rounded-2xl border border-white/[0.1] bg-white/[0.04] p-5">
                         <p className="text-sm uppercase tracking-[0.28em] text-white/35">Learn</p>
                         <p className="mt-3 text-sm leading-relaxed text-white/72">{day.learn}</p>
                       </div>
-                      <div className="rounded-2xl border border-white/10 bg-nirvana-dark/55 p-5">
+                      <div className="rounded-2xl border border-white/[0.1] bg-white/[0.04] p-5">
                         <p className="text-sm uppercase tracking-[0.28em] text-white/35">Practice</p>
                         <p className="mt-3 text-sm leading-relaxed text-white/72">{day.practice}</p>
                       </div>
-                      <div className="rounded-2xl border border-white/10 bg-nirvana-dark/55 p-5">
+                      <div className="rounded-2xl border border-white/[0.1] bg-white/[0.04] p-5">
                         <p className="text-sm uppercase tracking-[0.28em] text-white/35">Takeaway</p>
                         <p className="mt-3 text-sm leading-relaxed text-white/72">{day.takeaway}</p>
                       </div>
@@ -516,17 +517,17 @@ export default function FiveDaySleepCohortPage() {
       </section>
 
       <section className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-nirvana-cyan/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan/5 to-transparent" />
         <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <FadeIn>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-              <span className="inline-flex items-center gap-2 rounded-full border border-nirvana-cyan/20 bg-nirvana-cyan/10 px-4 py-2 text-sm text-nirvana-cyan">
+            <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+              <span className="inline-flex items-center gap-2 rounded-full border border-cyan/20 bg-white/[0.08] px-4 py-2 text-sm text-cyan">
                 <Clock3 className="h-4 w-4" />
                 How the cohort works
               </span>
               <div className="mt-8 grid gap-3">
                 {logistics.map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/10 bg-nirvana-dark/55 px-5 py-4 text-sm text-white/72 sm:text-base">
+                  <div key={item} className="rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-4 text-sm text-white/72 sm:text-base">
                     {item}
                   </div>
                 ))}
@@ -535,14 +536,14 @@ export default function FiveDaySleepCohortPage() {
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-              <span className="inline-flex items-center gap-2 rounded-full border border-nirvana-gold/20 bg-nirvana-gold/10 px-4 py-2 text-sm text-nirvana-gold-light">
+            <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+              <span className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-white/[0.08] px-4 py-2 text-sm text-gold-light">
                 <Bot className="h-4 w-4" />
                 Where sleep data meets inner awareness
               </span>
               <div className="mt-8 space-y-3">
                 {techPoints.map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm text-white/72 sm:text-base">
+                  <div key={item} className="rounded-2xl border border-white/[0.1] bg-white/[0.06] px-5 py-4 text-sm text-white/72 sm:text-base">
                     {item}
                   </div>
                 ))}
@@ -561,14 +562,14 @@ export default function FiveDaySleepCohortPage() {
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
             <FadeIn>
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/72">
-                  <Orbit className="h-4 w-4 text-nirvana-cyan" />
+              <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.06] px-4 py-2 text-sm text-white/72">
+                  <Orbit className="h-4 w-4 text-cyan" />
                   Sample daily experience
                 </span>
                 <div className="mt-8 space-y-3">
                   {dailyExperience.map((item) => (
-                    <div key={item} className="rounded-2xl border border-white/10 bg-nirvana-dark/55 px-5 py-4 text-sm text-white/72 sm:text-base">
+                    <div key={item} className="rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-4 text-sm text-white/72 sm:text-base">
                       {item}
                     </div>
                   ))}
@@ -577,13 +578,13 @@ export default function FiveDaySleepCohortPage() {
             </FadeIn>
 
             <FadeIn delay={0.15}>
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/72">
-                  <BadgeCheck className="h-4 w-4 text-nirvana-gold" />
+              <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.06] px-4 py-2 text-sm text-white/72">
+                  <BadgeCheck className="h-4 w-4 text-gold" />
                   Trust and human guidance
                 </span>
                 <div className="mt-8 space-y-4">
-                  <div className="rounded-2xl border border-white/10 bg-nirvana-dark/55 p-5">
+                  <div className="rounded-2xl border border-white/[0.1] bg-white/[0.04] p-5">
                     <h3 className="text-xl font-semibold text-white">Founder note</h3>
                     <p className="mt-3 text-sm leading-relaxed text-white/62 sm:text-base">
                       SeekNirvana exists because sleep, dreams, and awareness
@@ -591,7 +592,7 @@ export default function FiveDaySleepCohortPage() {
                       built with care, not hype.
                     </p>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-nirvana-dark/55 p-5">
+                  <div className="rounded-2xl border border-white/[0.1] bg-white/[0.04] p-5">
                     <h3 className="text-xl font-semibold text-white">Pilot cohort placeholder</h3>
                     <p className="mt-3 text-sm leading-relaxed text-white/62 sm:text-base">
                       This section is intentionally ready for testimonials,
@@ -607,12 +608,12 @@ export default function FiveDaySleepCohortPage() {
       </section>
 
       <section className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-nirvana-jade/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-jade/5 to-transparent" />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <FadeIn>
-              <div className="rounded-3xl border border-nirvana-jade/20 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-                <span className="inline-flex items-center gap-2 rounded-full border border-nirvana-jade/20 bg-nirvana-jade/10 px-4 py-2 text-sm text-nirvana-jade-light">
+              <div className="rounded-3xl border border-white/[0.15] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.15] bg-white/[0.08] px-4 py-2 text-sm text-jade-light">
                   <BookOpen className="h-4 w-4" />
                   Enrollment
                 </span>
@@ -628,9 +629,9 @@ export default function FiveDaySleepCohortPage() {
                     "AI-guided reflection support",
                     "Cohort access and replays",
                   ].map((item) => (
-                    <div key={item} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-nirvana-dark/55 px-4 py-3 text-sm text-white/72">
-                      <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-nirvana-jade/20">
-                        <Check className="h-3 w-3 text-nirvana-jade" />
+                    <div key={item} className="flex items-start gap-3 rounded-2xl border border-white/[0.1] bg-white/[0.04] px-4 py-3 text-sm text-white/72">
+                      <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-jade/20">
+                        <Check className="h-3 w-3 text-jade" />
                       </div>
                       <span>{item}</span>
                     </div>
@@ -638,7 +639,7 @@ export default function FiveDaySleepCohortPage() {
                 </div>
                 <a
                   href="/programs/5-day-sleep-cohort/apply"
-                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-6 py-3 text-sm font-medium text-white"
+                  className={`mt-8 ${marketingButtonClass({ variant: "primary" })}`}
                 >
                   Reserve a Seat
                   <ArrowRight className="h-4 w-4" />
@@ -647,9 +648,9 @@ export default function FiveDaySleepCohortPage() {
             </FadeIn>
 
             <FadeIn delay={0.15}>
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl sm:p-10">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/72">
-                  <NotebookPen className="h-4 w-4 text-nirvana-cyan" />
+              <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.06] px-4 py-2 text-sm text-white/72">
+                  <NotebookPen className="h-4 w-4 text-cyan" />
                   FAQ
                 </span>
                 <div className="mt-8 space-y-4">
@@ -657,7 +658,7 @@ export default function FiveDaySleepCohortPage() {
                     <details
                       key={item.question}
                       open={index === 0}
-                      className="group rounded-2xl border border-white/10 bg-nirvana-dark/55 p-5"
+                      className="group rounded-2xl border border-white/[0.1] bg-white/[0.04] p-5"
                     >
                       <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
                         <h3 className="text-left text-lg font-semibold text-white">
@@ -680,9 +681,9 @@ export default function FiveDaySleepCohortPage() {
       <section className="relative overflow-hidden pb-24">
         <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <FadeIn>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-xl sm:p-12">
-              <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-nirvana-gold/10">
-                <Waves className="h-6 w-6 text-nirvana-gold" />
+            <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 text-center backdrop-blur-xl sm:p-12">
+              <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[0.08]">
+                <Waves className="h-6 w-6 text-gold" />
               </div>
               <h2 className="text-3xl font-bold text-white sm:text-4xl">
                 Your nights can become a source of recovery, clarity, and insight.
@@ -694,13 +695,13 @@ export default function FiveDaySleepCohortPage() {
               <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
                 <a
                   href="/programs/5-day-sleep-cohort/apply"
-                  className="rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark px-8 py-4 font-medium text-white"
+                  className={marketingButtonClass({ variant: "primary", size: "lg", fullWidth: true })}
                 >
                   Join the Next Cohort
                 </a>
                 <a
                   href="/technology"
-                  className="rounded-full border border-white/15 px-8 py-4 font-medium text-white/78 transition-colors hover:border-nirvana-cyan/40 hover:text-nirvana-cyan"
+                  className={marketingButtonClass({ variant: "secondary", size: "lg", fullWidth: true })}
                 >
                   Explore the Technology
                 </a>

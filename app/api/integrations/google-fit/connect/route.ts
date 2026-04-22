@@ -41,9 +41,12 @@ export async function GET(request: NextRequest) {
   const state = createSignedOAuthState(wallet_address);
   const url = createGoogleFitConsentUrl(state);
   const response = NextResponse.redirect(url);
+  const isSecure =
+    request.nextUrl.protocol === "https:" ||
+    request.headers.get("x-forwarded-proto") === "https";
   response.cookies.set(STATE_COOKIE, state, {
     httpOnly: true,
-    secure: true,
+    secure: isSecure,
     sameSite: "lax",
     path: "/",
     maxAge: 10 * 60,

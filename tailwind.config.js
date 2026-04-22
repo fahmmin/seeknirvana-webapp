@@ -1,65 +1,51 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
-        // Eastern spiritual palette meets AI futurism
-        nirvana: {
-          dark: '#0a0a0f',
-          darker: '#050508',
-          gold: '#c9a227',
-          'gold-light': '#e8d5a3',
-          'gold-dark': '#8b7355',
-          jade: '#00a86b',
-          'jade-light': '#4dd4a8',
-          'jade-dark': '#006b44',
-          lotus: '#ffb7c5',
-          'lotus-dark': '#d4869a',
-          amber: '#ff8c00',
-          cyan: '#00d4ff',
-          'cyan-glow': 'rgba(0, 212, 255, 0.3)',
-          purple: '#7c3aed',
-          'purple-glow': 'rgba(124, 58, 237, 0.3)',
+        // Backgrounds — deep purple gradient tones
+        navy: {
+          950: '#0E0A1A',
+          900: '#120E22',
+          850: '#16112B',
+          800: '#1C1533',
+          700: '#251E40',
+        },
+        // Accent — Soft Lavender / Purple
+        jade: {
+          DEFAULT: '#B794F4',
+          light: '#D6BCFA',
+          dark: '#9F7AEA',
+          glow: 'rgba(183, 148, 244, 0.15)',
+        },
+        // Accent — Warm Mauve / Rose
+        gold: {
+          DEFAULT: '#D4A0C0',
+          light: '#E8BCD8',
+          muted: 'rgba(212, 160, 192, 0.7)',
+        },
+        // Accent — Cyan
+        cyan: {
+          DEFAULT: '#A78BFA',
+          muted: 'rgba(167, 139, 250, 0.6)',
+        },
+        // Text hierarchy
+        txt: {
+          primary: '#FFFFFF',
+          secondary: 'rgba(255, 255, 255, 0.7)',
+          muted: 'rgba(255, 255, 255, 0.45)',
+          faint: 'rgba(255, 255, 255, 0.25)',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
-      },
-      animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'breathe': 'breathe 8s ease-in-out infinite',
-        'orbit': 'orbit 20s linear infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
-        },
-        glow: {
-          '0%': { boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)' },
-          '100%': { boxShadow: '0 0 40px rgba(0, 212, 255, 0.6)' },
-        },
-        breathe: {
-          '0%, 100%': { transform: 'scale(1)', opacity: '0.8' },
-          '50%': { transform: 'scale(1.1)', opacity: '1' },
-        },
-        orbit: {
-          '0%': { transform: 'rotate(0deg) translateX(100px) rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg) translateX(100px) rotate(-360deg)' },
-        },
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'cosmic': 'linear-gradient(to bottom, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%)',
+        serif: ['"Instrument Serif"', 'serif'],
       },
     },
   },

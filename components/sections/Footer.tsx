@@ -34,7 +34,7 @@ export default function Footer() {
   return (
     <footer className="relative pt-20 pb-8 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-t from-nirvana-darker to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-navy-950 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +42,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-full overflow-hidden bg-nirvana-dark">
+              <div className="w-12 h-12 rounded-full overflow-hidden bg-navy-950">
                 <img
                   src="/images/SeekNirvana_Logo.png"
                   alt="Seek Nirvana"
@@ -64,7 +64,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-white/50 hover:text-nirvana-cyan hover:border-nirvana-cyan/30 transition-colors"
+                  className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-white/50 hover:text-cyan hover:border-white/[0.15] transition-colors"
                   aria-label={social.label}
                 >
                   <social.icon className="w-4 h-4" />
@@ -81,7 +81,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-white/50 text-sm hover:text-nirvana-cyan transition-colors"
+                    className="text-white/50 text-sm hover:text-cyan transition-colors"
                   >
                     {link.label}
                   </a>
@@ -97,7 +97,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-white/50 text-sm hover:text-nirvana-cyan transition-colors"
+                    className="text-white/50 text-sm hover:text-cyan transition-colors"
                   >
                     {link.label}
                   </a>
@@ -114,7 +114,7 @@ export default function Footer() {
               © 2026 Seek Nirvana. All rights reserved.
             </p>
             <p className="text-white/30 text-sm flex items-center gap-2">
-              <span className="text-nirvana-gold">ॐ</span>
+              <span className="text-gold">ॐ</span>
               <span>Made with mindfulness</span>
             </p>
           </div>
@@ -122,7 +122,7 @@ export default function Footer() {
 
         {/* Sanskrit Quote */}
         <div className="mt-8 text-center">
-          <p className="text-nirvana-gold/30 text-xs tracking-widest">
+          <p className="text-gold/30 text-xs tracking-widest">
             तत् त्वम् असि — Thou Art That
           </p>
         </div>

@@ -16,11 +16,11 @@ export default function Program() {
   return (
     <section id="program" className="relative overflow-hidden py-28">
       <div className="absolute inset-0 mandala-pattern opacity-20" />
-      <div className="absolute inset-y-0 left-1/2 w-[40rem] -translate-x-1/2 rounded-full bg-nirvana-jade/5 blur-3xl" />
+      <div className="absolute inset-y-0 left-1/2 w-[40rem] -translate-x-1/2 rounded-full bg-jade/5 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-nirvana-jade-light">
+          <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-jade-light">
             Programs
           </span>
           <h2 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
@@ -36,11 +36,11 @@ export default function Program() {
         <FadeIn delay={0.15} className="mt-16">
           <a
             href="/programs/5-day-sleep-cohort"
-            className="group block rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl transition-transform hover:-translate-y-1 sm:p-10"
+            className="group block rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl transition-transform hover:-translate-y-1 sm:p-10"
           >
             <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
               <div>
-                <span className="inline-flex items-center gap-2 rounded-full border border-nirvana-jade/20 bg-nirvana-jade/10 px-4 py-2 text-sm text-nirvana-jade-light">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.15] bg-white/[0.08] px-4 py-2 text-sm text-jade-light">
                   <Sparkles className="h-4 w-4" />
                   Current program
                 </span>
@@ -52,26 +52,26 @@ export default function Program() {
                   recall, lucid foundations, and more intentional use of
                   SeekNirvana ring data.
                 </p>
-                <div className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-nirvana-jade-light">
+                <div className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-jade-light">
                   View cohort details
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </div>
               </div>
 
               <div className="grid gap-3">
-                <div className="rounded-2xl border border-white/10 bg-nirvana-dark/55 px-5 py-4 text-sm text-white/72">
+                <div className="rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-4 text-sm text-white/72">
                   <div className="flex items-center gap-3">
-                    <CalendarDays className="h-4 w-4 text-nirvana-cyan" />
+                    <CalendarDays className="h-4 w-4 text-cyan" />
                     <span>Live virtual cohort</span>
                   </div>
                 </div>
                 {days.slice(0, 3).map((item) => (
                   <div
                     key={item.day}
-                    className="rounded-2xl border border-white/10 bg-nirvana-dark/55 px-5 py-4"
+                    className="rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-4"
                   >
                     <div className="flex items-start gap-3">
-                      <item.icon className="mt-0.5 h-4 w-4 text-nirvana-cyan" />
+                      <item.icon className="mt-0.5 h-4 w-4 text-cyan" />
                       <div>
                         <p className="text-sm uppercase tracking-[0.28em] text-white/35">
                           {item.day}
@@ -87,20 +87,20 @@ export default function Program() {
         </FadeIn>
 
         <FadeIn delay={0.3} className="mt-10">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-xl sm:p-10">
+          <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 text-center backdrop-blur-xl sm:p-10">
             <p className="mx-auto max-w-3xl text-lg leading-relaxed text-white/70">
               Browse all programs first, then enter the cohort that fits.
             </p>
             <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href="/login"
-                className="inline-flex items-center gap-2 rounded-full border border-nirvana-cyan/30 bg-nirvana-cyan/10 px-6 py-3 text-sm font-medium text-nirvana-cyan transition-colors hover:bg-nirvana-cyan/20"
+                className="inline-flex items-center gap-2 rounded-full border border-white/[0.15] bg-white/[0.08] px-6 py-3 text-sm font-medium text-cyan transition-colors hover:bg-cyan/20"
               >
                 Sign in to continue
               </a>
               <a
                 href="/programs"
-                className="inline-flex items-center gap-2 rounded-full border border-nirvana-jade/20 bg-nirvana-jade/10 px-6 py-3 text-sm font-medium text-nirvana-jade-light transition-colors hover:bg-nirvana-jade/20"
+                className="inline-flex items-center gap-2 rounded-full border border-white/[0.15] bg-white/[0.08] px-6 py-3 text-sm font-medium text-jade-light transition-colors hover:bg-jade/20"
               >
                 View all programs
                 <ArrowRight className="h-4 w-4" />

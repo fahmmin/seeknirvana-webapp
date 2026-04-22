@@ -14,9 +14,9 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useState } from "react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/sections/Footer";
-import FadeIn from "@/components/animations/FadeIn";
+import { Navbar as Navigation } from "@/src/components/Navbar";
+import { Footer } from "@/src/sections/Footer";
+import { FadeIn } from "@/src/components/FadeIn";
 
 const includedItems = [
   "Nirvana Ring (Ceramic)",
@@ -49,7 +49,7 @@ const colors = [
   {
     id: "gold",
     name: "Vedic Gold",
-    bg: "bg-gradient-to-br from-nirvana-gold to-amber-600",
+    bg: "bg-gradient-to-br from-gold to-amber-600",
   },
   {
     id: "black",
@@ -91,9 +91,9 @@ export default function PreorderPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
+      <section className="relative pt-40 pb-16 overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-nirvana-darker to-nirvana-dark" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 to-navy-950" />
         <div className="absolute inset-0 mandala-pattern opacity-20" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -102,8 +102,8 @@ export default function PreorderPage() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6"
               whileHover={{ scale: 1.05 }}
             >
-              <Sparkles className="w-4 h-4 text-nirvana-gold" />
-              <span className="text-sm text-nirvana-gold-light tracking-wide">
+              <Sparkles className="w-4 h-4 text-gold" />
+              <span className="text-sm text-gold-light tracking-wide">
                 Limited Pre-Order
               </span>
             </motion.div>
@@ -124,7 +124,7 @@ export default function PreorderPage() {
               <div className="relative aspect-square rounded-2xl overflow-hidden glass-card mb-6">
                 {/* Background Glow */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-full h-full bg-gradient-to-br from-nirvana-cyan/20 via-nirvana-jade/10 to-nirvana-purple/20" />
+                  <div className="w-full h-full bg-gradient-to-br from-cyan/20 via-jade/10 to-nirvana-purple/20" />
                 </div>
 
                 {/* Image */}
@@ -193,7 +193,7 @@ export default function PreorderPage() {
                       key={index}
                       className="flex items-center gap-2 text-sm text-white/70"
                     >
-                      <Check className="w-4 h-4 text-nirvana-jade flex-shrink-0" />
+                      <Check className="w-4 h-4 text-jade flex-shrink-0" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -211,7 +211,7 @@ export default function PreorderPage() {
                     key={index}
                     className="glass-card rounded-lg p-3 text-center"
                   >
-                    <badge.icon className="w-5 h-5 text-nirvana-cyan mx-auto mb-1" />
+                    <badge.icon className="w-5 h-5 text-cyan mx-auto mb-1" />
                     <span className="text-white/70 text-xs">{badge.text}</span>
                   </div>
                 ))}
@@ -223,8 +223,8 @@ export default function PreorderPage() {
               <div className="glass-card rounded-2xl p-8">
                 {isSuccess ? (
                   <div className="text-center py-12">
-                    <div className="w-16 h-16 rounded-full bg-nirvana-jade/20 flex items-center justify-center mx-auto mb-4">
-                      <Heart className="w-8 h-8 text-nirvana-jade" />
+                    <div className="w-16 h-16 rounded-full bg-jade/20 flex items-center justify-center mx-auto mb-4">
+                      <Heart className="w-8 h-8 text-jade" />
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-2">
                       Thank You!
@@ -232,13 +232,13 @@ export default function PreorderPage() {
                     <p className="text-white/70 mb-2">
                       Your pre-order is confirmed.
                     </p>
-                    <p className="text-nirvana-cyan">{email}</p>
+                    <p className="text-cyan">{email}</p>
                     <p className="text-white/50 text-sm mt-4">Ships Q2 2026</p>
                   </div>
                 ) : (
                   <form onSubmit={handlePreorder}>
                     {/* Price */}
-                    <div className="text-center mb-8 pb-6 border-b border-white/10">
+                    <div className="text-center mb-8 pb-6 border-b border-white/[0.1]">
                       <div className="flex items-center justify-center gap-3 mb-1">
                         <span className="text-5xl font-bold gradient-text">
                           $99
@@ -247,7 +247,7 @@ export default function PreorderPage() {
                           $199
                         </span>
                       </div>
-                      <p className="text-nirvana-gold text-sm">
+                      <p className="text-gold text-sm">
                         Early Bird — 50% OFF
                       </p>
                       <p className="text-white/40 text-xs mt-1">
@@ -268,7 +268,7 @@ export default function PreorderPage() {
                             onClick={() => setSelectedColor(color.id)}
                             className={`w-12 h-12 rounded-lg ${color.bg} transition-all ${
                               selectedColor === color.id
-                                ? "ring-2 ring-nirvana-cyan ring-offset-2 ring-offset-nirvana-dark"
+                                ? "ring-2 ring-cyan ring-offset-2 ring-offset-navy-950"
                                 : "opacity-70 hover:opacity-100"
                             }`}
                             title={color.name}
@@ -290,7 +290,7 @@ export default function PreorderPage() {
                             onClick={() => setSelectedSize(size)}
                             className={`w-11 h-11 rounded-lg font-medium text-sm transition-all ${
                               selectedSize === size
-                                ? "bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark text-white"
+                                ? "border border-white/15 bg-white/[0.08] transition-colors hover:bg-white/[0.12] text-white"
                                 : "glass-card text-white/70 hover:text-white hover:bg-white/10"
                             }`}
                           >
@@ -314,12 +314,12 @@ export default function PreorderPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="you@example.com"
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-nirvana-cyan/50"
+                        className="w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white placeholder-white/30 focus:outline-none focus:border-cyan/50"
                       />
                     </div>
 
                     {/* Total & CTA */}
-                    <div className="flex justify-between items-center py-4 border-t border-white/10 mb-6">
+                    <div className="flex justify-between items-center py-4 border-t border-white/[0.1] mb-6">
                       <span className="text-white/70">Total</span>
                       <span className="text-2xl font-bold text-white">$99</span>
                     </div>
@@ -327,7 +327,7 @@ export default function PreorderPage() {
                     <motion.button
                       type="submit"
                       disabled={isSubmitting || !selectedSize}
-                      className="w-full py-4 rounded-xl bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark text-white font-medium flex items-center justify-center gap-2 disabled:opacity-50"
+                      className="w-full py-4 rounded-xl border border-white/15 bg-white/[0.08] transition-colors hover:bg-white/[0.12] text-white font-medium flex items-center justify-center gap-2 disabled:opacity-50"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -350,7 +350,7 @@ export default function PreorderPage() {
                     </motion.button>
 
                     {!selectedSize && (
-                      <p className="text-center text-nirvana-gold/70 text-sm mt-3">
+                      <p className="text-center text-gold/70 text-sm mt-3">
                         Select a ring size to continue
                       </p>
                     )}

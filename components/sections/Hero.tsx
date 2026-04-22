@@ -1,23 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronDown, MoonStar, Sparkles } from "lucide-react";
+import { ChevronDown, MoonStar } from "lucide-react";
 import FloatingElement from "../animations/FloatingElement";
 import GlowEffect from "../animations/GlowEffect";
 
 const proofPoints = [
-  {
-    label: "प्रबोध",
-    text: "Track REM and readiness",
-  },
-  {
-    label: "संकेत",
-    text: "Recognize dreams with subtle cues",
-  },
-  {
-    label: "साधना",
-    text: "Follow a guided 5-day program",
-  },
+  { text: "Track REM and readiness" },
+  { text: "Recognize dreams with subtle cues" },
+  { text: "Follow a guided 5-day program" },
 ];
 
 export default function Hero() {
@@ -48,7 +39,7 @@ export default function Hero() {
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 rounded-full bg-nirvana-cyan/30"
+            className="absolute w-2 h-2 rounded-full bg-cyan/30"
             style={{
               left: `${15 + i * 15}%`,
               top: `${20 + (i % 3) * 25}%`,
@@ -76,8 +67,8 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
         >
-          <MoonStar className="w-4 h-4 text-nirvana-gold" />
-          <span className="text-sm text-nirvana-gold-light tracking-wide">
+          <MoonStar className="w-4 h-4 text-gold" />
+          <span className="text-sm text-gold-light tracking-wide">
             REM-aware lucid dreaming, guided by data
           </span>
         </motion.div>
@@ -97,39 +88,24 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mx-auto max-w-4xl text-lg sm:text-2xl text-white/78 mb-6 leading-relaxed"
+          className="mx-auto max-w-2xl text-base sm:text-lg text-white/78 mb-6 leading-relaxed"
         >
           SeekNirvana helps you sleep better, remember more dreams, and build
           lucid dreaming foundations with a smart ring, subtle REM cues, and a
           guided program.
         </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mx-auto max-w-3xl text-base sm:text-lg text-white/58 mb-10 leading-relaxed"
-        >
-          A calmer, clearer way to work with sleep, dreams, and nighttime awareness.
-        </motion.p>
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mx-auto mb-10 grid max-w-4xl gap-3 text-left sm:grid-cols-3"
+          className="mx-auto mb-10 hidden sm:grid max-w-4xl gap-3 text-left sm:grid-cols-3"
         >
-          {proofPoints.map((point) => (
+          {proofPoints.map((point, i) => (
             <div
-              key={point.label}
-              className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-xl"
+              key={i}
+              className="rounded-2xl border border-white/[0.1] bg-white/[0.06] px-4 py-3 backdrop-blur-xl"
             >
-              <div className="mb-2 flex items-center gap-2 text-nirvana-cyan">
-                <Sparkles className="h-4 w-4" />
-                <span className="text-xs text-white/45">
-                  {point.label}
-                </span>
-              </div>
               <p className="text-sm leading-relaxed text-white/72">{point.text}</p>
             </div>
           ))}
@@ -144,11 +120,11 @@ export default function Hero() {
         >
           <a
             href="/login"
-            className="group relative px-8 py-4 bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark rounded-full font-medium text-white overflow-hidden transition-transform hover:scale-105"
+            className="group relative px-5 py-2.5 border border-white/15 bg-white/[0.08] transition-colors hover:bg-white/[0.12] rounded-full font-medium text-white overflow-hidden transition-transform hover:scale-105"
           >
             <span className="relative z-10">Join Program</span>
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-nirvana-cyan to-nirvana-jade"
+              className="absolute inset-0 bg-gradient-to-r from-cyan to-jade"
               initial={{ x: "-100%" }}
               whileHover={{ x: 0 }}
               transition={{ duration: 0.3 }}
@@ -156,13 +132,13 @@ export default function Hero() {
           </a>
           <a
             href="/preorder"
-            className="px-8 py-4 rounded-full font-medium text-white/90 border border-nirvana-gold/35 bg-nirvana-gold/10 hover:border-nirvana-gold/55 hover:bg-nirvana-gold/15 transition-all"
+            className="px-5 py-2.5 rounded-full font-medium text-white/90 border border-gold/35 bg-white/[0.08] hover:border-gold/55 hover:bg-gold/15 transition-all"
           >
             Pre-order $99
           </a>
           <a
             href="#problem"
-            className="px-8 py-4 rounded-full font-medium text-white/80 border border-white/20 hover:border-nirvana-cyan/50 hover:text-nirvana-cyan transition-all"
+            className="px-5 py-2.5 rounded-full font-medium text-white/80 border border-white/20 hover:border-cyan/50 hover:text-cyan transition-all"
           >
             See How It Works
           </a>
@@ -186,7 +162,7 @@ export default function Hero() {
             className="relative mx-auto w-64 h-64 sm:w-80 sm:h-80"
           >
             {/* Ring Glow */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-nirvana-cyan/20 via-nirvana-jade/10 to-nirvana-purple/20 blur-3xl" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan/20 via-jade/10 to-nirvana-purple/20 blur-3xl" />
 
             {/* Ring Representation */}
             <div className="relative w-full h-full flex items-center justify-center">
@@ -196,13 +172,13 @@ export default function Hero() {
                 transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
               >
                 {/* Outer Ring */}
-                <div className="absolute inset-0 rounded-full border-2 border-nirvana-cyan/30" />
-                <div className="absolute inset-2 rounded-full border border-nirvana-jade/20" />
-                <div className="absolute inset-4 rounded-full border border-nirvana-gold/20" />
+                <div className="absolute inset-0 rounded-full border-2 border-white/[0.15]" />
+                <div className="absolute inset-2 rounded-full border border-white/[0.15]" />
+                <div className="absolute inset-4 rounded-full border border-gold/20" />
 
                 {/* Center Logo */}
                 <motion.div 
-                  className="absolute inset-8 rounded-full overflow-hidden bg-nirvana-dark"
+                  className="absolute inset-8 rounded-full overflow-hidden bg-navy-950"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                 >
@@ -217,7 +193,7 @@ export default function Hero() {
                 {[0, 1, 2].map((i) => (
                   <motion.div
                     key={i}
-                    className="absolute w-3 h-3 rounded-full bg-nirvana-cyan"
+                    className="absolute w-3 h-3 rounded-full bg-cyan"
                     style={{
                       top: "50%",
                       left: "50%",
@@ -239,10 +215,10 @@ export default function Hero() {
                       }}
                       className={`w-2 h-2 rounded-full ${
                         i === 0
-                          ? "bg-nirvana-cyan"
+                          ? "bg-cyan"
                           : i === 1
-                            ? "bg-nirvana-jade"
-                            : "bg-nirvana-gold"
+                            ? "bg-jade"
+                            : "bg-gold"
                       }`}
                     />
                   </motion.div>

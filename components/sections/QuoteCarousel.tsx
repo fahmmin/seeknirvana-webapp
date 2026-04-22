@@ -123,10 +123,10 @@ export default function QuoteCarousel() {
   if (!mounted) {
     return (
       <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-nirvana-dark via-nirvana-darker to-nirvana-dark" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-950 to-navy-950" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="text-nirvana-gold/60 text-sm tracking-widest uppercase mb-2">
+            <p className="text-gold/60 text-sm tracking-widest uppercase mb-2">
               Wisdom on Intention
             </p>
             <h3 className="text-3xl sm:text-4xl font-light text-white/90">
@@ -142,11 +142,11 @@ export default function QuoteCarousel() {
   return (
     <section className="relative py-24 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-nirvana-dark via-nirvana-darker to-nirvana-dark" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-950 to-navy-950" />
 
       {/* Decorative lines */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-nirvana-gold/20 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-nirvana-gold/20 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -156,7 +156,7 @@ export default function QuoteCarousel() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-nirvana-gold/60 text-sm tracking-widest uppercase mb-2">
+          <p className="text-gold/60 text-sm tracking-widest uppercase mb-2">
             Wisdom on Intention
           </p>
           <h3 className="text-3xl sm:text-4xl font-light text-white/90">
@@ -171,7 +171,7 @@ export default function QuoteCarousel() {
           onMouseLeave={() => setIsPaused(false)}
         >
           {/* Glass Card */}
-          <div className="w-full glass-card rounded-3xl p-8 sm:p-12 lg:p-16 border border-white/5 hover:border-nirvana-gold/10 transition-colors duration-500">
+          <div className="w-full glass-card rounded-3xl p-8 sm:p-12 lg:p-16 border border-white/5 hover:border-gold/10 transition-colors duration-500">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={currentIndex}
@@ -182,7 +182,7 @@ export default function QuoteCarousel() {
                 className="text-center"
               >
                 {/* Quote Mark */}
-                <div className="text-nirvana-gold/20 text-6xl sm:text-8xl font-serif leading-none mb-4">
+                <div className="text-gold/20 text-6xl sm:text-8xl font-serif leading-none mb-4">
                   &ldquo;
                 </div>
 
@@ -193,14 +193,14 @@ export default function QuoteCarousel() {
 
                 {/* Author */}
                 <div className="flex items-center justify-center gap-4">
-                  <div className="w-12 h-px bg-gradient-to-r from-transparent to-nirvana-gold/50" />
+                  <div className="w-12 h-px bg-gradient-to-r from-transparent to-gold/50" />
                   <div className="text-center">
-                    <p className="text-nirvana-gold font-medium">{currentQuote.author}</p>
+                    <p className="text-gold font-medium">{currentQuote.author}</p>
                     {currentQuote.source && (
                       <p className="text-white/40 text-sm">{currentQuote.source}</p>
                     )}
                   </div>
-                  <div className="w-12 h-px bg-gradient-to-l from-transparent to-nirvana-gold/50" />
+                  <div className="w-12 h-px bg-gradient-to-l from-transparent to-gold/50" />
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -209,7 +209,7 @@ export default function QuoteCarousel() {
             <div className="absolute bottom-0 left-8 right-8 sm:left-12 sm:right-12 lg:left-16 lg:right-16">
               <div className="h-0.5 bg-white/10 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-nirvana-gold to-nirvana-jade transition-all duration-100 ease-linear"
+                  className="h-full bg-gradient-to-r from-gold to-jade transition-all duration-100 ease-linear"
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -222,7 +222,7 @@ export default function QuoteCarousel() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="absolute top-4 right-4 px-3 py-1 rounded-full bg-white/5 text-white/40 text-xs"
+                  className="absolute top-4 right-4 px-3 py-1 rounded-full bg-white/[0.06] text-white/40 text-xs"
                 >
                   Paused
                 </motion.div>
@@ -239,13 +239,13 @@ export default function QuoteCarousel() {
               onClick={() => goToQuote(index)}
               className={`group relative w-2 h-2 rounded-full transition-all duration-300 ${
                 index === currentIndex
-                  ? 'bg-nirvana-gold w-8'
+                  ? 'bg-gold w-8'
                   : 'bg-white/20 hover:bg-white/40'
               }`}
               aria-label={`Go to quote ${index + 1}`}
             >
               {index === currentIndex && (
-                <span className="absolute inset-0 rounded-full bg-nirvana-gold animate-ping opacity-30" />
+                <span className="absolute inset-0 rounded-full bg-gold animate-ping opacity-30" />
               )}
             </button>
           ))}

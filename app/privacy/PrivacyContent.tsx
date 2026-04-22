@@ -11,9 +11,9 @@ import {
   Bell,
   Trash2,
 } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/sections/Footer";
-import FadeIn from "@/components/animations/FadeIn";
+import { Navbar as Navigation } from "@/src/components/Navbar";
+import { Footer } from "@/src/sections/Footer";
+import { FadeIn } from "@/src/components/FadeIn";
 
 const sections = [
   {
@@ -257,13 +257,13 @@ const sections = [
 
 export default function PrivacyContent() {
   return (
-    <main className="relative min-h-screen bg-nirvana-dark">
+    <main className="relative min-h-screen bg-navy-950">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-40 pb-20 overflow-hidden">
         <div className="absolute inset-0 mandala-pattern opacity-30" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-b from-nirvana-jade/10 to-transparent blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-b from-jade/10 to-transparent blur-3xl" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -271,8 +271,8 @@ export default function PrivacyContent() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
           >
-            <Shield className="w-4 h-4 text-nirvana-jade" />
-            <span className="text-sm text-nirvana-jade-light tracking-wide">
+            <Shield className="w-4 h-4 text-jade" />
+            <span className="text-sm text-jade-light tracking-wide">
               Your Data, Your Sanctuary
             </span>
           </motion.div>
@@ -291,7 +291,7 @@ export default function PrivacyContent() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-nirvana-gold/80 font-light mb-4 tracking-widest"
+            className="devanagari-text mb-4 text-2xl text-gold/85 tracking-[0.06em]"
           >
             गोपनीयता संरक्षण
           </motion.p>
@@ -322,8 +322,8 @@ export default function PrivacyContent() {
                 className="glass-card rounded-2xl p-8 scroll-mt-28"
               >
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-nirvana-jade/10 flex items-center justify-center flex-shrink-0">
-                    <section.icon className="w-6 h-6 text-nirvana-jade" />
+                  <div className="w-12 h-12 rounded-xl bg-white/[0.08] flex items-center justify-center flex-shrink-0">
+                    <section.icon className="w-6 h-6 text-jade" />
                   </div>
                   <div>
                     <h2 className="text-2xl font-semibold text-white">
@@ -338,7 +338,7 @@ export default function PrivacyContent() {
                         return (
                           <h3
                             key={i}
-                            className="text-lg font-semibold text-nirvana-jade-light mt-6 mb-3"
+                            className="text-lg font-semibold text-jade-light mt-6 mb-3"
                           >
                             {line.replace(/\*\*/g, "")}
                           </h3>
@@ -378,7 +378,7 @@ export default function PrivacyContent() {
               </p>
               <a
                 href="mailto:support@seeknirvana.com"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-nirvana-jade to-nirvana-jade-dark text-white font-medium hover:shadow-lg hover:shadow-nirvana-jade/20 transition-shadow"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/15 bg-white/[0.08] transition-colors hover:bg-white/[0.12] text-white font-medium hover:shadow-lg hover:shadow-jade/20 transition-shadow"
               >
                 Contact support@seeknirvana.com
               </a>
