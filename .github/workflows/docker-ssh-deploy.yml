@@ -68,10 +68,21 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
-            NEXT_PUBLIC_REOWN_PROJECT_ID=${{ vars.NEXT_PUBLIC_REOWN_PROJECT_ID }}
-            NEXT_PUBLIC_PROJECT_ID=${{ vars.NEXT_PUBLIC_REOWN_PROJECT_ID }}
-            NEXT_PUBLIC_SITE_URL=${{ vars.NEXT_PUBLIC_SITE_URL }}
-            NEXT_PUBLIC_ENABLE_GOOGLE_FIT=${{ vars.NEXT_PUBLIC_ENABLE_GOOGLE_FIT }}
+            NODE_ENV=production
+            PORT=3000
+            NEXT_PUBLIC_REOWN_PROJECT_ID=${{ secrets.NEXT_PUBLIC_REOWN_PROJECT_ID }}
+            NEXT_PUBLIC_PROJECT_ID=${{ secrets.NEXT_PUBLIC_REOWN_PROJECT_ID }}
+            NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}
+            NEXT_PUBLIC_ENABLE_GOOGLE_FIT=${{ secrets.NEXT_PUBLIC_ENABLE_GOOGLE_FIT }}
+            SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+            SUPABASE_SERVICE_ROLE_KEY=${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+            GOOGLE_FIT_ENCRYPTION_KEY=${{ secrets.GOOGLE_FIT_ENCRYPTION_KEY }}
+            GOOGLE_OAUTH_CLIENT_ID=${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}
+            GOOGLE_OAUTH_CLIENT_SECRET=${{ secrets.GOOGLE_OAUTH_CLIENT_SECRET }}
+            GOOGLE_OAUTH_REDIRECT_URI=${{ secrets.GOOGLE_OAUTH_REDIRECT_URI }}
+            GOOGLE_FIT_SCOPES=${{ secrets.GOOGLE_FIT_SCOPES }}
+            RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+            RESEND_FROM_EMAIL=${{ secrets.RESEND_FROM_EMAIL }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -105,10 +116,10 @@ jobs:
             cat <<EOF > /opt/seek-nirvana-webapp/.env
             NODE_ENV=production
             PORT=3000
-            NEXT_PUBLIC_REOWN_PROJECT_ID=${{ vars.NEXT_PUBLIC_REOWN_PROJECT_ID }}
-            NEXT_PUBLIC_PROJECT_ID=${{ vars.NEXT_PUBLIC_REOWN_PROJECT_ID }}
-            NEXT_PUBLIC_SITE_URL=${{ vars.NEXT_PUBLIC_SITE_URL }}
-            NEXT_PUBLIC_ENABLE_GOOGLE_FIT=${{ vars.NEXT_PUBLIC_ENABLE_GOOGLE_FIT }}
+            NEXT_PUBLIC_REOWN_PROJECT_ID=${{ secrets.NEXT_PUBLIC_REOWN_PROJECT_ID }}
+            NEXT_PUBLIC_PROJECT_ID=${{ secrets.NEXT_PUBLIC_REOWN_PROJECT_ID }}
+            NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}
+            NEXT_PUBLIC_ENABLE_GOOGLE_FIT=${{ secrets.NEXT_PUBLIC_ENABLE_GOOGLE_FIT }}
             SUPABASE_URL=${{ secrets.SUPABASE_URL }}
             SUPABASE_SERVICE_ROLE_KEY=${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
             GOOGLE_FIT_ENCRYPTION_KEY=${{ secrets.GOOGLE_FIT_ENCRYPTION_KEY }}
@@ -134,14 +145,8 @@ jobs:
               --name "$CONTAINER" \
               --restart unless-stopped \
               --network traefik \
+              -p 3001:3000 \
               --env-file /opt/seek-nirvana-webapp/.env \
-              -l "traefik.enable=true" \
-              -l 'traefik.http.routers.seeknirvana-http.rule=Host(`seeknirvana.com`)' \
-              -l "traefik.http.routers.seeknirvana-http.entrypoints=web" \
-              -l 'traefik.http.routers.seeknirvana.rule=Host(`seeknirvana.com`)' \
-              -l "traefik.http.routers.seeknirvana.entrypoints=websecure" \
-              -l "traefik.http.routers.seeknirvana.tls.certresolver=le" \
-              -l "traefik.http.services.seeknirvana.loadbalancer.server.port=3000" \
               "$IMAGE"
 
             # cleanup
