@@ -44,8 +44,9 @@ components/
     └── Footer.tsx
 
 public/
-├── favicon.svg        # Ring-themed favicon
-└── images/            # Static assets
+├── logo-transparent.png  # Ring-themed favicon / primary logo
+├── logo.png             # Logo with background
+└── images/              # Static assets
 ```
 
 ---

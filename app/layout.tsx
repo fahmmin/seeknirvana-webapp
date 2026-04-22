@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   description:
     "Smart ring for lucid dreaming, mindfulness, and longevity. Ancient wisdom meets AI technology.",
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: [{ url: "/logo-transparent.png", type: "image/png" }],
+    shortcut: "/logo-transparent.png",
+    apple: "/logo-transparent.png",
   },
 };
 
@@ -26,9 +26,9 @@ export default async function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="shortcut icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="apple-touch-icon" href="/favicon.svg" />
+        <link rel="icon" type="image/png" href="/logo-transparent.png" />
+        <link rel="shortcut icon" type="image/png" href="/logo-transparent.png" />
+        <link rel="apple-touch-icon" href="/logo-transparent.png" />
         <link rel="preload" as="image" href="/frames/frame-0001.jpg" />
       </head>
       <body className="antialiased bg-navy-950 text-white overflow-x-hidden">
