@@ -18,15 +18,12 @@ import {
 
 export const heroProofPoints = [
   {
-    label: "प्रबोध",
     text: "Track REM and readiness.",
   },
   {
-    label: "संकेत",
     text: "Recognize dreams with subtle cues.",
   },
   {
-    label: "साधना",
     text: "Follow a guided 5-day program.",
   },
 ];

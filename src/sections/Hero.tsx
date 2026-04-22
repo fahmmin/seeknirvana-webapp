@@ -31,8 +31,8 @@ export const Hero = () => {
           <div className="absolute -top-20 -right-20 h-[350px] w-[350px] rounded-full bg-gold/[0.05] blur-[120px] pointer-events-none" />
 
           <div className="absolute bottom-0 left-0 right-0 z-10 p-4 pb-6 sm:p-6 sm:pb-8 md:p-12 lg:p-16">
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-12 md:gap-8 items-end">
-              <div className="md:col-span-8">
+            <div className="grid grid-cols-1 items-end gap-5 lg:grid-cols-12 lg:gap-8">
+              <div className="lg:col-span-8">
                 <motion.span
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
@@ -49,25 +49,15 @@ export const Hero = () => {
                 />
               </div>
 
-              <div className="md:col-span-4 flex flex-col gap-4 sm:gap-5 md:gap-6 md:pb-6">
+              <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 lg:col-span-4 lg:pb-6">
                 <motion.p
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3, duration: 0.8, ease: customEase }}
-                  className="max-w-md text-sm leading-[1.35] text-white/80 sm:text-base md:text-lg"
+                  className="max-w-sm text-sm leading-[1.35] text-white/80 sm:text-base md:text-lg"
                 >
                   SeekNirvana helps you sleep better, remember more dreams, and build lucid dreaming foundations with a smart ring, subtle REM cues, and a guided program.
-                </motion.p>
-
-                <motion.p
-                  initial={{ y: 20, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.45, duration: 0.8, ease: customEase }}
-                  className="max-w-sm text-xs leading-[1.35] text-white/50 sm:text-sm md:text-base"
-                >
-                  A calmer, clearer way to work with sleep, dreams, and nighttime awareness.
                 </motion.p>
 
                 <motion.div
@@ -75,17 +65,14 @@ export const Hero = () => {
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.55, duration: 0.8, ease: customEase }}
-                  className="grid gap-2.5 sm:gap-3"
+                  className="hidden gap-2.5 sm:grid sm:gap-3"
                 >
                   {heroProofPoints.map((point) => (
                     <div
-                      key={point.label}
+                      key={point.text}
                       className="rounded-2xl border border-white/[0.1] bg-white/[0.06] p-3 backdrop-blur-md sm:p-4"
                     >
-                      <p className="devanagari-text text-xs tracking-[0.08em] text-white/70 sm:text-sm">
-                        {point.label}
-                      </p>
-                      <p className="mt-2 text-xs leading-relaxed text-white/75 sm:text-sm">{point.text}</p>
+                      <p className="text-xs leading-relaxed text-white/75 sm:text-sm">{point.text}</p>
                     </div>
                   ))}
                 </motion.div>
@@ -94,29 +81,29 @@ export const Hero = () => {
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.7, duration: 0.8, ease: customEase }}
+                  transition={{ delay: 0.65, duration: 0.8, ease: customEase }}
                   className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-3"
                 >
                   <a
                     href={primaryHref}
-                    className="group/btn flex w-full items-center justify-between gap-2 rounded-full bg-jade px-1.5 py-1.5 pl-5 pr-1.5 transition-all duration-300 hover:gap-3 hover:brightness-110 glow-jade sm:w-fit sm:justify-start sm:pr-5"
+                    className="group/btn flex w-full items-center justify-between gap-2 rounded-full bg-jade px-1.5 py-1.5 pl-4 pr-1.5 transition-all duration-300 hover:gap-3 hover:brightness-110 glow-jade sm:w-fit sm:justify-start sm:pr-4"
                   >
-                    <span className="text-navy-950 font-medium text-sm sm:text-base">{primaryLabel}</span>
-                    <div className="bg-navy-950 rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center transition-transform group-hover/btn:scale-110">
-                      <ArrowRight className="text-jade w-5 h-5" />
+                    <span className="text-sm font-medium text-navy-950">{primaryLabel}</span>
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-navy-950 transition-transform group-hover/btn:scale-110">
+                      <ArrowRight className="h-4 w-4 text-jade" />
                     </div>
                   </a>
 
                   <a
                     href="/preorder"
-                    className="w-full rounded-full border border-white/20 bg-white/[0.06] px-5 py-3.5 text-center text-sm text-white/80 backdrop-blur transition-colors hover:border-white/30 hover:text-white sm:w-auto sm:px-6 sm:py-4 sm:text-base"
+                    className="w-full rounded-full border border-white/20 bg-white/[0.06] px-5 py-2.5 text-center text-sm text-white/80 backdrop-blur transition-colors hover:border-white/30 hover:text-white sm:w-auto"
                   >
                     Pre-order $99
                   </a>
 
                   <a
                     href="/programs/5-day-sleep-cohort#curriculum"
-                    className="w-full rounded-full border border-white/[0.1] px-5 py-3.5 text-center text-sm text-white/55 transition-colors hover:border-white/20 hover:text-white sm:w-auto sm:px-6 sm:py-4 sm:text-base"
+                    className="w-full rounded-full border border-white/[0.1] px-5 py-2.5 text-center text-sm text-white/55 transition-colors hover:border-white/20 hover:text-white sm:w-auto"
                   >
                     See How It Works
                   </a>

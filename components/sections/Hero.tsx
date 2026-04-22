@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronDown, MoonStar, Sparkles } from "lucide-react";
+import { ChevronDown, MoonStar } from "lucide-react";
 import FloatingElement from "../animations/FloatingElement";
 import GlowEffect from "../animations/GlowEffect";
 
@@ -106,9 +106,6 @@ export default function Hero() {
               key={i}
               className="rounded-2xl border border-white/[0.1] bg-white/[0.06] px-4 py-3 backdrop-blur-xl"
             >
-              <div className="mb-1 flex items-center gap-2 text-cyan">
-                <Sparkles className="h-3 w-3" />
-              </div>
               <p className="text-sm leading-relaxed text-white/72">{point.text}</p>
             </div>
           ))}

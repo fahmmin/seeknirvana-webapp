@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
 
 interface HeroMediaProps {
   scrollSectionId: string;
@@ -13,6 +14,8 @@ const MOBILE_STEP = 3;
 
 export const HeroMedia = ({ scrollSectionId, frameCount }: HeroMediaProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isCanvasReady, setIsCanvasReady] = useState(false);
+
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -67,7 +70,10 @@ export const HeroMedia = ({ scrollSectionId, frameCount }: HeroMediaProps) => {
         pending++;
         img.onload = img.onerror = () => {
           pending--;
-          if (idx === 0) drawFrame(0); // paint first frame ASAP
+          if (idx === 0) {
+            drawFrame(0); // paint first frame ASAP
+            setIsCanvasReady(true);
+          }
           if (pending === 0) onDone?.();
         };
       }
@@ -154,10 +160,25 @@ export const HeroMedia = ({ scrollSectionId, frameCount }: HeroMediaProps) => {
 
   return (
     <div className="absolute inset-0">
+      {/* 
+        Instant first frame: 
+        This loads via the preload link in layout.tsx and is visible 
+        before any JS-based frame extraction or canvas initialization happens.
+      */}
+      <img
+        src="/frames/frame-0001.jpg"
+        alt=""
+        aria-hidden="true"
+        className={`h-full w-full object-cover transition-opacity duration-700 ${
+          isCanvasReady ? "opacity-0" : "opacity-100"
+        }`}
+      />
       <canvas
         ref={canvasRef}
         aria-hidden="true"
-        className="h-full w-full"
+        className={`absolute inset-0 h-full w-full transition-opacity duration-700 ${
+          isCanvasReady ? "opacity-100" : "opacity-0"
+        }`}
         style={{ display: "block" }}
       />
     </div>
