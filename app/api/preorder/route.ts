@@ -5,7 +5,7 @@ import { preorderConfirmationHtml, preorderConfirmationText } from "@/lib/email/
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { email, name, address, color, size } = body;
+    const { email, name, address, color, size, phone, instagram, telegram } = body;
 
     if (!email || !name || !address || !color || !size) {
       return NextResponse.json(
@@ -29,8 +29,8 @@ export async function POST(req: Request) {
       from: fromEmail,
       to: [email],
       subject: "Pre-order Confirmed | Seek Nirvana",
-      html: preorderConfirmationHtml({ name, address, color, size }),
-      text: preorderConfirmationText({ name, address, color, size }),
+      html: preorderConfirmationHtml({ name, address, color, size, phone, instagram, telegram }),
+      text: preorderConfirmationText({ name, address, color, size, phone, instagram, telegram }),
     });
 
     if (error) {

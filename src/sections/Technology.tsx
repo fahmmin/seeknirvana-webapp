@@ -27,15 +27,15 @@ export const Technology = () => {
   ] as const;
 
   return (
-    <section id="ai-data-layer" className="relative overflow-hidden bg-navy-850 px-4 py-20 sm:px-6 md:py-32">
+    <section id="ai-data-layer" className="relative overflow-hidden bg-navy-850 px-4 py-16 sm:px-6 md:py-24">
       <div className="absolute inset-0 bg-gradient-to-b from-cyan/[0.03] via-transparent to-jade/[0.03] pointer-events-none" />
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
       <div className="absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-cyan/[0.04] blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto max-w-6xl">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <span className="mb-4 block text-[10px] uppercase tracking-[0.3em] text-gold">Technology Preview</span>
-          <h2 className="text-4xl font-medium text-white sm:text-6xl lg:text-7xl">The deeper tech story now lives on its own page</h2>
+          <h2 className="text-3xl font-bold text-white sm:text-5xl lg:text-6xl tracking-tight">The deeper tech story now lives on its own page</h2>
           <p className="mx-auto mt-6 max-w-2xl text-base text-white/55 sm:text-lg">The homepage stays lighter here, while the dedicated technology story restores the mobile app details and explains the local AI stack in more depth.</p>
         </FadeIn>
 

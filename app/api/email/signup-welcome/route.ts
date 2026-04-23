@@ -37,9 +37,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "email_not_configured" }, { status: 503 });
   }
 
-  const { email, name } = parsed.data;
-  const html = signupWelcomeHtml();
-  const text = signupWelcomeText();
+  const { email, name, phone, instagram, telegram } = parsed.data;
+  const html = signupWelcomeHtml({ name, phone, instagram, telegram });
+  const text = signupWelcomeText({ name, phone, instagram, telegram });
 
   const { error } = await resend.emails.send({
     from,
