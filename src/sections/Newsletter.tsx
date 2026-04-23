@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Send, CheckCircle, Sparkles, User } from "lucide-react";
+import { Mail, Send, CheckCircle, Sparkles, User, Phone, Instagram } from "lucide-react";
 import { FadeIn } from "../components/FadeIn";
 
 export const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [telegram, setTelegram] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -23,15 +26,17 @@ export const Newsletter = () => {
       const res = await fetch("/api/email/signup-welcome", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, name }),
+        body: JSON.stringify({ email, name, phone, instagram, telegram }),
       });
       if (!res.ok) {
         setIsError(true);
         return;
       }
       setIsSubscribed(true);
-      setEmail("");
       setName("");
+      setPhone("");
+      setInstagram("");
+      setTelegram("");
     } catch {
       setIsError(true);
     } finally {
@@ -103,6 +108,48 @@ export const Newsletter = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Your Email"
                         required
+                        className="w-full pl-11 pr-5 py-4 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white placeholder-white/40 focus:outline-none focus:border-jade/50 focus:ring-1 focus:ring-jade/50 transition-all"
+                      />
+                    </div>
+                    
+                    {/* Phone */}
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <Phone className="h-5 w-5 text-white/30" />
+                      </div>
+                      <input
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="Phone Number"
+                        className="w-full pl-11 pr-5 py-4 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white placeholder-white/40 focus:outline-none focus:border-jade/50 focus:ring-1 focus:ring-jade/50 transition-all"
+                      />
+                    </div>
+
+                    {/* Instagram */}
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <Instagram className="h-5 w-5 text-white/30" />
+                      </div>
+                      <input
+                        type="text"
+                        value={instagram}
+                        onChange={(e) => setInstagram(e.target.value)}
+                        placeholder="Instagram ID"
+                        className="w-full pl-11 pr-5 py-4 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white placeholder-white/40 focus:outline-none focus:border-jade/50 focus:ring-1 focus:ring-jade/50 transition-all"
+                      />
+                    </div>
+
+                    {/* Telegram */}
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <Send className="h-5 w-5 text-white/30" />
+                      </div>
+                      <input
+                        type="text"
+                        value={telegram}
+                        onChange={(e) => setTelegram(e.target.value)}
+                        placeholder="Telegram ID"
                         className="w-full pl-11 pr-5 py-4 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white placeholder-white/40 focus:outline-none focus:border-jade/50 focus:ring-1 focus:ring-jade/50 transition-all"
                       />
                     </div>

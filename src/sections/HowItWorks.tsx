@@ -5,17 +5,17 @@ import { steps } from "../content/homepage";
 
 export const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="relative overflow-hidden bg-navy-850 px-4 py-20 sm:px-6 md:py-32">
+    <section id="how-it-works" className="relative overflow-hidden bg-navy-850 px-4 py-16 sm:px-6 md:py-24">
       <div className="absolute inset-0 bg-gradient-to-b from-jade/[0.03] via-transparent to-jade/[0.03] pointer-events-none" />
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
       <div className="absolute top-1/4 left-0 h-[500px] w-[500px] rounded-full bg-cyan/[0.04] blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <FadeIn className="mb-16 text-center md:mb-20">
+      <div className="relative z-10 mx-auto max-w-6xl">
+        <FadeIn className="mb-12 text-center md:mb-16">
           <span className="mb-4 block text-[10px] uppercase tracking-[0.3em] text-gold">
             Simple Operating Model
           </span>
-          <h2 className="text-4xl font-medium sm:text-6xl lg:text-7xl">
+          <h2 className="text-3xl font-bold sm:text-5xl lg:text-6xl tracking-tight">
             <span className="text-white">How </span>
             <span className="italic font-serif text-gradient-jade">Nirvana</span>
             <span className="text-white"> Works</span>

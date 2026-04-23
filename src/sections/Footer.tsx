@@ -18,7 +18,7 @@ export const Footer = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-navy-950 to-transparent pointer-events-none" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto max-w-6xl">
         <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_0.7fr_0.7fr]">
           <div>
             <div className="mb-4">

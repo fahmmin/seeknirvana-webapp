@@ -3,6 +3,9 @@ import { z } from "zod";
 export const signupWelcomeSchema = z.object({
   name: z.string().trim().max(100).optional(),
   email: z.string().trim().email().max(320),
+  phone: z.string().trim().max(100).optional(),
+  instagram: z.string().trim().max(100).optional(),
+  telegram: z.string().trim().max(100).optional(),
   website: z.string().max(0).optional(),
 });
 

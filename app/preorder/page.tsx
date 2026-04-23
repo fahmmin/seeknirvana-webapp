@@ -14,6 +14,9 @@ import {
   ChevronRight,
   User,
   MapPin,
+  Phone,
+  Instagram,
+  Send,
 } from "lucide-react";
 import { useState } from "react";
 import { Navbar as Navigation } from "@/src/components/Navbar";
@@ -69,6 +72,9 @@ export default function PreorderPage() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [telegram, setTelegram] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -100,6 +106,9 @@ export default function PreorderPage() {
           email,
           name,
           address,
+          phone,
+          instagram,
+          telegram,
           color: colors.find((c) => c.id === selectedColor)?.name || selectedColor,
           size: selectedSize,
         }),
@@ -354,6 +363,57 @@ export default function PreorderPage() {
                         placeholder="you@example.com"
                         className="w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white placeholder-white/30 focus:outline-none focus:border-cyan/50"
                       />
+                    </div>
+
+                    {/* Phone */}
+                    <div className="mb-6">
+                      <label className="text-white/70 text-sm mb-2 block">
+                        Phone Number
+                      </label>
+                      <div className="relative">
+                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                        <input
+                          type="tel"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          placeholder="+1 (555) 000-0000"
+                          className="w-full pl-11 pr-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white placeholder-white/30 focus:outline-none focus:border-cyan/50"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Instagram */}
+                    <div className="mb-6">
+                      <label className="text-white/70 text-sm mb-2 block">
+                        Instagram ID
+                      </label>
+                      <div className="relative">
+                        <Instagram className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                        <input
+                          type="text"
+                          value={instagram}
+                          onChange={(e) => setInstagram(e.target.value)}
+                          placeholder="@yourhandle"
+                          className="w-full pl-11 pr-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white placeholder-white/30 focus:outline-none focus:border-cyan/50"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Telegram */}
+                    <div className="mb-6">
+                      <label className="text-white/70 text-sm mb-2 block">
+                        Telegram ID
+                      </label>
+                      <div className="relative">
+                        <Send className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                        <input
+                          type="text"
+                          value={telegram}
+                          onChange={(e) => setTelegram(e.target.value)}
+                          placeholder="@username"
+                          className="w-full pl-11 pr-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white placeholder-white/30 focus:outline-none focus:border-cyan/50"
+                        />
+                      </div>
                     </div>
 
                     {/* Address */}

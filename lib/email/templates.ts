@@ -1,28 +1,53 @@
-/** Transactional welcome after account sign-up (Reown / email), not cohort-specific. */
-export function signupWelcomeHtml(): string {
+export function signupWelcomeHtml(data?: {
+  name?: string;
+  phone?: string;
+  instagram?: string;
+  telegram?: string;
+}): string {
   return `
 <!DOCTYPE html>
 <html>
   <body style="font-family: system-ui, sans-serif; background: #0a0a0f; color: #f5f5f5; padding: 24px;">
-    <h1 style="color: #4dd4a8;">Welcome</h1>
-    <p>Thanks for creating your Seek Nirvana account.</p>
-    <p style="color: rgba(255,255,255,0.65);">You can explore programs and devices from the site whenever you are ready.</p>
-    <p style="margin-top: 32px; font-size: 12px; color: rgba(255,255,255,0.4);">Seek Nirvana</p>
+    <h1 style="color: #4dd4a8;">Welcome ${data?.name || ""}</h1>
+    <p>Thanks for joining the Seek Nirvana circle.</p>
+    ${data?.phone || data?.instagram || data?.telegram ? `
+    <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 8px; margin: 20px 0;">
+      <h3 style="margin-top: 0; color: #00d4ff;">Your details:</h3>
+      ${data.phone ? `<p style="margin: 4px 0;"><strong>Phone:</strong> ${data.phone}</p>` : ""}
+      ${data.instagram ? `<p style="margin: 4px 0;"><strong>Instagram:</strong> ${data.instagram}</p>` : ""}
+      ${data.telegram ? `<p style="margin: 4px 0;"><strong>Telegram:</strong> ${data.telegram}</p>` : ""}
+    </div>
+    ` : ""}
+    <p style="color: rgba(255,255,255,0.65);">You'll be the first to know about launch updates, sleep wisdom, and early access. Calm signals only.</p>
+    <p style="margin-top: 32px; font-size: 12px; color: rgba(255,255,255,0.4);">Seek Nirvana — Ancient Wisdom × AI</p>
   </body>
 </html>
 `.trim();
 }
 
-export function signupWelcomeText(): string {
+export function signupWelcomeText(data?: {
+  name?: string;
+  phone?: string;
+  instagram?: string;
+  telegram?: string;
+}): string {
+  const details = [];
+  if (data?.phone) details.push(`- Phone: ${data.phone}`);
+  if (data?.instagram) details.push(`- Instagram: ${data.instagram}`);
+  if (data?.telegram) details.push(`- Telegram: ${data.telegram}`);
+
   return [
-    "Welcome",
+    `Welcome ${data?.name || ""}`,
     "",
-    "Thanks for creating your Seek Nirvana account.",
+    "Thanks for joining the Seek Nirvana circle.",
     "",
-    "You can explore programs and devices from the site whenever you are ready.",
+    details.length > 0 ? "Your details:" : "",
+    ...details,
     "",
-    "Seek Nirvana",
-  ].join("\n");
+    "You'll be the first to know about launch updates, sleep wisdom, and early access. Calm signals only.",
+    "",
+    "Seek Nirvana — Ancient Wisdom × AI",
+  ].filter(Boolean).join("\n");
 }
 
 /** Sent once when a member completes preorder dashboard onboarding (personal details). */
@@ -58,6 +83,9 @@ export function preorderConfirmationHtml(data: {
   color: string;
   size: number;
   address: string;
+  phone?: string;
+  instagram?: string;
+  telegram?: string;
 }): string {
   return `
 <!DOCTYPE html>
@@ -70,6 +98,9 @@ export function preorderConfirmationHtml(data: {
       <h3 style="margin-top: 0; color: #00d4ff;">Order Details:</h3>
       <p style="margin: 4px 0;"><strong>Color:</strong> ${data.color}</p>
       <p style="margin: 4px 0;"><strong>Size:</strong> ${data.size}</p>
+      ${data.phone ? `<p style="margin: 4px 0;"><strong>Phone:</strong> ${data.phone}</p>` : ""}
+      ${data.instagram ? `<p style="margin: 4px 0;"><strong>Instagram:</strong> ${data.instagram}</p>` : ""}
+      ${data.telegram ? `<p style="margin: 4px 0;"><strong>Telegram:</strong> ${data.telegram}</p>` : ""}
       <p style="margin: 4px 0;"><strong>Shipping to:</strong><br/>${data.address}</p>
     </div>
     <p style="color: rgba(255,255,255,0.65);">We've reserved your spot. We'll reach out with payment instructions and shipping updates as we get closer to our Q2 2026 launch.</p>
@@ -84,6 +115,9 @@ export function preorderConfirmationText(data: {
   color: string;
   size: number;
   address: string;
+  phone?: string;
+  instagram?: string;
+  telegram?: string;
 }): string {
   return [
     "Pre-order Confirmed",
@@ -95,6 +129,9 @@ export function preorderConfirmationText(data: {
     "Order Details:",
     `- Color: ${data.color}`,
     `- Size: ${data.size}`,
+    data.phone ? `- Phone: ${data.phone}` : "",
+    data.instagram ? `- Instagram: ${data.instagram}` : "",
+    data.telegram ? `- Telegram: ${data.telegram}` : "",
     `- Shipping to: ${data.address}`,
     "",
     "We've reserved your spot. We'll reach out with payment instructions and shipping updates as we get closer to our Q2 2026 launch.",

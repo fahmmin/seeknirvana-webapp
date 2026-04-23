@@ -5,17 +5,17 @@ import { problemCards } from "../content/homepage";
 
 export const Problem = () => {
   return (
-    <section id="problem" className="relative overflow-hidden bg-navy-900 px-4 py-20 sm:px-6 md:py-32">
+    <section id="problem" className="relative overflow-hidden bg-navy-900 px-4 py-16 sm:px-6 md:py-24">
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
       <div className="absolute inset-0 bg-noise opacity-[0.04] pointer-events-none" />
       <div className="absolute inset-y-0 left-1/2 w-[42rem] -translate-x-1/2 rounded-full bg-jade/[0.05] blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto max-w-6xl">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <span className="mb-4 block text-[10px] uppercase tracking-[0.3em] text-gold">
             Why It Matters
           </span>
-          <h2 className="text-4xl font-medium text-white sm:text-6xl lg:text-7xl">
+          <h2 className="text-3xl font-bold text-white sm:text-5xl lg:text-6xl tracking-tight">
             Better nights need more than sleep tracking
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/55 sm:text-lg">
