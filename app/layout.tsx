@@ -29,7 +29,7 @@ export default async function RootLayout({
         <link rel="icon" type="image/png" href="/logo-transparent.png" />
         <link rel="shortcut icon" type="image/png" href="/logo-transparent.png" />
         <link rel="apple-touch-icon" href="/logo-transparent.png" />
-        <link rel="preload" as="image" href="/frames/frame-0001.jpg" />
+
       </head>
       <body className="antialiased bg-navy-950 text-white overflow-x-hidden">
         <Web3ContextProvider cookies={cookieHeader}>{children}</Web3ContextProvider>

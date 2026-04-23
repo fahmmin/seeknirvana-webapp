@@ -230,8 +230,9 @@ export const footerGroups = {
 
 export const footerSocials = [
   { label: "X", href: "https://x.com/SeekNirvanaHQ" },
-  { label: "GitHub", href: "https://github.com/SeekNirvana" },
+  { label: "GitHub", href: "https://github.com/seekNirvana" },
+  { label: "YouTube", href: "https://www.youtube.com/@SeekNirvanaOfficial" },
   { label: "Email", href: "mailto:info@seeknirvana.com" },
 ];
 
-export const heroFrameCount = 192;
+

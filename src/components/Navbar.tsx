@@ -45,15 +45,12 @@ export const Navbar = () => {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1 sm:px-6 md:py-1.5">
         {/* Brand */}
-        <Link href="/" className="group flex items-center gap-2.5">
+        <Link href="/" className="group flex items-center">
           <img
-            src="/logo-transparent.png"
+            src="/SeekNirvana-logo.png"
             alt="Seek Nirvana"
-            className="h-[60px] w-[60px] object-contain transition-transform group-hover:scale-105"
+            className="h-16 w-auto object-contain transition-transform group-hover:scale-105"
           />
-          <span className="text-base font-medium text-white sm:text-lg">
-            Seek Nirvana
-          </span>
         </Link>
 
         {/* Desktop nav links */}

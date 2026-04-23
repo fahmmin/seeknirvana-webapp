@@ -10,31 +10,31 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Backgrounds — deep purple gradient tones
+        // Backgrounds — deep cosmic dark
         navy: {
-          950: '#0E0A1A',
-          900: '#120E22',
-          850: '#16112B',
-          800: '#1C1533',
-          700: '#251E40',
+          950: '#0A0A0F',
+          900: '#0C0C12',
+          850: '#101018',
+          800: '#14141F',
+          700: '#1A1A26',
         },
-        // Accent — Soft Lavender / Purple
+        // Accent — Nirvana Green (Vitality/Nature)
         jade: {
-          DEFAULT: '#B794F4',
-          light: '#D6BCFA',
-          dark: '#9F7AEA',
-          glow: 'rgba(183, 148, 244, 0.15)',
+          DEFAULT: '#00A86B',
+          light: '#4dd4a8',
+          dark: '#008c59',
+          glow: 'rgba(0, 168, 107, 0.15)',
         },
-        // Accent — Warm Mauve / Rose
+        // Accent — Nirvana Gold (Wisdom/Spiritual)
         gold: {
-          DEFAULT: '#D4A0C0',
-          light: '#E8BCD8',
-          muted: 'rgba(212, 160, 192, 0.7)',
+          DEFAULT: '#C9A227',
+          light: '#E8D5A3',
+          muted: 'rgba(201, 162, 39, 0.7)',
         },
-        // Accent — Cyan
+        // Accent — Nirvana Cyan (Technology/AI - use as hint)
         cyan: {
-          DEFAULT: '#A78BFA',
-          muted: 'rgba(167, 139, 250, 0.6)',
+          DEFAULT: '#00D4FF',
+          muted: 'rgba(0, 212, 255, 0.6)',
         },
         // Text hierarchy
         txt: {

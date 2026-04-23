@@ -6,12 +6,14 @@ import {
   Shield,
   Truck,
   RefreshCw,
-  CreditCard,
+  Package,
   Clock,
   Sparkles,
   Heart,
   ChevronLeft,
   ChevronRight,
+  User,
+  MapPin,
 } from "lucide-react";
 import { useState } from "react";
 import { Navbar as Navigation } from "@/src/components/Navbar";
@@ -65,8 +67,11 @@ export default function PreorderPage() {
   const [selectedSize, setSelectedSize] = useState<number | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const currentImage = productImages[currentImageIndex];
 
@@ -80,10 +85,38 @@ export default function PreorderPage() {
 
   const handlePreorder = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!selectedSize) return;
+
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSuccess(true);
+    setError(null);
+
+    try {
+      const response = await fetch("/api/preorder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          name,
+          address,
+          color: colors.find((c) => c.id === selectedColor)?.name || selectedColor,
+          size: selectedSize,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong");
+      }
+
+      setIsSuccess(true);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -124,7 +157,7 @@ export default function PreorderPage() {
               <div className="relative aspect-square rounded-2xl overflow-hidden glass-card mb-6">
                 {/* Background Glow */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-full h-full bg-gradient-to-br from-cyan/20 via-jade/10 to-nirvana-purple/20" />
+                  <div className="w-full h-full bg-gradient-to-br from-cyan/20 via-jade/10 to-gold/10" />
                 </div>
 
                 {/* Image */}
@@ -203,7 +236,7 @@ export default function PreorderPage() {
               {/* Trust Badges */}
               <div className="mt-6 grid grid-cols-3 gap-3">
                 {[
-                  { icon: Shield, text: "Crypto Payment" },
+                  { icon: Shield, text: "Privacy First" },
                   { icon: Truck, text: "Free Shipping" },
                   { icon: RefreshCw, text: "Active Rewards" },
                 ].map((badge, index) => (
@@ -237,22 +270,9 @@ export default function PreorderPage() {
                   </div>
                 ) : (
                   <form onSubmit={handlePreorder}>
-                    {/* Price */}
-                    <div className="text-center mb-8 pb-6 border-b border-white/[0.1]">
-                      <div className="flex items-center justify-center gap-3 mb-1">
-                        <span className="text-5xl font-bold gradient-text">
-                          $99
-                        </span>
-                        <span className="text-white/40 line-through text-xl">
-                          $199
-                        </span>
-                      </div>
-                      <p className="text-gold text-sm">
-                        Early Bird — 50% OFF
-                      </p>
-                      <p className="text-white/40 text-xs mt-1">
-                        One-time • No subscription
-                      </p>
+                    <div className="text-center mb-8">
+                      <h3 className="text-xl font-semibold text-white mb-2">Reserve Your Ring</h3>
+                      <p className="text-white/50 text-sm">Fill in your details to secure your early access spot.</p>
                     </div>
 
                     {/* Color Selection */}
@@ -303,6 +323,24 @@ export default function PreorderPage() {
                       </p>
                     </div>
 
+                    {/* Name */}
+                    <div className="mb-6">
+                      <label className="text-white/70 text-sm mb-2 block">
+                        Full Name
+                      </label>
+                      <div className="relative">
+                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                        <input
+                          type="text"
+                          required
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          placeholder="John Doe"
+                          className="w-full pl-11 pr-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white placeholder-white/30 focus:outline-none focus:border-cyan/50"
+                        />
+                      </div>
+                    </div>
+
                     {/* Email */}
                     <div className="mb-6">
                       <label className="text-white/70 text-sm mb-2 block">
@@ -318,10 +356,32 @@ export default function PreorderPage() {
                       />
                     </div>
 
-                    {/* Total & CTA */}
-                    <div className="flex justify-between items-center py-4 border-t border-white/[0.1] mb-6">
-                      <span className="text-white/70">Total</span>
-                      <span className="text-2xl font-bold text-white">$99</span>
+                    {/* Address */}
+                    <div className="mb-6">
+                      <label className="text-white/70 text-sm mb-2 block">
+                        Shipping Address
+                      </label>
+                      <div className="relative">
+                        <MapPin className="absolute left-4 top-4 w-4 h-4 text-white/30" />
+                        <textarea
+                          required
+                          value={address}
+                          onChange={(e) => setAddress(e.target.value)}
+                          placeholder="Street, City, State, ZIP, Country"
+                          rows={3}
+                          className="w-full pl-11 pr-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white placeholder-white/30 focus:outline-none focus:border-cyan/50 resize-none"
+                        />
+                      </div>
+                    </div>
+
+                    {error && (
+                      <p className="text-red-400 text-sm mb-4 text-center bg-red-400/10 py-2 rounded-lg border border-red-400/20">
+                        {error}
+                      </p>
+                    )}
+
+                    {/* CTA */}
+                    <div className="py-4 border-t border-white/[0.1] mb-6">
                     </div>
 
                     <motion.button
@@ -343,8 +403,8 @@ export default function PreorderPage() {
                         />
                       ) : (
                         <>
-                          <CreditCard className="w-5 h-5" />
-                          Complete Pre-Order
+                          <Package className="w-5 h-5" />
+                          Reserve My Pre-Order
                         </>
                       )}
                     </motion.button>

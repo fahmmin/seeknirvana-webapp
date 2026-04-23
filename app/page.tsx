@@ -7,6 +7,7 @@ import { Benefits } from "@/src/sections/Benefits";
 import { Technology } from "@/src/sections/Technology";
 import { Program } from "@/src/sections/Program";
 import { Pricing } from "@/src/sections/Pricing";
+import { Newsletter } from "@/src/sections/Newsletter";
 import { Footer } from "@/src/sections/Footer";
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function Home() {
       <Technology />
       <Program />
       <Pricing />
+      <Newsletter />
       <Footer />
     </main>
   );

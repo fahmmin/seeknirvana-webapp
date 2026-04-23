@@ -12,7 +12,7 @@
 }
 
 body {
-  background-color: #0E0A1A;
+  background-color: #0A0A0F;
   color: #FFFFFF;
   overflow-x: hidden;
 }
@@ -36,14 +36,14 @@ body {
 
 /* Gradient text utility */
 .text-gradient-jade {
-  background: linear-gradient(135deg, #B794F4 0%, #A78BFA 100%);
+  background: linear-gradient(135deg, #00A86B 0%, #00D4FF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-gradient-gold {
-  background: linear-gradient(135deg, #D4A0C0 0%, #E8BCD8 100%);
+  background: linear-gradient(135deg, #C9A227 0%, #E8D5A3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -51,31 +51,31 @@ body {
 
 /* Backward-compatible aliases used by migrated sections */
 .gradient-text {
-  background: linear-gradient(135deg, #B794F4 0%, #A78BFA 100%);
+  background: linear-gradient(135deg, #00D4FF 0%, #C9A227 50%, #00A86B 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-gold {
-  background: linear-gradient(135deg, #D4A0C0 0%, #E8BCD8 100%);
+  background: linear-gradient(135deg, #C9A227 0%, #E8D5A3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Lavender glow for CTAs */
+/* Green glow for CTAs */
 .glow-jade {
-  box-shadow: 0 0 24px rgba(183, 148, 244, 0.25), 0 0 60px rgba(183, 148, 244, 0.1);
+  box-shadow: 0 0 24px rgba(0, 168, 107, 0.25), 0 0 60px rgba(0, 168, 107, 0.1);
 }
 
 .glow-jade-sm {
-  box-shadow: 0 0 12px rgba(183, 148, 244, 0.2);
+  box-shadow: 0 0 12px rgba(0, 168, 107, 0.2);
 }
 
-/* Mauve subtle border glow */
+/* Gold subtle border glow */
 .glow-gold {
-  box-shadow: 0 0 16px rgba(212, 160, 192, 0.15);
+  box-shadow: 0 0 16px rgba(201, 162, 39, 0.15);
 }
 
 /* Shared atmospheric surfaces */
@@ -88,15 +88,15 @@ body {
 .mandala-pattern {
   background-image:
     radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0),
-    radial-gradient(circle at 12px 12px, rgba(183, 148, 244, 0.12) 1px, transparent 0);
+    radial-gradient(circle at 12px 12px, rgba(0, 168, 107, 0.12) 1px, transparent 0);
   background-size: 24px 24px;
 }
 
 .aurora-bg {
   background:
-    radial-gradient(circle at 15% 20%, rgba(167, 139, 250, 0.12), transparent 46%),
-    radial-gradient(circle at 85% 10%, rgba(212, 160, 192, 0.1), transparent 45%),
-    #0e0a1a;
+    radial-gradient(circle at 15% 20%, rgba(0, 212, 255, 0.12), transparent 46%),
+    radial-gradient(circle at 85% 10%, rgba(201, 162, 39, 0.1), transparent 45%),
+    #0A0A0F;
 }
 
 .devanagari-text {
