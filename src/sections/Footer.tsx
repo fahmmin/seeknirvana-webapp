@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { FaXTwitter, FaGithub, FaYoutube, FaEnvelope } from "react-icons/fa6";
+import { FaXTwitter, FaGithub, FaYoutube, FaEnvelope, FaTelegram } from "react-icons/fa6";
 import { GiRing } from "react-icons/gi";
 import { footerGroups, footerSocials } from "../content/homepage";
 
@@ -8,6 +8,7 @@ const iconMap: Record<string, any> = {
   X: FaXTwitter,
   GitHub: FaGithub,
   YouTube: FaYoutube,
+  Telegram: FaTelegram,
   Email: FaEnvelope,
 };
 
@@ -24,7 +25,7 @@ export const Footer = () => {
               <img 
                 src="/SeekNirvana-logo.png" 
                 alt="Seek Nirvana" 
-                className="h-16 w-auto object-contain"
+                className="h-8 w-auto object-contain"
               />
             </div>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-white/45">

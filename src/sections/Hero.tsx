@@ -40,11 +40,10 @@ export const Hero = () => {
         </video>
       </div>
 
-      {/* Overlays — tinted with deep purple instead of pure black */}
-      <div className="absolute inset-0 bg-navy-950/20 pointer-events-none" />
-      <div className="absolute inset-0 noise-overlay opacity-[0.35] mix-blend-overlay pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-950/40 via-transparent to-navy-950/70 pointer-events-none" />
-      <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-navy-950/60 via-navy-950/20 to-transparent pointer-events-none md:w-2/3 md:from-navy-950/50 md:via-navy-950/10" />
+      {/* Overlays — refined for clarity and sharpness */}
+      <div className="absolute inset-0 bg-navy-950/10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-950/30 via-transparent to-navy-950/60 pointer-events-none" />
+      <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-navy-950/50 via-navy-950/10 to-transparent pointer-events-none md:w-2/3 md:from-navy-950/40 md:via-navy-950/5" />
 
       {/* Subtle green glow at bottom left */}
       <div className="absolute bottom-0 left-0 h-[400px] w-[500px] rounded-full bg-jade/[0.06] blur-[100px] pointer-events-none" />

@@ -232,6 +232,7 @@ export const footerSocials = [
   { label: "X", href: "https://x.com/SeekNirvanaHQ" },
   { label: "GitHub", href: "https://github.com/seekNirvana" },
   { label: "YouTube", href: "https://www.youtube.com/@SeekNirvanaOfficial" },
+  { label: "Telegram", href: "https://t.me/SeekNirvanaHQ" },
   { label: "Email", href: "mailto:info@seeknirvana.com" },
 ];
 
