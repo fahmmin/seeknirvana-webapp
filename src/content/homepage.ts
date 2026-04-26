@@ -140,7 +140,7 @@ export const signals: Array<{
     icon: Cpu,
     title: "Local SLM guidance",
     description:
-      "Detailed technology pages explain the on-device Gemma 4 and Qwen 3.6 style workflows for somatic and cognitive stress support.",
+      "Detailed technology pages explain the on-device Gemma 4 workflows for somatic and cognitive stress support.",
   },
 ];
 

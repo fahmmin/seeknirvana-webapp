@@ -20,7 +20,6 @@ export const Navbar = () => {
   const pathname = usePathname();
   const { address, status } = useAccount();
 
-  // Treat reconnecting sessions as signed in to avoid CTA flicker.
   const isSignedIn = Boolean(address) && (status === "connected" || status === "reconnecting");
   const ctaHref = isSignedIn ? "/dashboard" : "/programs/5-day-sleep-cohort/apply";
   const ctaLabel = isSignedIn ? "Dashboard" : "Join Program";
@@ -36,105 +35,101 @@ export const Navbar = () => {
   }, [pathname]);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        scrolled
-          ? "bg-navy-950/85 backdrop-blur-xl shadow-lg shadow-black/20 border-b border-white/[0.06]"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 md:py-5">
-        {/* Brand */}
-        <Link href="/" className="group flex items-center">
-          <img
-            src="/SeekNirvana-logo.png"
-            alt="Seek Nirvana"
-            className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
-          />
-        </Link>
+    <nav className="fixed top-0 left-0 right-0 z-[100] px-8 py-8 pointer-events-none">
+      <div className="max-w-6xl mx-auto pointer-events-auto">
+        <div className={`liquid-glass rounded-full px-8 py-3.5 flex items-center justify-between border-white/5 transition-all duration-500 ${scrolled ? 'bg-black/40 backdrop-blur-2xl' : ''}`}>
+          {/* Brand */}
+          <Link href="/" className="flex items-center group">
+            <img
+              src="/SeekNirvana-logo.png"
+              alt="Seek Nirvana"
+              className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
+            />
+          </Link>
 
-        {/* Desktop nav links */}
-        <div className="hidden items-center gap-2 md:flex">
-          {navItems.map((item) => (
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={`text-[16px] font-medium transition-colors ${
+                  pathname === item.href ? 'text-white' : 'text-white/60 hover:text-white'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center gap-6">
             <Link
-              key={item.label}
-              href={item.href}
-              className="rounded-lg px-4 py-2 text-sm font-medium text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white"
+              href="/login"
+              className="text-white/60 hover:text-white text-base font-medium transition-colors"
             >
-              {item.label}
+              Login
             </Link>
-          ))}
+            <Link
+              href={ctaHref}
+              className="liquid-glass rounded-full px-8 py-3 text-white text-base font-medium hover:bg-jade/30 transition-all border-jade/20 bg-jade/10 flex items-center gap-2 group shadow-[0_0_20px_rgba(0,168,107,0.1)]"
+            >
+              <span className="text-jade-light font-bold tracking-tight">{ctaLabel}</span>
+              <ArrowRight className="h-5 w-5 text-jade-light transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="lg:hidden text-white/80 hover:text-white p-1"
+          >
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
 
-        {/* Desktop CTA */}
-        <div className="hidden items-center gap-4 md:flex">
-          <Link
-            href="/preorder"
-            className="rounded-lg px-4 py-2 text-sm font-medium text-white/60 transition-colors hover:text-white"
-          >
-            Pre-order
-          </Link>
-          <Link
-            href={ctaHref}
-            className="group/btn inline-flex items-center gap-2 rounded-full bg-jade px-6 py-2.5 text-sm font-bold text-navy-950 transition-all hover:brightness-110 glow-jade-sm"
-          >
-            {ctaLabel}
-            <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />
-          </Link>
-        </div>
-
-        {/* Mobile menu button */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.1] bg-white/[0.06] text-white md:hidden"
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </div>
-
-      {/* Mobile dropdown */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-white/[0.06] bg-navy-950/95 backdrop-blur-xl md:hidden"
-          >
-            <div className="flex flex-col gap-1 px-4 py-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="rounded-xl px-4 py-3 text-sm text-white/70 transition-colors hover:bg-white/[0.06] hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <div className="mt-3 flex flex-col gap-2 border-t border-white/[0.06] pt-4">
-                <Link
-                  href="/preorder"
-                  onClick={() => setMobileOpen(false)}
-                  className="rounded-xl px-4 py-3 text-center text-sm text-white/60 border border-white/[0.1] transition-colors hover:text-white"
-                >
-                  Pre-order
-                </Link>
-                <Link
-                  href={ctaHref}
-                  onClick={() => setMobileOpen(false)}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-jade px-6 py-3 text-sm font-medium text-navy-950 glow-jade-sm"
-                >
-                  {ctaLabel}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              className="mt-4 lg:hidden"
+            >
+              <div className="liquid-glass rounded-3xl p-6 border-white/5 flex flex-col gap-6">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-lg font-medium text-white/70 hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <div className="h-px bg-white/5 w-full" />
+                <div className="flex flex-col gap-4">
+                  <Link
+                    href="/login"
+                    onClick={() => setMobileOpen(false)}
+                    className="text-white/60 text-center py-2"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    href={ctaHref}
+                    onClick={() => setMobileOpen(false)}
+                    className="liquid-glass rounded-full py-4 text-center text-jade-light font-bold border-jade/20 bg-jade/10"
+                  >
+                    {ctaLabel}
+                  </Link>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </nav>
   );
 };

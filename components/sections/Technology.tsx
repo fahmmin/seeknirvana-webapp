@@ -31,7 +31,7 @@ const signals = [
     id: 'slm',
     icon: Cpu,
     title: 'Local SLM guidance',
-    description: 'Detailed technology pages now explain the on-device Gemma 4 and Qwen 3.6 style workflows for somatic and cognitive stress support.',
+    description: 'Detailed technology pages explain the on-device Gemma 4 workflows for somatic and cognitive stress support.',
   },
 ]
 
@@ -118,7 +118,7 @@ function SignalIllustration({ id }: { id: string }) {
           </div>
           <div className="flex-1 rounded-2xl border border-white/[0.1] bg-white/[0.06] px-3 py-2">
             <p className="text-[10px] uppercase tracking-[0.24em] text-purple-300/70">Soul layer</p>
-            <p className="text-sm text-white/75">Qwen-guided cognitive support</p>
+            <p className="text-sm text-white/75">Gemma-guided cognitive support</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
