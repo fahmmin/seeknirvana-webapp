@@ -20,30 +20,12 @@ export default function PhilosophySection() {
           Intelligence <span className="font-['Instrument_Serif'] italic text-white/40">with </span> Privacy
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.2 }}
-            className="rounded-3xl overflow-hidden aspect-[4/3]"
-          >
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              className="w-full h-full object-cover"
-            >
-              <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4" type="video/mp4" />
-            </video>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="flex flex-col gap-12"
+            className="flex flex-col gap-12 order-2 md:order-1"
           >
             <div className="space-y-6">
               <span className="text-white/40 text-xs tracking-[0.3em] uppercase block">
@@ -64,6 +46,25 @@ export default function PhilosophySection() {
                 Privacy is the foundation, not a feature. Our architecture is designed with on-device processing, end-to-end encrypted flows, and user-controlled data permissions. We don't just protect your data; we ensure you remain in absolute control of your inner world.
               </p>
             </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="rounded-3xl overflow-hidden aspect-[4/3] order-1 md:order-2 shadow-2xl shadow-emerald-900/10"
+          >
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster="/images/tech-philosophy-poster.webp"
+              className="w-full h-full object-cover"
+            >
+              <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4" type="video/mp4" />
+            </video>
           </motion.div>
         </div>
       </div>

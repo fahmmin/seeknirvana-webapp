@@ -23,6 +23,7 @@ export default function FeaturedVideoSection() {
             loop
             playsInline
             preload="auto"
+            poster="/images/tech-featured-poster.webp"
             className="w-full h-full object-cover"
           >
             <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260402_054547_9875cfc5-155a-4229-8ec8-b7ba7125cbf8.mp4" type="video/mp4" />

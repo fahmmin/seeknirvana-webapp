@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
-  Globe,
   ArrowRight,
   Instagram,
   Twitter,
@@ -15,6 +14,8 @@ import {
   Mail
 } from 'lucide-react'
 import { Navbar } from "@/src/components/Navbar";
+import { Footer } from "@/src/sections/Footer";
+import Link from 'next/link'
 import AboutSection from '@/components/technology/AboutSection'
 import AppScreenshotCarousel from "@/components/technology/AppScreenshotCarousel";
 import FeaturedVideoSection from '@/components/technology/FeaturedVideoSection'
@@ -24,91 +25,47 @@ import GlowEffect from '@/components/animations/GlowEffect'
 
 export default function TechnologyPage() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [opacity, setOpacity] = useState(0)
-
-  // Video fade logic
+  // Simplified video logic - remove opacity fade that causes blank screen
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
 
-    let animationId: number
-
-    const fadeEffect = (start: number, end: number, duration: number, callback?: () => void) => {
-      const startTime = performance.now()
-
-      const animate = (currentTime: number) => {
-        const elapsed = currentTime - startTime
-        const progress = Math.min(elapsed / duration, 1)
-        const currentOpacity = start + (end - start) * progress
-
-        setOpacity(currentOpacity)
-
-        if (progress < 1) {
-          animationId = requestAnimationFrame(animate)
-        } else if (callback) {
-          callback()
-        }
-      }
-
-      animationId = requestAnimationFrame(animate)
-    }
-
-    const handleCanPlay = () => {
-      video.play()
-      fadeEffect(0, 1, 500)
-    }
-
-    const handleTimeUpdate = () => {
-      const remainingTime = video.duration - video.currentTime
-      if (remainingTime <= 0.55 && opacity > 0) {
-        fadeEffect(opacity, 0, 500)
-      }
-    }
+    video.play().catch(e => console.log("Auto-play blocked", e))
 
     const handleEnded = () => {
-      setOpacity(0)
-      setTimeout(() => {
-        video.currentTime = 0
-        video.play()
-        fadeEffect(0, 1, 500)
-      }, 100)
+      video.currentTime = 0
+      video.play()
     }
 
-    video.addEventListener('canplay', handleCanPlay)
-    video.addEventListener('timeupdate', handleTimeUpdate)
     video.addEventListener('ended', handleEnded)
-
-    return () => {
-      video.removeEventListener('canplay', handleCanPlay)
-      video.removeEventListener('timeupdate', handleTimeUpdate)
-      video.removeEventListener('ended', handleEnded)
-      cancelAnimationFrame(animationId)
-    }
-  }, [opacity])
+    return () => video.removeEventListener('ended', handleEnded)
+  }, [])
 
   return (
-    <div className="aurora-bg mandala-pattern min-h-screen text-white selection:bg-white/20 relative">
+    <div className="aurora-bg mandala-pattern min-h-screen text-white selection:bg-white/20 relative overflow-x-hidden">
       {/* Global Background Glows */}
-      <GlowEffect
-        color="rgba(0, 168, 107, 0.12)"
-        size={800}
-        className="top-[-10%] left-[-10%] opacity-40"
-      />
-      <GlowEffect
-        color="rgba(201, 162, 39, 0.08)"
-        size={600}
-        className="top-[20%] right-[-5%] opacity-30"
-      />
-      <GlowEffect
-        color="rgba(0, 212, 255, 0.1)"
-        size={700}
-        className="bottom-[10%] left-[5%] opacity-30"
-      />
-      <GlowEffect
-        color="rgba(0, 168, 107, 0.15)"
-        size={900}
-        className="bottom-[-10%] right-[-10%] opacity-40"
-      />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <GlowEffect
+          color="rgba(0, 168, 107, 0.12)"
+          size={800}
+          className="top-[-10%] left-[-10%] opacity-40"
+        />
+        <GlowEffect
+          color="rgba(201, 162, 39, 0.08)"
+          size={600}
+          className="top-[20%] right-[-5%] opacity-30"
+        />
+        <GlowEffect
+          color="rgba(0, 212, 255, 0.1)"
+          size={700}
+          className="bottom-[10%] left-[5%] opacity-30"
+        />
+        <GlowEffect
+          color="rgba(0, 168, 107, 0.15)"
+          size={900}
+          className="bottom-[-10%] right-[-10%] opacity-40"
+        />
+      </div>
 
       <Navbar />
 
@@ -121,38 +78,36 @@ export default function TechnologyPage() {
           autoPlay
           playsInline
           preload="auto"
-          style={{ opacity }}
-          className="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none scale-105"
+          poster="/images/tech-hero-poster.webp"
+          className="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none"
         >
           <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a.mp4" type="video/mp4" />
         </video>
 
-        {/* Hero Content */}
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 text-center pt-32 pb-24">
+        {/* Hero Content - Adjusted for Right Alignment of Video focus */}
+        <div className="relative z-10 flex-1 flex flex-col items-center lg:items-start justify-center px-6 text-center lg:text-left pt-20 pb-24 max-w-7xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
             className="space-y-8"
           >
-            <span className="text-white/40 text-sm tracking-[0.4em] uppercase block">
-              Intelligence Within
-            </span>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl text-white tracking-tight font-['Instrument_Serif'] max-w-5xl leading-[0.95]">
-              Technology that understands your <em className="italic gradient-text">inner</em> world.
+
+            <h1 className="text-5xl md:text-7xl lg:text-8xl text-white tracking-tight font-['Instrument_Serif'] max-w-5xl leading-[0.95] pt-6">
+              Technology that understands your <em className="italic gradient-text pr-2">inner</em> world.
             </h1>
 
-            <p className="text-white text-lg md:text-xl leading-relaxed max-w-2xl mx-auto font-light">
+            <p className="text-white text-lg md:text-xl leading-relaxed max-w-2xl lg:max-w-xl mx-auto lg:ml-0 font-light">
               Seek Nirvana combines real-time biometrics, privacy-first AI, and adaptive intelligence to help you understand, optimize, and evolve your state of being.
             </p>
 
-            <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-6">
-              <button className="liquid-glass rounded-full px-10 py-4 text-white text-sm font-medium hover:bg-white/5 transition-all border-white/5">
+            <div className="pt-4 flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-6">
+              <Link href="/preorder" className="liquid-glass rounded-full px-10 py-4 text-white text-sm font-medium hover:bg-white/5 transition-all border-white/5">
                 Get Early Access
-              </button>
-              <button className="text-white/60 hover:text-white text-sm font-medium flex items-center gap-2 transition-colors">
-                View Program <ArrowRight className="h-4 w-4" />
-              </button>
+              </Link>
+              <Link href="/programs/5-day-sleep-cohort" className="text-white/60 hover:text-white text-sm font-medium flex items-center gap-2 transition-colors">
+                View Programs <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -246,24 +201,7 @@ export default function TechnologyPage() {
       <ServicesSection />
 
       {/* ── FINAL FOOTER ── */}
-      <footer className="bg-transparent py-20 px-6 border-t border-white/5 relative">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex items-center gap-2">
-            <Globe className="h-5 w-5 text-white/40" />
-            <span className="text-white/60 font-medium">Nirvana Technology</span>
-          </div>
-          <p className="text-white/30 text-xs tracking-widest uppercase">
-            Built for a future that is within.
-          </p>
-          <div className="flex gap-8">
-            {['Terms', 'Privacy', 'Contact'].map((item) => (
-              <a key={item} href="#" className="text-white/40 hover:text-white text-xs uppercase tracking-widest transition-colors">
-                {item}
-              </a>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
