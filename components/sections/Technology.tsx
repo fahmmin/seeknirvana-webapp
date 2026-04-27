@@ -31,14 +31,14 @@ const signals = [
     id: 'slm',
     icon: Cpu,
     title: 'Local SLM guidance',
-    description: 'Detailed technology pages now explain the on-device Gemma 4 and Qwen 3.6 style workflows for somatic and cognitive stress support.',
+    description: 'Detailed technology pages explain the on-device Gemma 4 workflows for somatic and cognitive stress support.',
   },
 ]
 
 function SignalIllustration({ id }: { id: string }) {
   if (id === 'health') {
     return (
-      <div className="relative mt-6 overflow-hidden rounded-2xl border border-white/[0.1] bg-gradient-to-br from-cyan/10 via-white/5 to-jade/10 p-5">
+      <div className="relative mt-6 overflow-hidden rounded-3xl border border-white/[0.1] bg-gradient-to-br from-cyan/10 via-white/5 to-jade/10 p-5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,212,255,0.12),transparent_55%)]" />
         <div className="relative flex items-center justify-between gap-4">
           <div className="space-y-3">
@@ -72,11 +72,11 @@ function SignalIllustration({ id }: { id: string }) {
 
   if (id === 'mobile') {
     return (
-      <div className="relative mt-6 overflow-hidden rounded-2xl border border-white/[0.1] bg-gradient-to-br from-gold/10 via-white/5 to-nirvana-purple/10 p-5">
+      <div className="relative mt-6 overflow-hidden rounded-3xl border border-white/[0.1] bg-gradient-to-br from-gold/10 via-white/5 to-nirvana-purple/10 p-5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(201,162,39,0.14),transparent_48%)]" />
         <div className="relative flex items-center justify-between gap-4">
-          <div className="rounded-[1.35rem] border border-white/[0.1] bg-navy-950/80 p-2 shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
-            <div className="h-28 w-16 overflow-hidden rounded-[1rem] border border-white/[0.1] bg-black">
+          <div className="rounded-[2rem] border border-white/[0.1] bg-navy-950/80 p-2 shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
+            <div className="h-28 w-16 overflow-hidden rounded-[1.4rem] border border-white/[0.1] bg-black">
               <img
                 src="/images/app/app_home.jpeg"
                 alt="SeekNirvana companion app"
@@ -86,7 +86,7 @@ function SignalIllustration({ id }: { id: string }) {
           </div>
 
           <div className="flex-1 space-y-3">
-            <div className="rounded-2xl border border-white/[0.1] bg-white/[0.06] px-3 py-3">
+            <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] px-3 py-3">
               <p className="text-[10px] uppercase tracking-[0.24em] text-white/35">
                 सहचर अनुप्रयोग
               </p>
@@ -109,23 +109,23 @@ function SignalIllustration({ id }: { id: string }) {
   }
 
   return (
-    <div className="relative mt-6 overflow-hidden rounded-2xl border border-white/[0.1] bg-gradient-to-br from-nirvana-purple/10 via-white/5 to-cyan/10 p-5">
+    <div className="relative mt-6 overflow-hidden rounded-3xl border border-white/[0.1] bg-gradient-to-br from-nirvana-purple/10 via-white/5 to-cyan/10 p-5">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(124,58,237,0.16),transparent_45%)]" />
       <div className="relative grid gap-3">
         <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-400/20 bg-purple-400/10">
+          <div className="flex h-12 w-12 items-center justify-center rounded-3xl border border-purple-400/20 bg-purple-400/10">
             <BrainCircuit className="h-5 w-5 text-purple-300" />
           </div>
-          <div className="flex-1 rounded-2xl border border-white/[0.1] bg-white/[0.06] px-3 py-2">
+          <div className="flex-1 rounded-3xl border border-white/[0.1] bg-white/[0.06] px-3 py-2">
             <p className="text-[10px] uppercase tracking-[0.24em] text-purple-300/70">Soul layer</p>
-            <p className="text-sm text-white/75">Qwen-guided cognitive support</p>
+            <p className="text-sm text-white/75">Gemma-guided cognitive support</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-400/20 bg-emerald-400/10">
+          <div className="flex h-12 w-12 items-center justify-center rounded-3xl border border-emerald-400/20 bg-emerald-400/10">
             <Waves className="h-5 w-5 text-emerald-300" />
           </div>
-          <div className="flex-1 rounded-2xl border border-white/[0.1] bg-white/[0.06] px-3 py-2">
+          <div className="flex-1 rounded-3xl border border-white/[0.1] bg-white/[0.06] px-3 py-2">
             <p className="text-[10px] uppercase tracking-[0.24em] text-emerald-300/70">Body layer</p>
             <p className="text-sm text-white/75">Gemma-guided somatic regulation</p>
           </div>
@@ -163,8 +163,8 @@ export default function Technology() {
           <div className="grid gap-4">
             {signals.map((signal, index) => (
               <FadeIn key={signal.title} delay={index * 0.08} className="h-full">
-                <motion.div whileHover={{ y: -4 }} className="group h-full rounded-2xl glass-card p-6">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.08]">
+                <motion.div whileHover={{ y: -4 }} className="group h-full rounded-3xl glass-card p-6">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-3xl bg-white/[0.08]">
                     <signal.icon className="h-5 w-5 text-cyan" />
                   </div>
                   <h3 className="text-xl font-semibold text-white">{signal.title}</h3>
@@ -178,7 +178,7 @@ export default function Technology() {
           </div>
 
           <FadeIn delay={0.2} className="h-full">
-            <div className="relative h-full overflow-hidden rounded-3xl border border-cyan/15 bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
+            <div className="relative h-full overflow-hidden rounded-[2.5rem] border border-cyan/15 bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
               <div className="absolute inset-0 bg-gradient-to-br from-cyan/10 via-transparent to-jade/10" />
               <div className="relative">
                 <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan/20 bg-white/[0.08] px-4 py-2 text-sm text-cyan">
@@ -189,9 +189,9 @@ export default function Technology() {
                   Technology deep dive
                 </p>
 
-                <div className="rounded-2xl border border-white/[0.1] bg-navy-950/60 p-6">
+                <div className="rounded-3xl border border-white/[0.1] bg-navy-950/60 p-6">
                   <div className="mb-5 flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/[0.06]">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-3xl bg-white/[0.06]">
                       <MoonStar className="h-5 w-5 text-cyan" />
                     </div>
                     <div>
@@ -204,7 +204,7 @@ export default function Technology() {
                   <img
                     src="/images/app/app_home.jpeg"
                     alt="SeekNirvana mobile app preview"
-                    className="w-full rounded-2xl border border-white/[0.1] object-cover"
+                    className="w-full rounded-3xl border border-white/[0.1] object-cover"
                   />
                 </div>
 

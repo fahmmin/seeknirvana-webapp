@@ -140,7 +140,7 @@ export const signals: Array<{
     icon: Cpu,
     title: "Local SLM guidance",
     description:
-      "Detailed technology pages explain the on-device Gemma 4 and Qwen 3.6 style workflows for somatic and cognitive stress support.",
+      "Detailed technology pages explain the on-device Gemma 4 workflows for somatic and cognitive stress support.",
   },
 ];
 
@@ -230,6 +230,7 @@ export const footerGroups = {
 
 export const footerSocials = [
   { label: "X", href: "https://x.com/SeekNirvanaHQ" },
+  { label: "Instagram", href: "https://instagram.com/seeknirvanaHQ" },
   { label: "GitHub", href: "https://github.com/seekNirvana" },
   { label: "YouTube", href: "https://www.youtube.com/@SeekNirvanaOfficial" },
   { label: "Telegram", href: "https://t.me/SeekNirvanaHQ" },

@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { FaXTwitter, FaGithub, FaYoutube, FaEnvelope, FaTelegram } from "react-icons/fa6";
+import { FaXTwitter, FaGithub, FaYoutube, FaEnvelope, FaTelegram, FaInstagram } from "react-icons/fa6";
 import { GiRing } from "react-icons/gi";
 import { footerGroups, footerSocials } from "../content/homepage";
 
@@ -9,6 +9,7 @@ const iconMap: Record<string, any> = {
   GitHub: FaGithub,
   YouTube: FaYoutube,
   Telegram: FaTelegram,
+  Instagram: FaInstagram,
   Email: FaEnvelope,
 };
 

@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Check, ArrowRight } from "lucide-react";
 import { WordsPullUpMultiStyle } from "../components/WordsPullUpMultiStyle";
+import LazyVideo from "@/components/animations/LazyVideo";
 
 const CardEntrance = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => {
   const ref = useRef(null);
@@ -70,15 +71,10 @@ export const Features = () => {
           {/* Card 1 - Video Card */}
           <CardEntrance delay={0}>
             <div className="relative h-full rounded-2xl md:rounded-[2rem] overflow-hidden group">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
+              <LazyVideo
+                src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4"
                 className="absolute inset-0 w-full h-full object-cover"
-              >
-                <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4" type="video/mp4" />
-              </video>
+              />
               <div className="absolute bottom-6 left-6 z-10">
                 <p className="text-[#E1E0CC] font-medium">Your creative canvas.</p>
               </div>

@@ -1,245 +1,149 @@
-import type { Metadata } from "next";
+'use client'
+
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import {
-  Activity,
-  BrainCircuit,
-  Cpu,
-  Sparkles,
-  Waves,
-} from "lucide-react";
-import { Navbar as Navigation } from "@/src/components/Navbar";
+  ArrowRight,
+  Smartphone,
+} from 'lucide-react'
+import { Navbar } from "@/src/components/Navbar";
 import { Footer } from "@/src/sections/Footer";
-import { FadeIn } from "@/src/components/FadeIn";
+import Link from 'next/link'
+import AboutSection from '@/components/technology/AboutSection'
 import AppScreenshotCarousel from "@/components/technology/AppScreenshotCarousel";
-import LocalModelSection from "@/components/technology/LocalModelSection";
-
-const stackCards = [
-  {
-    icon: Activity,
-    title: "Ring sensing layer",
-    description:
-      "Your smart ring captures HRV, skin temperature, SpO2, sleep stages, and movement across epochs — discrete windows of physiological truth. SeekNirvana reads these epochs to understand your body's rhythm before making any recommendation.",
-  },
-  {
-    icon: BrainCircuit,
-    title: "Soul layer — mind & spirit",
-    description:
-      "A custom-trained 4B language model runs entirely on your device, fine-tuned on contemplative philosophy, therapeutic dialogue, and reflective journaling. It handles emotional processing, spiritual inquiry, and cognitive stress without a single byte leaving your phone.",
-  },
-  {
-    icon: Waves,
-    title: "Body layer — yoga & breathwork",
-    description:
-      "A second on-device model is trained on asana cues, pranayama sequences, anatomy alignment, and somatic regulation. It reads your ring's epoch data to time breathwork suggestions, adjust flow intensity, and correct posture in context.",
-  },
-  {
-    icon: Cpu,
-    title: "Orchestration layer",
-    description:
-      "A lightweight intent router decides which model activates based on what you're doing and what your ring just reported. Only one model runs at a time — preserving battery, preventing OOM, and keeping responses fast.",
-  },
-];
-
-const appFeatures = [
-  "Epoch-based readiness and body state view",
-  "Guided yoga flows timed to your ring data",
-  "Pranayama breathwork with live breath pacing",
-  "Reflective journaling with soul layer responses",
-  "Spiritual and philosophical inquiry mode",
-  "Private insight history — on-device, always",
-];
-
-const platformBadges = [
-  { name: "App Store", icon: "" },
-  { name: "Google Play", icon: "▶" },
-  { name: "Solana dApp Store", icon: "◎" },
-];
-
-export const metadata: Metadata = {
-  title: "Technology | SeekNirvana",
-  description:
-    "See how SeekNirvana combines ring sensing, two on-device custom-trained language models, and a private mobile app for sleep and awareness guidance.",
-};
+import FeaturedVideoSection from '@/components/technology/FeaturedVideoSection'
+import PhilosophySection from '@/components/technology/PhilosophySection'
+import ServicesSection from '@/components/technology/ServicesSection'
+import BentoStackCards from '@/components/technology/BentoStackCards'
+import LocalModelSection from '@/components/technology/LocalModelSection'
+import GlowEffect from '@/components/animations/GlowEffect'
 
 export default function TechnologyPage() {
+
   return (
-    <main className="relative min-h-screen">
-      <Navigation />
+    <div className="aurora-bg mandala-pattern min-h-screen text-white selection:bg-white/20 relative overflow-x-hidden">
+      {/* Global Background Glows */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <GlowEffect
+          color="rgba(0, 168, 107, 0.12)"
+          size={800}
+          className="top-[-10%] left-[-10%] opacity-40"
+        />
+        <GlowEffect
+          color="rgba(201, 162, 39, 0.08)"
+          size={600}
+          className="top-[20%] right-[-5%] opacity-30"
+        />
+        <GlowEffect
+          color="rgba(0, 212, 255, 0.1)"
+          size={700}
+          className="bottom-[10%] left-[5%] opacity-30"
+        />
+        <GlowEffect
+          color="rgba(0, 168, 107, 0.15)"
+          size={900}
+          className="bottom-[-10%] right-[-10%] opacity-40"
+        />
+      </div>
 
-      <section className="relative overflow-hidden pt-40 pb-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 to-navy-950" />
-        <div className="absolute inset-0 mandala-pattern opacity-20" />
+      <Navbar />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeIn className="mx-auto max-w-4xl text-center">
-            <span className="mb-4 block text-sm uppercase tracking-[0.3em] text-cyan">
-              The Intelligence Within
-            </span>
-            <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
-              Two minds. One body. Your data, never leaving the device.
+      {/* ── SECTION 1: HERO ── */}
+      <section className="relative min-h-screen flex flex-col overflow-hidden">
+
+        {/* Hero Content - Adjusted for Right Alignment of Video focus */}
+        <div className="relative z-10 flex-1 flex flex-col items-center lg:items-start justify-center px-6 text-center lg:text-left pt-20 pb-24 max-w-7xl mx-auto w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="space-y-8"
+          >
+
+            <h1 className="text-5xl md:text-7xl lg:text-8xl text-white tracking-tight max-w-5xl leading-[0.95] pt-6">
+              Technology that understands your <span className="gradient-text">inner</span> world.
             </h1>
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-white/62">
-              SeekNirvana runs two custom-trained language models entirely on
-              your phone — one that understands your inner world, one that
-              reads your body — guided by epoch signals from your smart ring.
-              No cloud. No compromise.
-            </p>
-          </FadeIn>
 
-          <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {stackCards.map((item) => (
-              <FadeIn key={item.title} className="h-full">
-                <div className="glass-card h-full rounded-3xl p-6">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.08]">
-                    <item.icon className="h-5 w-5 text-cyan" />
-                  </div>
-                  <h2 className="text-xl font-semibold text-white">{item.title}</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-white/58 sm:text-base">
-                    {item.description}
-                  </p>
+            <p className="text-white text-lg md:text-xl leading-relaxed max-w-2xl lg:max-w-xl mx-auto lg:ml-0 font-light">
+              Seek Nirvana combines real-time biometrics, privacy-first AI, and adaptive intelligence to help you understand, optimize, and evolve your state of being.
+            </p>
+
+            <div className="pt-4 flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-6">
+              <Link href="/preorder" className="glass-card rounded-full px-10 py-4 text-white text-sm font-medium hover:bg-white/10 transition-all">
+                Get Early Access
+              </Link>
+              <Link href="/programs/5-day-sleep-cohort" className="text-white/60 hover:text-white text-sm font-medium flex items-center gap-2 transition-colors">
+                View Programs <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+
+      </section>
+
+      {/* ── SECTIONS 2-5 ── */}
+      <AboutSection />
+      
+      <FeaturedVideoSection />
+
+      <section className="px-6 py-12 md:py-20 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <BentoStackCards />
+        </div>
+      </section>
+
+      {/* ── SECTION 3.5: MOBILE ECOSYSTEM ── */}
+      <section className="bg-transparent py-16 md:py-24 px-6 overflow-hidden relative border-y border-white/5">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_0.8fr] gap-10 lg:gap-20 items-center">
+          <div className="space-y-12">
+            <div className="space-y-6">
+              <span className="text-white/40 text-xs tracking-[0.3em] uppercase block">
+                Mobile Ecosystem
+              </span>
+              <h2 className="text-4xl md:text-6xl text-white tracking-tight">
+                Your world, <span className="gradient-text">visualized.</span>
+              </h2>
+              <p className="text-white/60 text-lg leading-relaxed max-w-xl">
+                The app is where raw ring data becomes practice. It lets users review epochs, receive yoga and breathwork timing, journal their inner state, and get private Soul and Body layer guidance.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[
+                "Epoch-based readiness and body state view",
+                "Guided yoga flows timed to your ring data",
+                "Pranayama breathwork with live breath pacing",
+                "Reflective journaling with soul layer responses",
+                "Spiritual and philosophical inquiry mode",
+                "Private insight history — on-device, always"
+              ].map((feature, i) => (
+                <div key={i} className="flex items-center gap-3 text-white/70 bg-white/[0.03] rounded-2xl px-5 py-4 border border-white/5">
+                  <Smartphone className="h-4 w-4 text-white/40" />
+                  <span className="text-sm">{feature}</span>
                 </div>
-              </FadeIn>
-            ))}
+              ))}
+            </div>
+
+          </div>
+
+          <div className="relative flex justify-center">
+            <AppScreenshotCarousel />
           </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden pb-10">
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <div className="overflow-hidden rounded-3xl border border-white/[0.1] bg-white/[0.06] p-6 backdrop-blur-xl">
-              <div className="flex items-center gap-4">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <div
-                    key={index}
-                    className="relative flex-1 overflow-hidden rounded-full border border-white/[0.1] bg-white/[0.06] px-3 py-2"
-                  >
-                    <div className="h-1 rounded-full bg-gradient-to-r from-white/10 via-white/20 to-white/10" />
-                    {index === 2 ? (
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/[0.08] p-1">
-                        <Activity className="h-3.5 w-3.5 text-cyan/70" />
-                      </div>
-                    ) : null}
-                  </div>
-                ))}
-              </div>
-              <p className="mt-4 text-center text-[11px] uppercase tracking-[0.32em] text-white/25">
-                Epoch boundary · signal evaluated
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan/5 to-transparent" />
-        <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_0.95fr] lg:px-8">
+      <PhilosophySection />
+      
+      <section className="px-6 py-12 md:py-20 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
           <LocalModelSection />
-
-          <FadeIn delay={0.15}>
-            <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 backdrop-blur-xl sm:p-10">
-              <span className="devanagari-text inline-flex items-center gap-2 rounded-full border border-white/[0.15] bg-white/[0.08] px-4 py-2 text-base text-jade-light">
-                <Sparkles className="h-4 w-4" />
-                सहचर अनुप्रयोग
-              </span>
-
-              <div className="mt-8">
-                <AppScreenshotCarousel />
-              </div>
-
-              <div className="mt-6">
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/20 bg-white/[0.08] px-3 py-1 text-xs uppercase tracking-widest text-gold">
-                    <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-gold" />
-                    Coming Soon
-                  </span>
-                </div>
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
-                  {platformBadges.map((platform) => (
-                    <div
-                      key={platform.name}
-                      className="select-none rounded-xl border border-white/[0.1] bg-white/[0.06] px-3 py-2 opacity-50"
-                    >
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg text-white/70">{platform.icon}</span>
-                        <div className="text-left">
-                          <div className="text-[10px] text-white/35">Download on</div>
-                          <div className="text-xs font-medium leading-tight text-white/80">
-                            {platform.name}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-8 space-y-3">
-                {appFeatures.map((feature) => (
-                  <div
-                    key={feature}
-                    className="rounded-2xl border border-white/[0.1] bg-white/[0.06] px-4 py-3 text-sm text-white/72 sm:text-base"
-                  >
-                    {feature}
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 rounded-2xl border border-white/[0.1] bg-white/[0.04] p-5">
-                <div className="flex items-center gap-3">
-                  <BrainCircuit className="h-5 w-5 text-gold" />
-                  <h3 className="text-lg font-semibold text-white">
-                    Why the app matters
-                  </h3>
-                </div>
-                <p className="mt-3 text-sm leading-relaxed text-white/58 sm:text-base">
-                  The app is where raw ring data becomes practice. It lets users
-                  review epochs, receive yoga and breathwork timing, journal
-                  their inner state, and get private Soul and Body layer
-                  guidance before those patterns spill deeper into the night.
-                </p>
-              </div>
-            </div>
-          </FadeIn>
         </div>
       </section>
 
-      <section className="relative overflow-hidden pb-24">
-        <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <div className="rounded-3xl border border-white/[0.1] bg-white/[0.06] p-8 text-center backdrop-blur-xl sm:p-10">
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[0.08]">
-                <Waves className="h-6 w-6 text-gold" />
-              </div>
-              <h2 className="text-3xl font-bold text-white sm:text-4xl">
-                Private intelligence that knows the difference between a tired body and an anxious mind.
-              </h2>
-              <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-white/60 sm:text-lg">
-                Most wellness apps send your most sensitive data — how you
-                slept, how you felt, what you wrote — to a remote server.
-                SeekNirvana keeps two custom-trained models on your device so
-                the guidance is personal, the processing is local, and the
-                context never leaves your hands.
-              </p>
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <a
-                  href="/preorder"
-                  className="inline-flex rounded-full border border-white/15 bg-white/[0.08] transition-colors hover:bg-white/[0.12] px-6 py-3 text-sm font-medium text-white"
-                >
-                  Join the early access list
-                </a>
-                <a
-                  href="/login"
-                  className="inline-flex rounded-full border border-white/[0.15] bg-white/[0.08] px-6 py-3 text-sm font-medium text-cyan transition-colors hover:bg-cyan/20"
-                >
-                  Join Program
-                </a>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+      <ServicesSection />
 
+      {/* ── FINAL FOOTER ── */}
       <Footer />
-    </main>
-  );
+    </div>
+  )
 }
