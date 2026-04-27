@@ -40,9 +40,9 @@ export default function ServicesSection() {
             <FadeIn
               key={i}
               delay={0.2 * (i + 1)}
-              className="glass-card rounded-3xl overflow-hidden group cursor-pointer"
+              className="glass-card rounded-3xl overflow-hidden group cursor-pointer [transform:translateZ(0)]"
             >
-              <div className="aspect-video relative overflow-hidden">
+              <div className="aspect-[4/3] sm:aspect-video relative overflow-hidden [transform:translateZ(0)]">
                   <LazyVideo
                     src={service.video}
                     poster={service.poster}

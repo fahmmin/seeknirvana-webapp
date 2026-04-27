@@ -22,6 +22,7 @@ export default function GlowEffect({
         background: `radial-gradient(circle, ${color} 0%, transparent 70%)`,
         filter: 'blur(40px)',
       }}
+      initial={{ scale: 1, opacity: 0.5 }}
       animate={{
         scale: [1, 1.2, 1],
         opacity: [0.5, 0.8, 0.5],

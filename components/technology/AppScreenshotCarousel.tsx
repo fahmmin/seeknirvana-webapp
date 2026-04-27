@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const screens = [
   {
@@ -32,26 +32,21 @@ export default function AppScreenshotCarousel() {
     return () => window.clearInterval(timer);
   }, []);
 
-  const activeScreen = screens[activeIndex];
-
   return (
     <div className="mx-auto w-fit rounded-[2.5rem] border border-white/20 bg-navy-950/80 p-2 shadow-2xl">
-      <div className="mx-auto w-full max-w-[270px] aspect-[9/18.5] overflow-hidden rounded-[2.5rem] border border-white/[0.15] bg-transparent">
-        <AnimatePresence mode="wait">
+      <div className="mx-auto w-full max-w-[270px] aspect-[9/18.5] overflow-hidden rounded-[2.5rem] border border-white/[0.15] bg-transparent relative">
+        {screens.map((screen, index) => (
           <motion.img
-            key={activeScreen.src}
-            src={activeScreen.src}
-            alt={activeScreen.alt}
-            initial={{ opacity: 0, x: 18 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -18 }}
-            transition={{ duration: 0.35 }}
-            className="w-full h-full object-top object-cover"
+            key={screen.src}
+            src={screen.src}
+            alt={screen.alt}
+            initial={false}
+            animate={{ opacity: index === activeIndex ? 1 : 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-top object-cover"
           />
-        </AnimatePresence>
+        ))}
       </div>
-
-
     </div>
   );
 }
